@@ -44,17 +44,6 @@ const Main = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   return (
     <section className='px-20 mx-auto container '>
 
@@ -62,20 +51,16 @@ const Main = () => {
 
             {servicesArr.map((el) => {
 
-                return <li className='flex justify-start items-center gap-12 px-16 max-w-[600px] h-[300px] shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md '>
+                return <li key={el.title + 'services-main'} className='flex justify-start items-center gap-12 px-16 max-w-[600px] h-[300px] shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md cursor-pointer hover:scale-105 transition-all duration-500   group '>
                     
                     <Image src={el.logo} />
-                    <h2 className='font-poppins   text-2xl '>{el.title}</h2>
+                    <h2 className='font-poppins   text-2xl group-hover:text-[#8780FF] transition-all duration-500 '>{el.title}</h2>
 
                 </li>
             })}
             
 
         </ul>
-
-
-
-
 
 
     </section>
