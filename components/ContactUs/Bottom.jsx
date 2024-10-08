@@ -1,14 +1,33 @@
-import React from 'react'
+import { useActionState  } from "react";
 
 const Bottom = () => {
+
+
+
+
+
+    // const [message, formAction] = useActionState(addToCart, null);
+
+
+
+    
+    
+
+
+
+
+
+
   return (
-    <section className='w-full   py-20 bg-gradient-to-t from-[#8780FF]/40 to-[#ffffff]'>
+    <section className='w-full   py-20 bg-gradient-to-t from-[#8780FF]/40 to-[#ffffff]' >
+         
+
         <div className='w-full mx-auto container flex flex-col justify-center items-center  px-20 '>
         <h2 className='font-poppins text-3xl text-center '>Have a question? <br/>
         Ask Outsource Accounting!</h2>
 
 
-        <form className= 'w-full  max-w-[700px]  py-24 grid grid-cols-2 gap-6 text-center font-Inter '>
+        <form className= 'w-full  max-w-[700px]  py-24 grid grid-cols-2 gap-6 text-center font-Inter ' >
             <div>
             <label htmlFor="your-name" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
                 Your Name

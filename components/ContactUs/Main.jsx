@@ -39,7 +39,7 @@ const Main = () => {
 
 
   return (
-    <section className='flex justify-center items-end gap-16 px-20 mx-auto container '>
+    <section className='flex justify-center items-end gap-16 px-20 mx-auto container '  >
 
 
         <div className=' max-w-[600px]  '>

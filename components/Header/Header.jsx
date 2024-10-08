@@ -28,22 +28,22 @@ const Header = () => {
 
 
 
-
+//fixed z-[9999]
   return (
-    <section className="w-full bg-gray-100  ">
+    <section className="w-full bg-gray-50 shadow-md shadow-black/25 ">
 
 
 
-<div className="w-full h-24 flex justify-between items-center    px-20 mx-auto container font-Mulish  font-semibold  ">
+<div className="w-full h-24 flex justify-between items-center    px-20 max-xl:px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold max-lg:hidden ">
       <div className="">
         <Link href={'/'}><Image src={Logo} className="w-32 p-2" /></Link>
       </div>
 
-      <div className=" flex justify-end items-center gap-8">
+      <div className=" flex justify-end items-center gap-8 ">
 
         <div className="flex  ">
           <nav>
-            <ul className="flex justify-center items-center gap-8">
+            <ul className="flex justify-center items-center gap-8 ">
               <li className={`hover:text-primary   border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/' ? 'active' : ''}`}>
                 <Link href={"/"}>Home</Link>
               </li>
