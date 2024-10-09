@@ -15,14 +15,14 @@ const Hero = () => {
           <h1 className="font-poppins text-4xl   "> Cheap Online Accounting & Tax Filing Services in the UK </h1>
           <p className="font-Inter text-base text-gray-700 "> Outsource Accounting is your trusted, reliable, and cheap online accounting and tax services partner. Chin up: we are dedicated to handling your Companies House and HM Revenue & Customs (HMRC) filings, starting from only £75 per year. <br /> <br /> Time to give your business a proper leg up! Fancy a chat with our expert UK accountants? Lets turn your business into an absolute cracker – reach out today! </p>
 
-          <div className='flex justify-start items-center gap-8 '>
+          <div className='flex justify-start items-center gap-8 text-nowrap'>
             <Link href=''><button className='py-3 px-6 bg-[#6C63FF] text-white font-poppins rounded-md text-sm font-normal'>Schedule free consultation</button></Link>
             <Link href='' className='text-[#6C63FF] font-poppins text-sm border-b border-[#6C63FF]/50 py-1'>More about us <GoArrowRight className="inline-block ml-1 " /></Link>
           </div>
         </div>
 
-        <div className="">
-          <Image src={homeHero} alt="homepage-hero-image"  width={400} />
+        <div className="min-w-[400px]">
+          <Image src={homeHero} alt="homepage-hero-image"  width={500} className=' ' />
         </div>
 
 
