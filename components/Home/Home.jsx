@@ -4,6 +4,7 @@ import HowCanWe from "./HowCanWe";
 import WhyOutsource from "./WhyOutsource/WhyOutsource";
 import Cta from "./Cta";
 import TrustedBy from "./TrustedBy";
+import Testimonials from "./Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <WhyOutsource />
         <Cta />
         <TrustedBy />
+        <Testimonials />
     </>
   )
 };
