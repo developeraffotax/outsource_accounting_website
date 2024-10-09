@@ -1,6 +1,6 @@
 const Heading = () => {
   return (
-    <section className="w-full h-72 bg-gradient-to-b overflow-hidden flex justify-center items-center  from-[#8780FF]/40 to-[#ffffff] relative ">
+    <section className="w-full h-72 overflow-hidden flex justify-center items-center bg-gradient-to-b from-[#8780FF]/40 to-[#ffffff] relative ">
       <h1 className="w-full text-center text-5xl font-[400]  font-poppins z-50 ">
         About Us
       </h1>
