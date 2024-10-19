@@ -1,6 +1,12 @@
-import { useActionState  } from "react";
+'use client'
 
-const Bottom = () => {
+import { useFormState } from 'react-dom'
+import FormBtn from './FormBtn';
+import { sendMessage } from '@/actions/contact';
+import { useRef, useState } from 'react';
+import { getFormData } from '@/lib/getFormData';
+
+const Form = () => {
 
 
 
@@ -8,12 +14,49 @@ const Bottom = () => {
 
     // const [message, formAction] = useActionState(addToCart, null);
 
+      const formRef = useRef();
 
 
+    const [state, action] = useFormState(sendMessage, {
+			success: false,
+			
+			message: ``,
+		  });
     
-    
+
+      const [inValidArray, setInValidArray] = useState([]);
+
+       
+      const formActionHandler = async (formData) => {
+
+        const { company, email} = getFormData( formData, "company", "email");
+
+        const invalidArr = [];
+
+        if(company.length === 0) {
+          invalidArr.push('company')
+        }
+      
+        if(email.length === 0) {
+          invalidArr.push('email')
+        }
+      
+        if(invalidArr.length > 0) {
+
+          return setInValidArray(invalidArr);
 
 
+        }
+      
+        setInValidArray([]);
+        await action(formData);
+        formRef.current.reset();
+
+
+        
+        return;
+
+    }
 
 
 
@@ -27,14 +70,14 @@ const Bottom = () => {
         Ask Outsource Accounting!</h2>
 
 
-        <form className= 'w-full  max-w-[700px]  py-24 grid grid-cols-2 gap-6 text-center font-Inter ' >
+        <form className= 'w-full  max-w-[700px]  py-24 grid grid-cols-2 gap-6 text-center font-Inter ' action={formActionHandler} ref={formRef}>
             <div>
-            <label htmlFor="your-name" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
+            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
                 Your Name
               </label>
               <input
-                  id="your-name"
-                  name="your-name"
+                  id="name"
+                  name="name"
                   type="text"
                   autoComplete="given-name"
                   className="block w-full rounded-lg border-0  py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 border-none outline-none focus:ring-2 focus:ring-inset focus:ring-[#6C63FF] px-2  sm:text-sm sm:leading-6"
@@ -55,8 +98,9 @@ const Bottom = () => {
             </div>
 
             <div>
-            <label htmlFor="company" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
-                Company
+            
+            <label htmlFor="company" className="block text-sm font-medium leading-6 text-gray-900 text-start w-full">
+                Company {inValidArray.includes('company') && <span className='text-red-500 animate-pulse ml-2'> Required</span>}
               </label>
               <input
                   id="company"
@@ -69,7 +113,7 @@ const Bottom = () => {
 
             <div className=''>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
-                Email
+                Email {inValidArray.includes('email') && <span className='text-red-500 animate-pulse ml-2'> Required</span>}
               </label>
               <input
                   id="email"
@@ -107,7 +151,16 @@ const Bottom = () => {
 
 
             <div className='col-span-2'>
-           <button className='bg-[#6C63FF] font-poppins text-lg w-full py-2 text-white rounded-lg '>Send Message</button>
+           <FormBtn />
+           
+
+            </div>
+
+
+            <div className='col-span-2'>
+          
+           {state.success && <span className='font-Inter text-green-500 text-center py-8 mt-8 font-semibold w-full'>{state.message}</span>}
+
             </div>
         </form>
 
@@ -123,4 +176,4 @@ const Bottom = () => {
   )
 }
 
-export default Bottom
+export default Form;

@@ -1,13 +1,13 @@
 import Top from "./Top";
 import Main from "./Main";
-import Bottom from "./Bottom";
+import Form from "./Form";
 
 const ContactUs = () => {
   return (
     <>
       <Top />
       <Main />
-      <Bottom />
+      <Form />
     </>
   );
 };
