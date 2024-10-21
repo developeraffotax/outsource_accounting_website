@@ -45,13 +45,13 @@ const Main = () => {
 
 
   return (
-    <section className='px-20 mx-auto container '>
+    <section className='px-20 max-lg:px-8 mx-auto container '>
 
-        <ul className='grid grid-cols-2 p-4 gap-16    '>
+        <ul className='grid grid-cols-2 p-4 gap-16 max-lg:grid-cols-1   '>
 
             {servicesArr.map((el) => {
 
-                return <li key={el.title + 'services-main'} className='flex justify-start items-center gap-12 px-16 max-w-[600px] h-[300px] shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md cursor-pointer hover:scale-105 transition-all duration-500   group '>
+                return <li key={el.title + 'services-main'} className='flex justify-start items-center max-xl:flex-col max-xl:p-4 max-xl:justify-center max-xl:gap-4 max-xl:rounded-2xl gap-12 px-16 max-w-[600px] min-w-[200px] h-[300px] shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md cursor-pointer hover:scale-105 transition-all duration-500   group '>
                     
                     <Image src={el.logo} />
                     <h2 className='font-poppins   text-2xl group-hover:text-[#8780FF] transition-all duration-500 '>{el.title}</h2>
