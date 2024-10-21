@@ -65,14 +65,14 @@ const Form = () => {
     <section className='w-full   py-20 bg-gradient-to-t from-[#8780FF]/40 to-[#ffffff]' >
          
 
-        <div className='w-full mx-auto container flex flex-col justify-center items-center  px-20 '>
+        <div className='w-full mx-auto container flex flex-col justify-center items-center  px-20 max-lg:px-12'>
         <h2 className='font-poppins text-3xl text-center '>Have a question? <br/>
         Ask Outsource Accounting!</h2>
 
 
-        <form className= 'w-full  max-w-[700px]  py-24 grid grid-cols-2 gap-6 text-center font-Inter ' action={formActionHandler} ref={formRef}>
-            <div>
-            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
+        <form className= 'w-full   max-w-[700px]  py-24 max-lg:py-12 grid grid-cols-2 max-lg:grid-cols-1 gap-6 max-lg:gap-2 text-center font-Inter ' action={formActionHandler} ref={formRef}>
+            <div className='w-full'>
+            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 text-start w-full">
                 Your Name
               </label>
               <input
@@ -84,8 +84,8 @@ const Form = () => {
                 />
             </div>
 
-            <div>
-            <label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
+            <div className='w-full'>
+            <label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900 text-start w-full ">
                 Phone Number
               </label>
               <input
@@ -133,7 +133,7 @@ const Form = () => {
 
 
 
-            <div className='col-span-2'>
+            <div className='col-span-2 max-lg:col-span-1'>
             <label htmlFor="question" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
                 Your Question
               </label>
@@ -150,16 +150,16 @@ const Form = () => {
 
 
 
-            <div className='col-span-2'>
+            <div className='col-span-2 max-lg:col-span-1 max-lg:mt-2'>
            <FormBtn />
            
 
             </div>
 
 
-            <div className='col-span-2'>
+            <div className='col-span-2 max-lg:col-span-1'>
           
-           {state.success && <span className='font-Inter text-green-500 text-center py-8 mt-8 font-semibold w-full'>{state.message}</span>}
+           {state.success && <span className='font-Inter text-green-500 text-center py-8 mt-8  w-full'>{state.message}</span>}
 
             </div>
         </form>
@@ -167,7 +167,7 @@ const Form = () => {
 
 
 
-        <h4 className='font-Inter text-lg text-gray-600  '>
+        <h4 className='font-Inter text-lg text-gray-600 max-lg:text-base max-lg:text-center '>
         Send us a message! Let’s get the show on the road!
         </h4>
         </div>

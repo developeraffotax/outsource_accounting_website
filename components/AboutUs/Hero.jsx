@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="w-full flex justify-between items-start gap-16 px-20 mx-auto container py-8 ">
-      <div className=" w-[50%] flex flex-col items-start justify-start gap-16     max-w-[600px] ">
+    <section className="w-full flex justify-between items-start gap-16 px-20 mx-auto container py-8 max-lg:flex-col max-lg:px-12 ">
+      <div className=" w-[50%] flex flex-col items-start justify-start gap-16     max-w-[600px] max-lg:w-full ">
         <h2 className="text-[#6C63FF] font-poppins text-xl ">Our story</h2>
         <h2 className="text-[#6C63FF] font-poppins text-2xl ">
           Reliable & affordable accounting services for your business!

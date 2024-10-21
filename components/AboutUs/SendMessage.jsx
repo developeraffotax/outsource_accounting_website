@@ -3,12 +3,12 @@ import { GoArrowRight } from "react-icons/go";
 
 const SendMessage = () => {
   return (
-    <section className="w-full  px-20 text-center flex flex-col justify-center items-center  bg-gradient-to-t  from-[#8780FF]/40 to-[#ffffff] relative  py-28 overflow-hidden ">
+    <section className="w-full  px-20 text-center flex flex-col justify-center items-center  bg-gradient-to-t  from-[#8780FF]/40 to-[#ffffff] relative  py-28 overflow-hidden max-lg:px-8 ">
       <h2 className="w-full text-center text-3xl font-poppins py-8 z-50 relative">
         Send us a message!
       </h2>
 
-      <p className="font-Inter text-lg text-black/75  text-center py-8  w-full z-50 relative max-w-[700px] leading-loose ">
+      <p className="font-Inter text-lg text-black/75  text-center py-8  w-full z-50 relative max-w-[700px] leading-loose max-lg:leading-normal  ">
         Reach out to us at{" "}
         <a href="mailto:admin@outsourceaccountings.co.uk" target="_blank"> <span className="text-[#6C63FF] text-nowrap font-semibold"> admin@outsourceaccountings.co.uk </span> </a>{" "}
         or give us a call at{" "}
@@ -16,7 +16,7 @@ const SendMessage = () => {
         to experience firsthand the Outsource Accounting difference.
       </p>
 
-      <div className="flex justify-center items-center w-full gap-8 py-8 z-20 relative">
+      <div className="flex justify-center items-center w-full gap-8 py-8 z-20 relative max-lg:flex-col ">
         <Link href={"/contact-us"} className="px-6 py-3 rounded-md  bg-[#6C63FF] text-white font-poppins " > Request a call-back </Link>
         <Link href={"/contact-us"} className=" text-[#6C63FF] font-poppins border-b border-[#6C63FF]/50 py-1" > Contact us online <GoArrowRight className="inline-block ml-1 " /> </Link>
       </div>

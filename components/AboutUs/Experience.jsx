@@ -23,12 +23,12 @@ const Experience = () => {
   ];
 
   return (
-    <section className="w-full px-20 mx-auto container py-8">
-      <ul className="w-full flex items-center justify-between gap-8">
+    <section className="w-full px-20 mx-auto container py-8 max-lg:py-16">
+      <ul className="w-full flex items-center justify-between gap-8 max-lg:flex-col">
         {boxArr.map((el) => {
 
           return (
-            <li key={el.heading + "about-us-page"} className="h-[300px] w-[400px] -right-8 inset-20 flex flex-col items-center justify-center gap-4 px-28 py-20 shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md " >
+            <li key={el.heading + "about-us-page"} className="h-[300px] w-[400px] min-w-[200px] max-xl:px-8 max-xl:py-8 -right-8 inset-20 flex flex-col items-center justify-center gap-4 px-28 py-20 shadow-[rgba(0,0,15,0.15)_2px_2px_15px_0px] rounded-md max-lg:rounded-2xl " >
               <Image src={el.icon} />
               <h5 className="font-inter text-black/75">{el.heading}</h5>
               <h6 className="font-poppins text-xl ">{el.text}</h6>

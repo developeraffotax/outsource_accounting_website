@@ -39,22 +39,22 @@ const Main = () => {
 
 
   return (
-    <section className='flex justify-center items-end gap-16 px-20 mx-auto container '  >
+    <section className='w-full flex justify-center items-end gap-16 px-20 mx-auto container max-lg:px-8 '  >
 
 
-        <div className=' max-w-[600px]  '>
+        <div className=' max-w-[600px] w-full'>
             <h2 className='font-poppins text-2xl mb-16'>Professional accounting services are right here around the corner.</h2>
             <ul className=''>
 
                 {
                    contactArr.map((el) => {
 
-                    return <li key={el.title + 'contact-us-main'} className='flex justify-start items-center gap-6 mb-8'>
+                    return <li key={el.title + 'contact-us-main'} className='flex justify-start items-center gap-6 mb-8 w-full max-lg:gap-2'>
 
-                        <div className='text-4xl text-[#8780FF] '>{el.logo}</div>
+                        <div className='text-4xl text-[#8780FF]   '>{el.logo}</div>
                         <div>
-                            <a href={el.href} target='_blank'><h3 className='text-xl font-poppins hover:scale-[1.03] active:scale-[0.97] hover:text-[#8780FF] transition-all  '>{el.title}</h3></a>
-                            <p className='text-sm text-gray-700 font-Inter '>{el.content}</p>
+                            <a href={el.href} target='_blank'><h3 className='text-xl max-lg:text-sm font-poppins hover:scale-[1.03] active:scale-[0.97] hover:text-[#8780FF] transition-all max-lg:text-wrap '>{el.title}</h3></a>
+                            <p className='text-sm text-gray-400 font-Inter '>{el.content}</p>
                         </div>
                     </li>
                    }) 
@@ -63,7 +63,7 @@ const Main = () => {
 
             </ul>
         </div>
-        <div className='mb-8'>
+        <div className='mb-8 max-lg:hidden'>
             <Image src={HeroImg} width={500}/>
         </div>
 

@@ -4,12 +4,12 @@ import { BsCheckCircle } from "react-icons/bs";
 
 const OurMission = () => {
   return (
-    <section className="w-full flex justify-between items-start gap-8 px-20 mx-auto container py-8">
+    <section className="w-full flex justify-between items-start gap-8 px-20 mx-auto container py-8 max-lg:flex-col-reverse max-lg:px-12 ">
       <div className=" ">
         <Image src={AboutUsOurMission} width={500} height={500} className="" />
       </div>
 
-      <div className="w-[50%]  max-w-[600px] ">
+      <div className="w-[50%]  max-w-[600px] max-lg:w-full  ">
         <div className="mb-16">
           <h2 className="text-[#6C63FF] font-poppins text-xl mb-8">
             Our mission
@@ -40,10 +40,10 @@ const OurMission = () => {
           </h2>
 
           <ul className="">
-            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline-block text-xl mr-2  " />{" "} <h4 className="inline-block font-Inter font-[500]"> Customer success is our priority </h4>{" "} </li>
-            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline-block text-xl mr-2 " />{" "} <h4 className="inline-block font-Inter font-[500]"> Top quality & constant growth </h4>{" "} </li>
-            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline-block text-xl mr-2  " />{" "} <h4 className="inline-block font-Inter font-[500]"> New technologies </h4>{" "} </li>
-            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline-block text-xl mr-2 " />{" "} <h4 className="inline-block font-Inter font-[500]"> Ecological materials & production </h4>{" "} </li>
+            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline text-xl mr-2  " />{" "} <h4 className="inline font-Inter font-[500]"> Customer success is our priority </h4>{" "} </li>
+            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline text-xl mr-2 " />{" "} <h4 className="inline font-Inter font-[500]"> Top quality & constant growth </h4>{" "} </li>
+            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline text-xl mr-2  " />{" "} <h4 className="inline font-Inter font-[500]"> New technologies </h4>{" "} </li>
+            <li className="mb-4"> {" "} <BsCheckCircle className="text-[#6C63FF] inline text-xl mr-2 " />{" "} <h4 className="inline font-Inter font-[500]"> Ecological materials & production </h4>{" "} </li>
           </ul>
         </div>
       </div>

@@ -51,17 +51,17 @@ const HowCanWe = () => {
 
 
   return (
-    <section className='w-full container mx-auto px-20 py-12'>
+    <section className='w-full container mx-auto px-20 max-xl:px-12  py-12'>
 
         <h2 className='font-poppins text-3xl text-center '>How can we help you?</h2>
 
-        <ul className='w-full grid grid-cols-3 gap-8 mt-12'>
+        <ul className='w-full grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1 gap-8 mt-12'>
             {
 
                     servicesArr.map((el) => {
 
                         return (
-                            <li key='asdsa' className='h-[150px] flex justify-start px-16 max-xl:px-8 w-full items-center gap-8 shadow-[rgba(0,0,15,0.07)_1px_1px_12px_0px] rounded-md hover:cursor-pointer hover:scale-105 transition-all '> 
+                            <li key='asdsa' className='h-[150px] flex justify-start max-lg:justify-center max-lg:px-4 px-16 max-xl:px-8 w-full items-center gap-8 shadow-[rgba(0,0,15,0.07)_1px_1px_12px_0px] rounded-md max-xl:rounded-xl hover:cursor-pointer hover:scale-105 transition-all '> 
 
                                 <span className='w-[50px] h-[50px] min-w-[50px]'>{el.logo}</span>
 
