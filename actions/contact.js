@@ -6,10 +6,7 @@ import sendMail from "@/lib/sendMail";
 
 //  SEND MESSAGE
 export async function sendMessage(prevState, formData) {
-  const { name, phoneNumber, company, email, question } = getFormData( formData, "name", "phone-number", "company", "email", "question" );
-
-
-	
+  const { name, phoneNumber, company, email, question } = getFormData( formData, "name", "phoneNumber", "company", "email", "question" );
 
 
   try {
@@ -17,17 +14,9 @@ export async function sendMessage(prevState, formData) {
 
     if (res) {
 		
-      return {
-        success: true,
-		
-        message: `Your query is submitted | We'll get back to you soon`,
-      };
+      return { success: true, message: `Your query is submitted | We'll get back to you soon`, }
     }
   } catch (error) {
-    return {
-      success: false,
-	  
-      message: "Error occured while sending email | Please try again later",
-    };
+    return { success: false, message: "Error occured while sending email | Please try again later", }
   }
 }

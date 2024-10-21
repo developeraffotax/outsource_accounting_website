@@ -85,12 +85,12 @@ const Form = () => {
             </div>
 
             <div>
-            <label htmlFor="phone-number" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
+            <label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900 text-start ">
                 Phone Number
               </label>
               <input
-                  id="phone-number"
-                  name="phone-number"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   type="text"
                   autoComplete="given-name"
                   className="block w-full rounded-lg border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#6C63FF] px-2 sm:text-sm sm:leading-6 border-none outline-none"

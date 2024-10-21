@@ -63,7 +63,7 @@ const Header = () => {
           </nav>
         </div>
 
-        <div>
+        <div className="hover:cursor-pointer">
           <HiOutlineSearch className="text-xl "/>
         </div>
 

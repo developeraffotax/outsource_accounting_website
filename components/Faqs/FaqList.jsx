@@ -15,50 +15,64 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 const FAQS = [
     {
-        q: 'How do you select specialists according to the needs of the client?',
-        a: 'I dont know right now!',
+        q: 'What services do you offer?',
+        a: `We offer comprehensive accounting services, including financial statement preparation, tax planning, auditing, bookkeeping, business consulting, payroll processing and financial planning for individuals, businesses and non-profit organizations.`,
         key: uuidv4()
     },
 
     {
-        q: 'Do you do project-based work?',
-        a: 'I dont know right now!',
+        q: 'How do you protect client confidentiality?',
+        a: `We maintain strict confidentiality through secure data storage, encryption, limited access and adherence to industry standards, ensuring sensitive information remains protected and confidential.`,
         key: uuidv4()
     },
 
     {
-        q: 'Is it difficult to work with a remote accountant?',
-        a: 'I dont know right now!',
+        q: 'Can you assist with tax planning and compliance?',
+        a: `Yes, our experts provide comprehensive tax services, including planning, preparation, compliance and controversy resolution, minimizing tax liabilities and ensuring timely filings for individuals and businesses.`,
         key: uuidv4()
     },
 
     {
-        q: 'How do you form your prices?',
-        a: 'I dont know right now!',
+        q: 'Can I schedule a consultation or meeting?',
+        a: `Yes, schedule a consultation or meeting by contacting us via phone, email or online form, we'll accommodate your schedule to discuss your accounting needs.`,
         key: uuidv4()
     },
 
     {
-        q: 'Can I change my dedicated accountant?',
-        a: 'I dont know right now!',
+        q: 'Do you provide cloud-based accounting solutions?',
+        a: `Yes, we offer cloud-based accounting solutions, providing secure, scalable and remote access to financial data, streamlining operations and enhancing collaboration.`,
         key: uuidv4()
     },
 
     {
-        q: 'Can I have a discount?',
-        a: 'I dont know right now!',
+        q: 'Can you help with budgeting and financial forecasting?',
+        a: `Yes, our experts provide comprehensive budgeting and financial forecasting services, helping businesses and individuals create realistic plans, manage expenses and achieve long-term financial goals.`,
         key: uuidv4()
     },
 
     {
-        q: 'How can I contact Outsource Accounting?',
-        a: 'I dont know right now!',
+        q: 'How do you handle complex accounting issues?',
+        a: `Our experienced team collaborates with industry experts to analyze and resolve complex accounting issues efficiently, providing innovative solutions and ensuring compliance with regulatory standards.
+`,
         key: uuidv4()
     },
 
     {
-        q: 'What kind of services do you provide online?',
-        a: 'I dont know right now!',
+        q: 'Can you help with accounts payable and accounts receivable?',
+        a: `Yes, our experts efficiently manage accounts payable and accounts receivable, ensuring timely payments, accurate invoicing and optimized cash flow to maintain healthy financial operations`,
+        key: uuidv4()
+    },
+
+    {
+        q: 'Can you help with grant writing and non-profit accounting?',
+        a: `Yes, our team provides expert grant writing and non-profit accounting services, including financial reporting, budgeting and compliance, to support mission-driven organizations.
+`,
+        key: uuidv4()
+    },
+
+    {
+        q: 'Do you provide bookkeeping and accounting system setup?',
+        a: `Yes, our experts set up and maintain accurate bookkeeping and accounting systems, including QuickBooks, Xero and other software, tailored to meet your business needs.`,
         key: uuidv4()
     },
 ]
@@ -136,7 +150,7 @@ const FaqList = () => {
 
 
 	return (
-		<section className="w-full px-80 max-2xl:px-40 max-xl:px-10 max-lg:p-8  mt-20 mb-20 max-lg:mt-4 max-lg:mb-4  ">
+		<section className="w-full px-80 max-2xl:px-40 max-xl:px-10 max-lg:p-8   mb-20 max-lg:mt-4 max-lg:mb-4  ">
 				
 			<div className="container mx-auto    py-4 px-4 max-lg:px-0  rounded-3xl w-[70%] max-lg:w-full   mt-4">
 
