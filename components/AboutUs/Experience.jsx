@@ -13,12 +13,12 @@ const Experience = () => {
     {
       icon: AboutUsIcon2,
       heading: "We operate in",
-      text: "15 Countries",
+      text: "United Kingdom",
     },
     {
       icon: AboutUsIcon3,
       heading: "We currently serve to",
-      text: "200 000+ clients",
+      text: "1000+ clients",
     },
   ];
 
