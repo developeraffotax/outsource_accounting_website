@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@szhsin/react-menu": "^4.2.2",
     "next": "14.2.13",
     "nodemailer": "^6.9.15",
     "react": "^18",
