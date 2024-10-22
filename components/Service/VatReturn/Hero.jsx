@@ -4,9 +4,9 @@ import HeroImage from "@/public/assets/vatReturn.png";
 
 const Hero = () => {
   return (
-    <section className="w-full px-20 container mx-auto ">
-      <div className="w-full flex flex-row justify-center items-center gap-12 py-12">
-        <div className="w-[50%] max-w-[500px]">
+    <section className="w-full px-20 max-lg:px-8 container mx-auto ">
+      <div className="w-full flex flex-row max-lg:flex-col-reverse justify-center items-center gap-12 py-12">
+        <div className="w-[50%] max-lg:w-full max-w-[500px]">
           <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Nail your taxes with our Vat Returns Service!
           </h2>
@@ -23,7 +23,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="w-[50%] max-w-[400px]">
+        <div className="w-[50%] max-lg:w-full max-w-[400px]">
           <Image src={HeroImage} alt="vat-return--hero-image" />
         </div>
       </div>
