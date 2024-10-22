@@ -13,20 +13,20 @@ const Footer = () => {
 
       <div className="w-full flex justify-around items-start px-20 mx-auto container">
 
-        <div> <Link href={'/'}><Image src={Logo} className="w-40 " /></Link></div>
+        <div> <Link href={'/'}><Image src={Logo} alt="footer--logo-image" className="w-40 " /></Link></div>
 
 
         <div className="flex flex-col justify-center items-start gap-4 ">
           <h4 className="text-purple-400    text-xl   ">Services</h4>
           <nav>
             <ul >
-              <li className="mb-2 hover:text-purple-400 " ><Link href={'/services/accounts'}>Accounts</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/vat-return'}>VAT Return</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/bookkeeping'}>Bookkeeping</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/payroll-services'}>Payroll services</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/corporation-tax'}>Corporation Tax</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/self-assessment'}>Self Assessment</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/services/company-formation'}>Company Formation</Link></li>
+              <li className="mb-2 hover:text-purple-400 " ><Link href={'/service/accounts'}>Accounts</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/vat-return'}>VAT Return</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/bookkeeping'}>Bookkeeping</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/payroll'}>Payroll services</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/corporation-tax'}>Corporation Tax</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/self-assessment'}>Self Assessment</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/service/company-formation'}>Company Formation</Link></li>
             </ul>
           </nav>
 
@@ -41,7 +41,7 @@ const Footer = () => {
               <li className="mb-2 hover:text-purple-400" ><Link href={'/news-and-articles'}>News & articles</Link></li>
               <li className="mb-2 hover:text-purple-400" ><Link href={'/faqs'}>FAQs</Link></li>
               <li className="mb-2 hover:text-purple-400" ><Link href={'/contact-us'}>Contact Us</Link></li>
-              <li className="mb-2 hover:text-purple-400" ><Link href={'/terms-and-conditions'}>Terms and Conditions</Link></li>
+              <li className="mb-2 hover:text-purple-400" ><Link href={'/'}>Terms and Conditions</Link></li>
 
             </ul>
           </nav>

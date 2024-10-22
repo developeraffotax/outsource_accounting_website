@@ -36,7 +36,7 @@ const Header = () => {
 
 <div className="w-full h-24 flex justify-between items-center    px-20 max-xl:px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold max-lg:hidden ">
       <div className="">
-        <Link href={'/'}><Image src={Logo} className="w-32 p-2" /></Link>
+        <Link href={'/'}><Image src={Logo} className="w-32 p-2" alt="header--logo-image"/></Link>
       </div>
 
       <div className=" flex justify-end items-center gap-8 ">
