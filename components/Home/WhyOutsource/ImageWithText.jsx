@@ -14,8 +14,8 @@ const ImageWithText = ({imageSrc, imagePosition, heading, content}) => {
 
 
             <div className='  text-start  w-[50%] max-w-[500px] max-lg:w-full '>
-                <h3  className='font-poppins text-2xl mb-4 text-[#6C63FF]'>{heading}</h3>
-                <p className='font-Inter'>{content}</p>
+                <h3  className='font-poppins font-semibold text-3xl mb-4 text-[#6C63FF]'>{heading}</h3>
+                <p className='font-Inter text-lg'>{content}</p>
             </div>
 
 

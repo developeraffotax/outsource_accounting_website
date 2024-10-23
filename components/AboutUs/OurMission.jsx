@@ -11,11 +11,11 @@ const OurMission = () => {
 
       <div className="w-[50%]  max-w-[600px] max-lg:w-full  ">
         <div className="mb-16">
-          <h2 className="text-[#6C63FF] font-poppins text-xl mb-8">
+          <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Our mission
           </h2>
 
-          <p className="font-Inter text-black/75">
+          <p className="font-Inter text-black/75 text-lg">
             At Outsource Accounting, we’ve got a straightforward mission – we’re
             here to hook you up with outstanding accounting services that fit
             your needs like a glove. And guess what? We’re doing it all while
@@ -35,7 +35,7 @@ const OurMission = () => {
         </div>
 
         <div>
-          <h2 className="text-[#6C63FF] font-poppins text-xl mb-8">
+          <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Our values
           </h2>
 

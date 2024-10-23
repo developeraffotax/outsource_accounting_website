@@ -100,7 +100,7 @@ const Form = () => {
             <div>
             
             <label htmlFor="company" className="block text-sm font-medium leading-6 text-gray-900 text-start w-full">
-                Company {inValidArray.includes('company') && <span className='text-red-500 animate-pulse ml-2'> Required</span>}
+                Company Name {inValidArray.includes('company') && <span className='text-red-500 animate-pulse ml-2'> Required</span>}
               </label>
               <input
                   id="company"

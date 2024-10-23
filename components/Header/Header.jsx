@@ -8,19 +8,15 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import {
   ControlledMenu,
-  Menu,
-  MenuButton,
-  MenuItem,
   useClick,
   useHover,
-  useMenuState,
 } from "@szhsin/react-menu";
 import { useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { MdChevronRight } from "react-icons/md";
-import { FaArrowRightLong, FaPhone } from "react-icons/fa6";
-import { PiCaretDoubleRightLight } from "react-icons/pi";
+import { FaPhone } from "react-icons/fa6";
+
 import { IoMdMail } from "react-icons/io";
 
 
@@ -86,7 +82,7 @@ const Header = () => {
                 <ul className="flex justify-center items-center gap-8 ">
                   <Link href={"/"} className={`hover:text-primary   border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/" ? "active" : "" }`} > Home </Link>
 
-                  <Link href={"/about-us"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/about-us" ? "active" : "" }`} > About Us </Link>
+                  
 
                   <li ref={ref} {...anchorProps} className={`hover:text-primary cursor-pointer border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/services" ? "active" : "" }`} >
                     Services
@@ -104,29 +100,18 @@ const Header = () => {
                     </ControlledMenu>
                   </li>
 
-                  <Link
-                    href={"/news-and-articles"}
-                    className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${
-                      pathname === "/news-and-articles" ? "active" : ""
-                    }`}
-                  >
-                    News & Articles
-                  </Link>
-                  <Link
-                    href={"/faqs"}
-                    className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${
-                      pathname === "/faqs" ? "active" : ""
-                    }`}
-                  >
-                    FAQs
-                  </Link>
+
+                  <Link href={"/about-us"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/about-us" ? "active" : "" }`} > About Us </Link>
+
+                  {/* <Link href={"/news-and-articles"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/news-and-articles" ? "active" : "" }`} > News & Articles </Link> */}
+                  <Link href={"/faqs"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${ pathname === "/faqs" ? "active" : "" }`} > FAQs </Link>
                 </ul>
               </nav>
             </div>
 
-            <div className="hover:cursor-pointer">
+            {/* <div className="hover:cursor-pointer">
               <HiOutlineSearch className="text-xl " />
-            </div>
+            </div> */}
 
             <div>
               <Link href={"/contact-us"}>
@@ -144,7 +129,7 @@ const Header = () => {
       <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[6666] lg:hidden">
         <div className="w-full h-20 flex justify-between items-center    px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold ">
           <div>
-            <IoMenu className="text-3xl cursor-pointer " onClick={hamBurgerHandler}/>
+            <IoMenu className="text-3xl cursor-pointer mr-4" onClick={hamBurgerHandler}/>
           </div>
 
           <div className="">
@@ -165,7 +150,7 @@ const Header = () => {
               <button onClick={hamBurgerHandlerClose} className={`hover:text-primary  w-full   pl-10  py-1`}> <MdOutlineKeyboardBackspace className="text-2xl" /></button>
               <Link onClick={hamBurgerHandlerClose} href={"/"} className={`hover:text-primary  w-full   pl-10  py-1`} > Home </Link>
 
-              <Link onClick={hamBurgerHandlerClose} href={"/about-us"} className={`hover:text-primary w-full   pl-10 py-1`} > About Us </Link>
+              
 
 
 
@@ -199,7 +184,7 @@ const Header = () => {
 
 
 
-
+                  <Link onClick={hamBurgerHandlerClose} href={"/about-us"} className={`hover:text-primary w-full   pl-10 py-1`} > About Us </Link>
 
                   
 
@@ -224,7 +209,7 @@ const Header = () => {
 
 
 
-              <Link onClick={hamBurgerHandlerClose} href={"/news-and-articles"} className={`hover:text-primary w-full  pl-10  py-1`} > News & Articles </Link>
+              {/* <Link onClick={hamBurgerHandlerClose} href={"/news-and-articles"} className={`hover:text-primary w-full  pl-10  py-1`} > News & Articles </Link> */}
               <Link onClick={hamBurgerHandlerClose} href={"/faqs"} className={`hover:text-primary w-full  pl-10  py-1`} > FAQs </Link>
 
 

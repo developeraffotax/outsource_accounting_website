@@ -9,7 +9,7 @@ const Hero = () => {
         <h2 className="text-[#6C63FF] font-poppins text-2xl ">
           Reliable & affordable accounting services for your business!
         </h2>
-        <p className="text-black/85 font-Inter ">
+        <p className="text-black/85 font-Inter text-lg ">
           Hello and welcome to Outsource Accounting! We’re all about blending
           expertise with affordability, putting your financial success right at
           the top of our task list. Our journey started with a simple idea – to
