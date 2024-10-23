@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import Logo from "@/public/logo.png";
@@ -6,9 +6,15 @@ import Link from "next/link";
 import { HiOutlineSearch } from "react-icons/hi";
 
 import { usePathname } from "next/navigation";
-import { ControlledMenu, MenuItem, useHover, useMenuState } from "@szhsin/react-menu";
+import {
+  ControlledMenu,
+  MenuItem,
+  useHover,
+  useMenuState,
+} from "@szhsin/react-menu";
 import { useRef, useState } from "react";
-
+import { IoMenu } from "react-icons/io5";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 
 
@@ -19,112 +25,224 @@ import { useRef, useState } from "react";
 
 
 const Header = () => {
+  const pathname = usePathname();
+
+  const ref = useRef(null);
+  const [isOpen, setOpen] = useState(false);
+  const { anchorProps, hoverProps } = useHover(isOpen, setOpen);
+
+  const mobileNavRef = useRef();
+  const backdropRef = useRef();
 
 
+  const hamBurgerHandler = () => {
+    mobileNavRef.current.classList.remove('-translate-x-[999px]')
+    backdropRef.current.classList.remove('hidden')
+  
+    
+    
+    mobileNavRef.current.classList.add('translate-x-0')
+    console.log(mobileNavRef.current.classList)
+  }
+
+
+
+
+  
+  const hamBurgerHandlerClose = () => {
+    mobileNavRef.current.classList.remove('translate-x-0')
     
 
-    const pathname = usePathname(); 
+    backdropRef.current.classList.add('hidden')
+    mobileNavRef.current.classList.add('-translate-x-[999px]')
+    
+  }
 
 
 
 
-
-
-
-    const ref = useRef(null);
-    const [isOpen, setOpen] = useState(false);
-    const { anchorProps, hoverProps } = useHover(isOpen, setOpen);
-
-
-   
-
-
-
-//fixed z-[9999]
+  //fixed z-[9999]
   return (
-    <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[9999]">
+    <>
+      <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[9999]">
+        <div className="w-full h-24 flex justify-between items-center    px-20 max-xl:px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold max-lg:hidden ">
+          <div className="">
+            <Link href={"/"}>
+              <Image src={Logo} className="w-32 p-2" alt="header--logo-image" />
+            </Link>
+          </div>
 
+          <div className=" flex justify-end items-center gap-8 ">
+            <div className="flex  ">
+              <nav>
+                <ul className="flex justify-center items-center gap-8 ">
+                  <Link
+                    href={"/"}
+                    className={`hover:text-primary   border-b-2 border-transparent hover:border-primary py-2 ${
+                      pathname === "/" ? "active" : ""
+                    }`}
+                  >
+                    Home
+                  </Link>
 
+                  <Link
+                    href={"/about-us"}
+                    className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${
+                      pathname === "/about-us" ? "active" : ""
+                    }`}
+                  >
+                    About Us
+                  </Link>
 
-<div className="w-full h-24 flex justify-between items-center    px-20 max-xl:px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold max-lg:hidden ">
-      <div className="">
-        <Link href={'/'}><Image src={Logo} className="w-32 p-2" alt="header--logo-image"/></Link>
-      </div>
+                  <li
+                    ref={ref}
+                    {...anchorProps}
+                    className={`hover:text-primary cursor-pointer border-b-2 border-transparent hover:border-primary py-2 ${
+                      pathname === "/services" ? "active" : ""
+                    }`}
+                  >
+                    Services
+                    <ControlledMenu
+                      {...hoverProps}
+                      state={isOpen ? "open" : "closed"}
+                      anchorRef={ref}
+                      onClose={() => setOpen(false)}
+                    >
+                      <div className="flex flex-col ">
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b  "
+                          href={"/service/accounts"}
+                        >
+                          Accounts{" "}
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b "
+                          href={"/service/bookkeeping"}
+                        >
+                          Bookkeeping
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b "
+                          href={"/service/company-formation"}
+                        >
+                          Company Formation
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b "
+                          href={"/service/corporation-tax"}
+                        >
+                          Corporation Tax
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b"
+                          href={"/service/payroll"}
+                        >
+                          Payroll
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b"
+                          href={"/service/self-assessment"}
+                        >
+                          Self Assessment
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b"
+                          href={"/service/vat-return"}
+                        >
+                          VAT Return
+                        </Link>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          className="text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none"
+                          href={"/services"}
+                        >
+                          View All Services
+                        </Link>
+                      </div>
+                    </ControlledMenu>
+                  </li>
 
-      <div className=" flex justify-end items-center gap-8 ">
+                  <Link
+                    href={"/news-and-articles"}
+                    className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${
+                      pathname === "/news-and-articles" ? "active" : ""
+                    }`}
+                  >
+                    News & Articles
+                  </Link>
+                  <Link
+                    href={"/faqs"}
+                    className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${
+                      pathname === "/faqs" ? "active" : ""
+                    }`}
+                  >
+                    FAQs
+                  </Link>
+                </ul>
+              </nav>
+            </div>
 
-        <div className="flex  ">
-          <nav>
-            <ul className="flex justify-center items-center gap-8 ">
-              <Link  href={"/"} className={`hover:text-primary   border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/' ? 'active' : ''}`}>
-                Home
-                
+            <div className="hover:cursor-pointer">
+              <HiOutlineSearch className="text-xl " />
+            </div>
+
+            <div>
+              <Link href={"/contact-us"}>
+                <button className="bg-primary px-4 py-2 rounded-lg text-white hover:bg-primary/90 transition-all ">
+                  Contact Us
+                </button>
               </Link>
-              
-              <Link href={"/about-us"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/about-us' ? 'active' : ''}`}>
-                About Us
-              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Header */}
+
+      <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[6666] lg:hidden">
+        <div className="w-full h-20 flex justify-between items-center    px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold ">
+          <div>
+            <IoMenu className="text-3xl cursor-pointer " onClick={hamBurgerHandler}/>
+          </div>
+
+          <div className="">
+            <Link href={"/"}> <Image src={Logo} className="w-24 p-2" alt="header--logo-image" /> </Link>
+          </div>
+
+          <div>
+            <Link href={"/contact-us"}> <button className="bg-primary px-4 py-2 rounded-lg text-white hover:bg-primary/90 transition-all "> Contact Us </button> </Link>
+          </div>
+        </div>
 
 
 
 
-              <li  ref={ref} {...anchorProps} className={`hover:text-primary cursor-pointer border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/services' ? 'active' : ''}`}>
-                Services
+        <div ref={mobileNavRef} className="w-[70%] h-[100vh] py-8 -translate-x-[999px] fixed z-[9999] bg-purple-100 top-0 left-0 transition-all ">
+          <nav className="w-full flex justify-center items-center">
+            <ul onClick={hamBurgerHandlerClose} className="w-full flex flex-col justify-center items-start gap-2 font-Inter">
+              <button onClick={hamBurgerHandlerClose} className={`hover:text-primary  w-full   pl-10  py-1`}> <MdOutlineKeyboardBackspace className="text-2xl" /></button>
+              <Link href={"/"} className={`hover:text-primary  w-full   pl-10  py-1`} > Home </Link>
 
-                <ControlledMenu
-                {...hoverProps}
-                state={isOpen ? 'open' : 'closed'}
-                anchorRef={ref}
-                onClose={() => setOpen(false)}
-              >
-                <div className="flex flex-col ">
+              <Link href={"/about-us"} className={`hover:text-primary w-full   pl-10 py-1`} > About Us </Link>
 
-
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b  ' href={'/service/accounts'}>Accounts </Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b ' href={'/service/bookkeeping'}>Bookkeeping</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b ' href={'/service/company-formation'}>Company Formation</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b ' href={'/service/corporation-tax'}>Corporation Tax</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b' href={'/service/payroll'}>Payroll</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b' href={'/service/self-assessment'}>Self Assessment</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b' href={'/service/vat-return'}>VAT Return</Link>
-                <Link onClick={() => setOpen(false)} className='text-black bg-white py-3 px-8 font-poppins font-normal hover:text-white hover:bg-[#6C63FF] outline-none'  href={'/services'}>View All Services</Link>
-                
-
-
-                </div>
-              </ControlledMenu>
-              </li>
-
-
-
-
-              <Link href={"/news-and-articles"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/news-and-articles' ? 'active' : ''}`}>
-                News & Articles
-              </Link>
-              <Link href={"/faqs"} className={`hover:text-primary  border-b-2 border-transparent hover:border-primary py-2 ${pathname === '/faqs' ? 'active' : ''}`}>
-               FAQs
-              </Link>
+              <Link href={"/news-and-articles"} className={`hover:text-primary w-full  pl-10  py-1`} > News & Articles </Link>
+              <Link href={"/faqs"} className={`hover:text-primary w-full  pl-10  py-1`} > FAQs </Link>
             </ul>
           </nav>
         </div>
 
-        <div className="hover:cursor-pointer">
-          <HiOutlineSearch className="text-xl "/>
-        </div>
-
-        <div>
-          <Link href={"/contact-us"}>
-            <button className="bg-primary px-4 py-2 rounded-lg text-white hover:bg-primary/90 transition-all ">Contact Us</button>
-          </Link>
-        </div>
-
-      </div>
-
-    </div>
+        <div onClick={hamBurgerHandlerClose} ref={backdropRef} className="fixed w-[100vw] h-[100vh] bg-black/25 backdrop-blur-sm z-[7777] hidden top-0 left-0"></div>
 
 
-
-    </section>
+      </section>
+    </>
   );
 };
 
