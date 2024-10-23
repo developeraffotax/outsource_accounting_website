@@ -10,7 +10,7 @@ const Hero = () => {
           <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             We make payroll a piece of cake!
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Sick of swimming in the payroll paperwork ocean? We understand, and
             that is why we are here. Our splendid PAYE online services are the
             bee{"'"}s knees, designed to handle the nitty-gritty of payroll

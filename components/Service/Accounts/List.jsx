@@ -31,19 +31,16 @@ const List = () => {
       <ul className="w-full grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1 gap-8 mt-12">
         {ListArr.map((el) => {
           return (
-            <li
-              key={el.key}
-              className="w-full flex  flex-row justify-between max-lg:justify-between  p-8   items-center gap-8 shadow-[rgba(0,0,15,0.07)_1px_1px_12px_0px] rounded-xl   hover:cursor-pointer hover:scale-105 transition-all group"
-            >
+            <li key={el.key} className="w-full flex  flex-row justify-between max-lg:justify-between  p-8   items-center gap-8 shadow-[rgba(0,0,15,0.07)_1px_1px_12px_0px] rounded-xl   hover:cursor-pointer hover:scale-105 transition-all group" >
               
 
              <div className="flex flex-col justify-start items-start  gap-2">
 
 
-             <h3 className="font-semibold text-lg font-poppins max-w-52 group-hover:text-[#6C63FF]">
+             <h3 className="font-semibold text-xl font-poppins max-w-52 group-hover:text-[#6C63FF]">
                 {el.title}
               </h3>
-              <p className="text-xs font-Inter max-w-52 text-start text-gray-500">{el.content}</p>
+              <p className="text-sm font-Inter max-w-52 text-start text-gray-500">{el.content}</p>
 
 
              </div>

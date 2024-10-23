@@ -12,7 +12,7 @@ const Hero = () => {
             We&#39;re here to make self-assessment tax return a walk in the park for
             you.
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Welcome to the financial tranquillity of self-assessment tax return,
             where your financial worries take a back seat, and we handle your
             self-assessment tax return smoothly. At Outsource Accounting, we are

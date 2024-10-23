@@ -11,7 +11,7 @@ const Hero = () => {
             Accurate bookkeeping is the heart & soul of a proper blooming
             business, and you are in the right place!
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Are you looking for an outstanding bookkeeper? Outsource Accounting
             is where bookkeeping services are as smooth as a buttered crumpet!
             Imagine having your own financial maestros and bookkeepers more

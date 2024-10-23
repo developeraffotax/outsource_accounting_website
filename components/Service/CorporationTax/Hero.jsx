@@ -10,7 +10,7 @@ const Hero = () => {
           <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Save more on corporation tax, spend less on accounting services!
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             We make the corporation tax a doddle for you, with financial
             acrobatics, we turn the brainiac work into pounds saved for your
             business. We’re not just financial gurus, we’re your partners in

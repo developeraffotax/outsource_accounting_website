@@ -10,7 +10,7 @@ const Hero = () => {
           <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Nail your taxes with our Vat Returns Service!
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Alright, buckle up, mates! Our online VAT Return services in the UK
             are crafted with you in mind - yes, you savvy directors,
             contractors, freelancers, and sole traders running the show. We

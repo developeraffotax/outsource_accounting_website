@@ -11,7 +11,7 @@ const Hero = () => {
             Outsource Accounting – your reliable partner in a flawless Company
             Formation!
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Kudos to you for deciding to start a new venture in the UK! You are
             in the perfect place for it, we&#39;re here to make the whole shebang a
             piece of cake, so you can crack on with your dream business without

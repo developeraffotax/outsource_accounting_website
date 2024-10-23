@@ -40,10 +40,10 @@ const List = () => {
              <div className="flex flex-col justify-start items-start  gap-2">
 
 
-             <h3 className="font-semibold text-lg font-poppins max-w-80 group-hover:text-[#6C63FF]">
+             <h3 className="font-semibold text-xl font-poppins max-w-80 group-hover:text-[#6C63FF]">
                 {el.title}
               </h3>
-              <p className="text-xs font-Inter max-w-80 text-start text-gray-500">{el.content}</p>
+              <p className="text-sm font-Inter max-w-80 text-start text-gray-500">{el.content}</p>
 
 
              </div>

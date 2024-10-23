@@ -10,7 +10,7 @@ const Hero = () => {
           <h2 className="text-[#6C63FF] font-poppins text-2xl mb-8">
             Your Annual Accounts Handled in a Jiffy!{" "}
           </h2>
-          <p className=" font-Inter ">
+          <p className=" font-Inter text-lg">
             Welcome to Outsource Accounting, where your business accounts get
             the royal treatment, making you a financial king. Our dedicated team
             of online UK accountants is here to make your financial management a
