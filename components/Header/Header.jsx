@@ -70,7 +70,7 @@ const Header = () => {
   //fixed z-[9999]
   return (
     <>
-      <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[9999]">
+      <section className="w-full bg-gray-50/50 backdrop-blur-md   shadow-md shadow-black/25 fixed z-[9999]">
         <div className="w-full h-24 flex justify-between items-center    px-20 max-xl:px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold max-lg:hidden ">
           <div className="">
             <Link href={"/"}> <Image src={Logo} className="w-32 p-2" alt="header--logo-image" /> </Link>
@@ -126,7 +126,7 @@ const Header = () => {
 
       {/* Mobile Header */}
 
-      <section className="w-full bg-gray-50 shadow-md shadow-black/25 fixed z-[6666] lg:hidden">
+      <section className="w-full bg-gray-50/50 backdrop-blur-md   shadow-md shadow-black/25 fixed z-[6666] lg:hidden">
         <div className="w-full h-20 flex justify-between items-center    px-8 max-xl:text-sm text-nowrap   text-base  mx-auto container font-Mulish  font-semibold ">
           <div>
             <IoMenu className="text-3xl cursor-pointer mr-4" onClick={hamBurgerHandler}/>
