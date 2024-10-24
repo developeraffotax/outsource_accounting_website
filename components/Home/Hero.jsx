@@ -16,8 +16,8 @@ const Hero = () => {
           <p className="font-Inter text-lg text-gray-700 "> Outsource Accounting is your trusted, reliable, and cheap online accounting and tax services partner. Chin up, we are dedicated to handling your Companies House and HM Revenue & Customs (HMRC) filings, starting from only £75 per year. <br /> <br /> Time to give your business a proper leg up! Fancy a chat with our expert UK accountants? Lets turn your business into an absolute cracker – reach out today! </p>
 
           <div className='flex justify-start items-center gap-8 text-nowrap max-lg:text-wrap'>
-            <Link href='/contact-us'><button className='py-3 px-6    bg-[#6C63FF] text-white font-poppins rounded-md text-sm font-normal'>Schedule free consultation</button></Link>
-            <Link href='/about-us' className='text-[#6C63FF] font-poppins text-sm border-b border-[#6C63FF]/50 py-1 text-nowrap'>More about us <GoArrowRight className="inline-block ml-1 " /></Link>
+            <Link href='/contact-us'><button className='py-3 px-6    bg-[#6C63FF] text-white font-poppins rounded-md text-sm font-normal'>Get Free Consultation</button></Link>
+            <Link href='/services' className='text-[#6C63FF] font-poppins text-sm border-b border-[#6C63FF]/50 py-1 text-nowrap'>Our Services <GoArrowRight className="inline-block ml-1 " /></Link>
           </div>
         </div>
 

@@ -13,8 +13,8 @@ const Cta = () => {
 
     
     <div className="flex justify-center items-center w-full gap-8 py-8 z-20 relative max-lg:flex-col">
-      <Link href={"/contact-us"} className="px-6 py-3 rounded-md  bg-[#6C63FF] text-white font-poppins " ><FiPhoneIncoming className="inline-block mr-1 " />  Request a call-back </Link>
-      <Link href={"/contact-us"} className=" text-[#6C63FF] font-poppins border-b border-[#6C63FF]/50 py-1" > Contact us online <GoArrowRight className="inline-block ml-1 " /> </Link>
+      <Link href={"/contact-us"} className="px-6 py-3 rounded-md  bg-[#6C63FF] text-white font-poppins " >  Get a Quote </Link>
+      {/* <Link href={"/contact-us"} className=" text-[#6C63FF] font-poppins border-b border-[#6C63FF]/50 py-1" > Contact us online <GoArrowRight className="inline-block ml-1 " /> </Link> */}
     </div>
 
     <div className="w-full  absolute  -top-6 left-0    ">
@@ -25,3 +25,10 @@ const Cta = () => {
 };
 
 export default Cta;
+
+
+
+
+
+
+//<FiPhoneIncoming className="inline-block mr-1 " />
