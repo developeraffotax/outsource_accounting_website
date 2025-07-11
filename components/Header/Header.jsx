@@ -163,22 +163,7 @@ const Header = () => {
 
 
 
-              <li ref={mobileRef} {...anchorPropsMobile} className={` hover:text-primary cursor-pointer  pl-10 py-1 ${ pathname === "/services" ? "active" : "" }`} >
-                    Services <MdChevronRight className={`text-lg inline-block mb-1 mx-0 ${isOpenMobile ? 'rotate-0' : 'rotate-90'} transition-all`} />
-                    <ControlledMenu direction="right"   className=' w-full' state={isOpenMobile ? "open" : "closed"} anchorRef={mobileRef} onClose={() => setOpenMobile(false)} >
-                      <div className=" flex flex-col w-full ml-2 shadow-md " onClick={hamBurgerHandlerClose}>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center " href={"/service/accounts"} > Accounts{" "} <MdChevronRight className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/bookkeeping"} > Bookkeeping <MdChevronRight  className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/company-formation"} > Company Formation <MdChevronRight  className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/corporation-tax"} > Corporation Tax <MdChevronRight className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/payroll"} > Payroll <MdChevronRight className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/self-assessment"} > Self Assessment <MdChevronRight className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none border-b flex justify-between items-center" href={"/service/vat-return"} > VAT Return <MdChevronRight className=""/> </Link>
-                        <Link onClick={() => setOpenMobile(false)} className="text-xs text-black bg-white py-2 px-4 w-full font-Inter font-normal hover:text-white hover:bg-[#6C63FF] outline-none flex justify-between items-center text-center" href={"/services"} > View All Services <MdChevronRight className=""/> </Link>
-                      </div>
-                    </ControlledMenu>
 
-                  </li>
 
 
 
