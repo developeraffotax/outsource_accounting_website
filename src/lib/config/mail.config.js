@@ -33,7 +33,7 @@ const mailtransporter = async () => {
 
     auth: {
       type: "OAuth2",
-      user: process.env.GMAIL_USER,
+      user: process.env.FROM_EMAIL,
       Client_Id: CLIENT_ID,
       Client_Secret: CLIENT_SECRET,
       refresh_Token: REFRESH_TOKEN,

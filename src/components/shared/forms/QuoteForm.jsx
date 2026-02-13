@@ -15,7 +15,13 @@ const QuoteForm = ({ onSuccess }) => {
     console.log(data);
     try {
       const res = await axios.post(`/api/contact`, data);
-      toast.success(res.data.message);
+      toast.success(
+              <div>
+                <p className="font-bold">Quote Request Received</p>
+                <p className="text-xs opacity-80">Thanks for reaching out! Your quote request has been successfully submitted. We’ll be in touch soon with the details.</p>
+              </div>
+            );
+      // toast.success(res.data.message);
       reset();
 
       if (onSuccess) {
