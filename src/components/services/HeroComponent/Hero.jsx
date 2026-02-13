@@ -21,13 +21,13 @@ const Hero = ({ data }) => {
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between p-3 md:p-10 lg:p-12 xl:p-14 gap-8 lg:gap-12">
         <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left items-center lg:items-start space-y-4 lg:space-y-6">
           <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black">
+            <h1 className="text-3xl md:text-4xl  font-bold leading-tight text-black">
               {data.title}{" "}
               <span className="text-blue-800">{data.titleHighlight}</span>
             </h1>
 
             {data.subtitle && (
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black">
+              <h2 className="text-3xl md:text-4xl  font-bold leading-tight text-black">
                 {data.subtitle}
               </h2>
             )}
