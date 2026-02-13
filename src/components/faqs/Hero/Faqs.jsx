@@ -16,7 +16,7 @@ const Faqs = async () => {
       <p className="font-light max-w-140 text-center md:text-start">
         {content.description}{" "}
         {content.link && (
-          <Link href="#" className="text-blue-600">
+          <Link href="/contactUs" className="text-blue-600">
             {content.link}
           </Link>
         )}
