@@ -9,7 +9,7 @@ import FacebookIcon from "@/assets/images/Footer/FooterIcons/FacebookIcon.svg";
 
 const Footer = () => {
   return (
-    <footer className=" bg-(--color-buttonBlue) text-amber-50 rounded-base shadow-xs border border-default py-3 md:py-8 px-3 md:px-8 lg:px-44 2xl:px-70">
+    <footer className=" bg-(--color-buttonBlue) text-amber-50 rounded-base shadow-xs border border-default py-3 md:py-8 px-3 md:px-8 lg:px-44 2xl:px-80">
       <div className="flex flex-col md:flex-row items-start justify-between w-full ">
         <div className="flex flex-col gap-6 h-auto">
           <div>

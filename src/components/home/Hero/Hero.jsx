@@ -17,7 +17,7 @@ const Hero = async ({
 
   return (
     <section className="w-full ">
-      <div className="relative h-[95vh] lg:h-[90vh] w-full flex flex-col md:flex-row items-center justify-center md:justify-between overflow-hidden ">
+      <div className="relative h-[95vh] lg:h-[85vh] w-full flex flex-col md:flex-row md:items-start items-center pt-12 justify-center md:justify-between overflow-hidden ">
         {/* Background Image */}
         <img
           src={img}
@@ -26,7 +26,7 @@ const Hero = async ({
         />
 
         {/* LEFT TEXT SECTION */}
-        <div className="w-full  md:w-3/4 lg:w-2/4 lg:px-6 pl-6 lg:pl-18 2xl:pl-70 text-white flex flex-col justify-center my-6 lg:my-12 mr-6 md:mr-8 ">
+        <div className="w-full  md:w-3/4 lg:w-2/4 lg:px-6 pl-6 lg:pl-18 2xl:pl-80 text-white flex flex-col justify-center my-6 lg:my-12 mr-6 md:mr-8 ">
           <p className="inline-block mb-4 bg-linear-to-r from-[#c0b2ff] to-white text-[#333] px-4 py-2 rounded-xl text-sm font-medium w-fit">
             {title}
           </p>
@@ -37,11 +37,11 @@ const Hero = async ({
               {headingMiddleText}
             </span>{" "}
             {headingEndText}{" "}
-            <img
+            {/* <img
               src={ukFlagImg}
               alt="uk flag"
               className="inline-block w-8 h-8 ml-2"
-            />
+            /> */}
           </h1>
 
           {/* Hidden on small screens */}
@@ -56,7 +56,7 @@ const Hero = async ({
         </div>
 
         {/* RIGHT FORM SECTION */}
-        <div className="w-8/9 md:max-w-4/6 lg:w-2/7 md:mr-8 lg:mr-44 2xl:mr-70 bg-white/40 backdrop-blur-md p-3 py-4 md:p-12 rounded-xl shadow-lg mt-10 md:mt-0 my-6 lg:my-12 ">
+        <div className="w-8/9 md:max-w-4/6 lg:w-2/7 md:mr-8 lg:mr-44 2xl:mr-80 bg-white/40 backdrop-blur-md p-3 py-4 md:p-12 rounded-xl shadow-lg mt-10 md:mt-0 my-6 lg:my-12 ">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
             Quick <span className="text-(--color-buttonBlue)">Quote</span>
           </h2>
