@@ -12,9 +12,9 @@ const sendAutoMail = async (data) => {
     //configure email
 
     const mailSetup = {
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
-      to: process.env.MAIL_TO,
-      subject: "New Customer Registration",
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
+      subject: "New Quote | Outsource Accounting",
 
       text: `New Customer Alert! Name: ${data.name} ...`,
 
