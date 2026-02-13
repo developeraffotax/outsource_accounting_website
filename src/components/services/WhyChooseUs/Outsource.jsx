@@ -13,7 +13,7 @@ const Outsource = ({ data }) => {
 
   return (
     <>
-      <div className="flex justify-center lg:justify-evenly items-center mx-3 my-6 md:mx-8 lg:mx-44 2xl:mx-60 md:my-12 flex-wrap lg:my-12">
+      <div className="flex justify-center lg:justify-evenly items-center mx-3 my-6 md:mx-8 lg:mx-44 2xl:mx-70 md:my-12 flex-wrap lg:my-12">
         <div className="relative flex mt-6 w-80 h-70 md:w-140 md:h-120 items-center justify-center lg:justify-end overflow-hidden">
           <img
             src={imgUrl}
