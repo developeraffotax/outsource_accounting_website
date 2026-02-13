@@ -19,7 +19,7 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
   };
 
   return (
-    <div className="px-4 py-14 md:px-22 xl:px-44 w-full ">
+    <div className="px-3 py-24 md:px-8 lg:px-44 2xl:px-60 w-full ">
       <div className="relative flex flex-col md:flex-row items-center justify-center mb-12">
         <h1 className="font-bold text-3xl text-center bg-linear-to-l from-blue-600 to-black bg-clip-text text-transparent">
           {heading}

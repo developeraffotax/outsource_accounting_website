@@ -4,7 +4,7 @@ const AnnualAcounts = ({ data }) => {
   const imgUrl = getImageUrl(data.img?.url);
 
   return (
-    <div className="flex flex-col items-center mx-3 md:mx-12 my-6 2xl:mx-24 md:my-12">
+    <div className="flex flex-col items-center mx-3 md:mx-8 lg:mx-44 2xl:mx-60 my-6 md:my-12">
       <div className="flex flex-col lg:flex-row justify-center md:justify-evenly items-center gap-6 lg:gap-12 mt-8">
         <div className="relative flex justify-center md:justify-start">
           <img

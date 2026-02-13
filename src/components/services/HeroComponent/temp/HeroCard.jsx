@@ -5,8 +5,8 @@ const HeroCard = ({ title, img, paragraphOne, paragraphTwo, bgimg }) => {
     <div
       className="relative flex flex-row  md:justify-evenly
     border border-transparent rounded-2xl 
-    mx-3 md:mx-12 lg:mx-24 my-3 md:my-6 lg:my-12
-    px-3 md:px-4 lg:px-8 py-2 md:py-6 lg:py-12"
+    mx-3 md:mx-8 lg:mx-44 2xl:mx-60 my-3 md:my-6 lg:my-12
+    px-3 md:px-8 lg:px-8 py-2 md:py-6 lg:py-12"
     >
       {
         <img

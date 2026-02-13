@@ -16,8 +16,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full px-16 xl:px-34 z-50 py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
-        <div className="flex items-center justify-between w-full py-3 mx-3 md:mx-8">
+      <nav className="w-full px-8 lg:px-44 2xl:px-60 z-50 py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
+        <div className="flex items-center justify-between w-full py-3">
           <Link href="/" className="navbar-logo cursor-pointer">
             <img src={CompanyLogo.src} alt="Company Logo" />
           </Link>
@@ -94,6 +94,7 @@ const Navbar = () => {
               <li className="w-full">
                 <Link
                   href="/"
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
                 >
                   Home
@@ -103,6 +104,7 @@ const Navbar = () => {
               <li className="w-full">
                 <Link
                   href="/services"
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
                 >
                   Services
@@ -111,6 +113,7 @@ const Navbar = () => {
               <li className="w-full">
                 <Link
                   href="/aboutus"
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
                 >
                   About Us
@@ -119,6 +122,7 @@ const Navbar = () => {
               <li className="w-full">
                 <Link
                   href="/blogs"
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
                 >
                   Blogs
@@ -127,6 +131,7 @@ const Navbar = () => {
               <li className="w-full">
                 <Link
                   href="/faqs"
+                  onClick={() => setMenuOpen(false)}
                   className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
                 >
                   FAQs

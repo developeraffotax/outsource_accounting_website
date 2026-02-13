@@ -10,7 +10,7 @@ const ContactUsHero = async () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center text-center my-3 md:my-6 lg:my-12 mx-6 md:mx-12">
+      <div className="flex flex-col items-center justify-center text-center my-3 md:my-6 lg:my-12 mx-3 md:mx-8 lg:mx-44 2xl:mx-60">
         <img
           src={getImageUrl(content.img.url)}
           alt="heroLineIcon"

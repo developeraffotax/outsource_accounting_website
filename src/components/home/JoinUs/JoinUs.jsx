@@ -2,7 +2,7 @@ import ContactUsButton from "@/components/shared/buttons/contactUsButton";
 
 const JoinUs = ({ bgImg }) => {
   return (
-    <div className="relative my-24">
+    <div className="relative mt-24">
       <img
         src={bgImg}
         alt="LinkdinIcon"
