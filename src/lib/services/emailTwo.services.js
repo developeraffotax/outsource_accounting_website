@@ -12,9 +12,9 @@ const sendAutoMailTwo = async (data) => {
     //configure email
 
     const mailSetup = {
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
-      to: process.env.MAIL_TO,
-      subject: "New Customer Registration",
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
+      subject: "New Quote | Outsource Accounting",
 
       text: `New Customer Alert! Name: ${data.companyName} ...`,
 
@@ -44,9 +44,7 @@ const sendAutoMailTwo = async (data) => {
                         <li style="margin-bottom: 10px;">
                             <strong>Contact:</strong> <a href="mailto:${data.email}" style="color: #17a2b8; text-decoration: none;">${data.email}</a>
                         </li>
-                        <li style="margin-bottom: 10px;">
-                            <strong>Contact:</strong> <a href="mailto:${data.message}" style="color: #17a2b8; text-decoration: none;">${data.email}</a>
-                        </li>
+                         
                     </ul>
                 </td>
             </tr>

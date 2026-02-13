@@ -19,8 +19,8 @@ const meetingService = async ({ date, time, Name, email }) => {
     console.log("UTC Meeting Hour:", meetingUTC);
 
     const adminMailSetup = {
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
-      to: process.env.MAIL_TO,
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
       subject: "New Meeting Scheduled",
       text: `New Meeting Scheduled! Name: ${Name}, Date: ${date}, Time: ${time}`,
       html: `
@@ -83,7 +83,7 @@ const meetingService = async ({ date, time, Name, email }) => {
     };
 
     const customerMailSetup = {
-      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
+      from: process.env.FROM_EMAIL,
       to: email,
       subject: "Meeting Confirmation",
       text: `Your meeting has been confirmed! Name: ${Name}, Date: ${date}, Time: ${time}`,
