@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full px-8 lg:px-44 2xl:px-70 z-[9999] shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
+      <nav className="w-full px-8 lg:px-44 2xl:px-80 z-[9999] shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
         <div className="flex items-center justify-between w-full py-3">
           <Link href="/" className="navbar-logo cursor-pointer">
             <img src={CompanyLogo.src} alt="Company Logo" />

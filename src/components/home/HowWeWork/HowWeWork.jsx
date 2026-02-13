@@ -22,12 +22,12 @@ const HowWeWork = ({
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-x-4 gap-y-2 mx-auto w-full lg:w-5xl font-light items-start">
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          <p
+          {/* <p
             alt="Submission Icon"
             className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
           >
             {one}
-          </p>
+          </p> */}
           <img
             src={oneIcon}
             alt="Service Icon"
@@ -40,12 +40,12 @@ const HowWeWork = ({
         <img src={lineOne} alt="" className="my-8 hidden md:inline-block" />
         {/* Card 2 */}
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          <p
+          {/* <p
             alt="Submission Icon"
             className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
           >
             {two}
-          </p>
+          </p> */}
           <img
             src={twoIcon}
             alt="Info Icon"
@@ -57,12 +57,12 @@ const HowWeWork = ({
         <img src={lineTwo} alt="" className="my-12 hidden md:inline-block" />
         {/* Card 3 */}
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          <p
+          {/* <p
             alt="Submission Icon"
             className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
           >
             {three}
-          </p>
+          </p> */}
           <img
             src={threeIcon}
             alt="Submission Icon"
