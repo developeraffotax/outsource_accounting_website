@@ -7,7 +7,7 @@ const OurStoryPg = async () => {
 
   return (
     <div>
-      <div className=" flex flex-col lg:flex-row justify-center items-center lg:justify-between mx-3 md:mx-8 lg:mx-44 2xl:mx-60 my-6 md:my-16 lg:my-24">
+      <div className=" flex flex-col lg:flex-row justify-center items-center lg:justify-between mx-3 md:mx-8 lg:mx-44 2xl:mx-70 my-6 md:my-16 lg:my-24">
         <img
           src={getImageUrl(content.imgOurStory?.url)}
           alt="Our Story"

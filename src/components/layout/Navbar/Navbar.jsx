@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full px-8 lg:px-44 2xl:px-60 z-50 py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
+      <nav className="w-full px-8 lg:px-44 2xl:px-70 z-50 py-2 bg-white items-center justify-between hidden md:flex sticky top-0">
         <div className="flex items-center justify-between w-full py-3">
           <Link href="/" className="navbar-logo cursor-pointer">
             <img src={CompanyLogo.src} alt="Company Logo" />
@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <nav className="md:hidden w-full bg-white/98 border-b border-gray-100 shadow-sm">
+      <nav className="md:hidden w-full bg-white/98 border-b border-gray-100 shadow-sm sticky top-0 z-50">
         <div className="relative w-full px-4 p-8 flex justify-between items-center">
           {/* Logo - Absolute Left */}
           <div className="absolute left-2 top-1/2 -translate-y-1/2">

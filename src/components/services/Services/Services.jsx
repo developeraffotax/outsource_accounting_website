@@ -5,7 +5,7 @@ import GetStartedButton from "@/components/shared/buttons/GetStartedButton.jsx";
 const Services = ({ data }) => {
   return (
     <section
-      className="flex flex-col self-center items-center content-center justify-center text-black bg-white mx-3 my-6 md:mx-8 lg:mx-44 2xl:mx-60 md:my-12"
+      className="flex flex-col self-center items-center content-center justify-center text-black bg-white mx-3 my-6 md:mx-8 lg:mx-44 2xl:mx-70 md:my-12"
       id="services"
     >
       <div className="flex self-center items-center content-center justify-center text-black bg-white flex-wrap">

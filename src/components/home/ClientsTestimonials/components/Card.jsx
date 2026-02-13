@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ index, bgImg, personImg, name, title, description }) => {
   return (
-    <div className="relative min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-center shadow-sm hover:shadow-md transition-shadow">
+    <div className="relative min-w-64 md:min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-center shadow-sm hover:shadow-md transition-shadow">
       <div className="h-auto w-full">
         <img
           src={bgImg}

@@ -26,7 +26,7 @@ const Hero = async ({
         />
 
         {/* LEFT TEXT SECTION */}
-        <div className="w-full  md:w-2/4 px-6  md:pl-16 lg:pl-36 2xl:pl-52 text-white flex flex-col justify-center my-6 lg:my-12 mx-6 md:mx-8 ">
+        <div className="w-full  md:w-2/4 px-6  md:pl-16 lg:pl-36 2xl:pl-62 text-white flex flex-col justify-center my-6 lg:my-12 mx-6 md:mx-8 ">
           <p className="inline-block mb-4 bg-linear-to-r from-[#c0b2ff] to-white text-[#333] px-4 py-2 rounded-xl text-sm font-medium w-fit">
             {title}
           </p>
@@ -56,7 +56,7 @@ const Hero = async ({
         </div>
 
         {/* RIGHT FORM SECTION */}
-        <div className="w-8/9 md:w-2/7 md:mr-25 lg:mr-44 2xl:mr-60 bg-white/40 backdrop-blur-md p-3 py-4 md:p-12 rounded-xl shadow-lg mt-10 md:mt-0 my-6 lg:my-12 ">
+        <div className="w-8/9 md:w-2/7 md:mr-25 lg:mr-44 2xl:mr-70 bg-white/40 backdrop-blur-md p-3 py-4 md:p-12 rounded-xl shadow-lg mt-10 md:mt-0 my-6 lg:my-12 ">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
             Quick <span className="text-(--color-buttonBlue)">Quote</span>
           </h2>

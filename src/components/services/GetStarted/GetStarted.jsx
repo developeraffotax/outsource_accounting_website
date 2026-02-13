@@ -2,7 +2,7 @@ import GetStartedButton from "@/components/shared/buttons/GetStartedButton";
 
 const GetStarted = ({ data }) => {
   return (
-    <div className="rounded-2xl flex flex-col bg-blue-100 text-center gap-6 my-3 md:my-12 mx-3 md:mx-8 lg:mx-44 2xl:mx-60 lg:my-24 py-3 md:py-8 px-3 md:px-8">
+    <div className="rounded-2xl flex flex-col bg-blue-100 text-center gap-6 my-3 md:my-12 mx-3 md:mx-8 lg:mx-44 2xl:mx-70 lg:my-24 py-3 md:py-8 px-3 md:px-8">
       <h1 className="font-semibold text-2xl md:text-3xl text-blue-900">
         {data.heading}
       </h1>

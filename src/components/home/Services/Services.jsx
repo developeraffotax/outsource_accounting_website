@@ -9,14 +9,14 @@ const Services = ({ heading, description, serviceCardsComponent }) => {
 
   return (
     <section
-      className="flex flex-col self-center items-center content-center justify-center text-black bg-white lg:my-12 mx-3  "
+      className="flex flex-col self-center items-center content-center justify-center text-black bg-white lg:my-12 mx-3 md:mx-14  "
       id="services"
     >
       <div className="flex flex-col self-center items-center content-center justify-center align-middle text-black bg-white flex-wrap">
         <h2 className="text-[2rem] font-semibold mb-4 w-full text-center text-[#4632DA] ">
           {heading}
         </h2>
-        <p className="text-[1rem] font-normal mb-8 w-2/3 text-start md:text-center text-[#333333]">
+        <p className="text-[1rem] font-normal mb-8 w-full md:w-2/3 text-start md:text-center text-[#333333]">
           {description}
         </p>
         {serviceCardsComponent}
