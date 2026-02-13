@@ -12,8 +12,8 @@ const sendAutoMail = async (data) => {
     //configure email
 
     const mailSetup = {
-      from: '"My App" <system@example.com>',
-      to: "zuhranyousaf12345@gmail.com",
+      from: `"${process.env.MAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
+      to: process.env.MAIL_TO,
       subject: "New Customer Registration",
 
       text: `New Customer Alert! Name: ${data.name} ...`,

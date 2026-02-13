@@ -6,7 +6,7 @@ const CardContact = async () => {
   const res = await gitQuery();
   const content = res.data.getInTouch;
   return (
-    <div className="mx-3 md:mx-12 lg:mx-0 flex flex-col  items-center md:items-start">
+    <div className="mx-3 md:mx-8 lg:mx-0 flex flex-col  items-center md:items-start">
       <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-blue-800">
         Get In Touch
       </h1>
