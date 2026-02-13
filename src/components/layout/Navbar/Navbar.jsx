@@ -23,40 +23,27 @@ const Navbar = () => {
           </Link>
 
           {
-            <ul className="navbar-link justify-between items-center hidden md:flex ">
-              {" "}
-              {/*hidden*/}
+            <ul className="navbar-link hidden md:flex items-center justify-between gap-6 px-3">
               <li>
-                <Link href="/" className="p-1 pr-12 font-light inline-block">
+                <Link href="/" className="p-1 inline-block">
                   Home
                 </Link>
               </li>
+
               <li>
-                <Link
-                  href="/services"
-                  className="p-1 pr-12 font-light inline-block"
-                >
+                <Link href="/services" className="p-1 inline-block">
                   Services
                 </Link>
               </li>
+
               <li>
-                <Link
-                  href="/aboutus"
-                  className="p-1 pr-12 font-light inline-block"
-                >
+                <Link href="/aboutus" className="p-1 inline-block">
                   About Us
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  href="/blogs"
-                  className="p-1 pr-3 font-light inline-block"
-                >
-                  Blogs
-                </Link>
-              </li> */}
+
               <li>
-                <Link href="/faqs" className="p-1 pr-3 font-light inline-block">
+                <Link href="/faqs" className="p-1 inline-block">
                   FAQs
                 </Link>
               </li>
