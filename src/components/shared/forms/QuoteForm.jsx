@@ -159,13 +159,10 @@ const QuoteForm = ({ onSuccess }) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={
-          isSubmitting
-            ? "w-2/3 md:w-1/3 mx-auto block px-8 py-2 rounded-sm bg-(--color-buttonBlue) text-white text-lg font-medium hover:opacity-90 transition opacity-50 cursor-not-allowed"
-            : "w-2/3 md:w-1/3 mx-auto block px-8 py-2 rounded-sm bg-(--color-buttonBlue) text-white text-lg font-medium hover:opacity-90 transition cursor-pointer"
-        }
+        className={`w-2/3 md:w-2/3 lg:1/3 mx-auto block px-8 py-2 rounded-sm bg-(--color-buttonBlue) text-white text-lg font-medium hover:opacity-90 transition
+        ${isSubmitting ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       >
-        {isSubmitting ? "Sending" : "Submit"}
+        {isSubmitting ? "Sending..." : "Submit"}
       </button>
     </form>
   );
