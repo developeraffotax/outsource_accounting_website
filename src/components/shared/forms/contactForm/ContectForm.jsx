@@ -32,7 +32,13 @@ const ContactForm = ({ onSuccess }) => {
         email: message.email,
       };
       const res = await axios.post(`api/meeting`, meetingData);
-      toast.success(res.data.message);
+      toast.success(
+              <div>
+                <p className="font-bold">Meeting Request Received</p>
+                <p className="text-xs opacity-80">Thanks for reaching out! Your meeting request has been successfully submitted. We’ll be in touch soon with the details.</p>
+              </div>
+            );
+      // toast.success(res.data.message);
 
       // Wait for toast to be visible, then close modal
       await new Promise((resolve) => setTimeout(resolve, 2000));

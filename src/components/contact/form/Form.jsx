@@ -16,7 +16,14 @@ const Formy = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(`/api/contacttwo`, data);
-      toast.success(res.data.message);
+      // Example usage in your form component
+      toast.success(
+        <div>
+          <p className="font-bold">Quote Request Received</p>
+          <p className="text-xs opacity-80">Thanks for reaching out! Your quote request has been successfully submitted. We’ll be in touch soon with the details.</p>
+        </div>
+      );
+      // toast.success(res.data.message);
       console.log(data);
       reset();
 

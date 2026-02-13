@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { ToastContainer } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import TopBar from "@/components/layout/TopBar/TopBar.jsx";
@@ -24,7 +24,20 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <ToastContainer position="top-right" />
+         
+        <ToastContainer 
+          position="bottom-right"  
+          autoClose={8000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"  
+          transition={Slide}  
+        />
       </body>
     </html>
   );
