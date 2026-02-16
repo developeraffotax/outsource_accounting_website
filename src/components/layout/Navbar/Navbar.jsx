@@ -19,7 +19,7 @@ const Navbar = () => {
     <>
       <Container
         withYPadding={false}
-        className="w-full z-[9999] shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
+        className="w-full z-[999] shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
       >
         <div className="flex items-center justify-between w-full py-3">
           <Link href="/" className="navbar-logo cursor-pointer">

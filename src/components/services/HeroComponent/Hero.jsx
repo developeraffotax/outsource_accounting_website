@@ -46,8 +46,6 @@ const Hero = ({ data }) => {
           <div className="pt-2">
             <GetStartedButton />
           </div>
-
-          <Cards />
         </div>
 
         <div className="w-full lg:w-1/2 flex justify-center items-center lg:pr-8">
@@ -58,7 +56,9 @@ const Hero = ({ data }) => {
           />
         </div>
       </div>
-      <div className="pl-3 md:pl-10 lg:pl-12 2xl:pl-14 pr-3 md:pr-10 lg:pr-12 2xl:pr-0 flex justify-center lg:justify-start 2xl:w-1/2"></div>
+      <div className="mx-4 lg:mx-16  mb-5  ">
+        <Cards />
+      </div>
     </section>
   );
 };
