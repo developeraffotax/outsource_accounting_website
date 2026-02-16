@@ -8,7 +8,7 @@ const AboutHero = async () => {
   if (!content) return null;
 
   return (
-    <div className="flex flex-col justify-center items-center my-6 lg:my-12 mx-3 md:mx-8 lg:mx-44 2xl:mx-70">
+    <div className="flex flex-col justify-center items-center my-6 lg:my-12 mx-3 md:mx-8 lg:mx-44 2xl:mx-80">
       <div className="flex flex-col justify-center items-center mb-7 md:mb-14 mx-4 content-center ">
         <h1 className="font-semibold text-3xl md:text-4xl">
           {content.heading}
