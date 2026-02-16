@@ -9,16 +9,16 @@ const Hero = ({ data }) => {
   const imageUrl = data.image?.url ? getImageUrl(data.image?.url) : data.image;
 
   return (
-    <section className="relative mx-3 my-4 md:mx-8 lg:mx-44 2xl:mx-80 md:my-8 lg:my-12 rounded-2xl overflow-hidden border border-transparent shadow-sm">
-      <div className="absolute inset-0 w-full h-full -z-10">
+    <section className="relative mx-3 my-4 md:mx-8 lg:mx-44 2xl:mx-80 md:my-8 lg:my-12 rounded-2xl bg-blue-50 overflow-hidden border border-transparent shadow-sm">
+      {/* <div className="absolute inset-0 w-full h-full -z-10">
         <img
           src={bgImageUrl}
           alt="Background"
           className="w-full h-full object-cover"
         />
-      </div>
+      </div> */}
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between p-3 md:p-10 lg:p-12 xl:p-14 gap-8 lg:gap-12">
+      <div className="relative z-10 flex flex-col lg:flex-row items-start justify-center lg:justify-between p-3 md:p-10 lg:p-12 xl:p-14 gap-8 lg:gap-12">
         <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left items-center lg:items-start space-y-4 lg:space-y-6">
           <div className="space-y-2">
             <h1 className="text-3xl md:text-4xl  font-bold leading-tight text-black">
@@ -46,6 +46,8 @@ const Hero = ({ data }) => {
           <div className="pt-2">
             <GetStartedButton />
           </div>
+
+          <Cards />
         </div>
 
         <div className="w-full lg:w-1/2 flex justify-center items-center lg:pr-8">
@@ -56,9 +58,7 @@ const Hero = ({ data }) => {
           />
         </div>
       </div>
-      <div className="pl-3 md:pl-10 lg:pl-12 2xl:pl-14 pr-3 md:pr-10 lg:pr-12 2xl:pr-0 flex justify-center lg:justify-start 2xl:w-1/2">
-        <Cards />
-      </div>
+      <div className="pl-3 md:pl-10 lg:pl-12 2xl:pl-14 pr-3 md:pr-10 lg:pr-12 2xl:pr-0 flex justify-center lg:justify-start 2xl:w-1/2"></div>
     </section>
   );
 };
