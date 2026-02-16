@@ -4,36 +4,46 @@ import third from "@/assets/images/serivePgsImg/Hero/Cards/third.svg";
 import forth from "@/assets/images/serivePgsImg/Hero/Cards/forth.svg";
 import Card from "./Card";
 
+import {
+  FiDollarSign,
+  FiTrendingUp,
+  FiBarChart2,
+  FiCheckCircle,
+} from "react-icons/fi";
+
 const data = [
   {
     key: 1,
     title: "Tax Clarity",
-    img: first.src,
+    icon: <FiDollarSign size={36} className="text-white" />,
+    gradient: "from-blue-400 to-purple-500",
   },
   {
     key: 2,
     title: "Smart Accounting",
-    img: second.src,
+    icon: <FiTrendingUp size={36} className="text-white" />,
+    gradient: "from-green-400 to-teal-500",
   },
   {
     key: 3,
     title: "Profit Focused",
-    img: third.src,
+    icon: <FiBarChart2 size={36} className="text-white" />,
+    gradient: "from-yellow-400 to-orange-500",
   },
   {
     key: 4,
-    title: "Hassel Removed",
-    img: forth.src,
+    title: "Hassle Removed",
+    icon: <FiCheckCircle size={36} className="text-white" />,
+    gradient: "from-pink-400 to-red-500",
   },
 ];
 
 const Cards = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 w-full">
-      {data.map((card) => {
-        const { key, title, img } = card;
-        return <Card key={key} title={title} img={img} />;
-      })}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full px-4 md:px-0">
+      {data.map(({ key, title, icon, gradient }) => (
+        <Card key={key} title={title} icon={icon} gradient={gradient} />
+      ))}
     </div>
   );
 };
