@@ -15,7 +15,7 @@ const HowWeWork = ({
   threeDescription,
 }) => {
   return (
-    <div className="px-3 md:px-8 lg:px-44 2xl:px-70 py-12 w-full">
+    <div className="px-3 md:px-8 lg:px-44 2xl:px-80 py-12 w-full">
       <h1 className="text-center font-bold text-3xl mb-16 text-gray-800">
         {heading}
       </h1>
