@@ -1,10 +1,13 @@
 import heroData from "@/lib/data/homepage/heroData";
 import Hero from "./Hero";
 import getImageUrl from "@/lib/utils/getImageUrl";
+import cardsApiCall from "./HeroComponents/apiCall";
 
 export const apiCall = async () => {
   const res = await heroData();
   const content = res.data.heroSection;
+  const Cards = await cardsApiCall();
+
   return (
     <Hero
       img={getImageUrl(content.bgImage?.url)}
@@ -17,6 +20,7 @@ export const apiCall = async () => {
       freeConsultationImg={getImageUrl(content.freeConsultationImg?.url)}
       freeConsultation={content.freeConsultation}
       ukFlagImg={getImageUrl(content.ukFlage?.url)}
+      cardsComponent={Cards}
     />
   );
 };

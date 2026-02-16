@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import Card from "./components/Card";
 import arrow from "../../../assets/images/ClientsTestimonials/arrow.png";
+import Container from "@/components/wraper/Container";
 
 const ClientsTestimonials = ({ heading, testimonialCards }) => {
   const sliderRef = useRef(null);
@@ -19,7 +20,7 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
   };
 
   return (
-    <div className="px-3 py-12 md:py-24 md:px-8 lg:px-44 2xl:px-80 w-full ">
+    <Container>
       <div className="relative flex flex-col md:flex-row items-center justify-center mb-12">
         <h1 className="font-bold text-3xl text-center bg-linear-to-l from-blue-600 to-black bg-clip-text text-transparent">
           {heading}
@@ -61,7 +62,7 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

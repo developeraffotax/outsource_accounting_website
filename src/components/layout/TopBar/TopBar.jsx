@@ -1,4 +1,5 @@
 import topBarQuery from "@/lib/data/topBarQuery";
+import Container from "@/components/wraper/Container";
 
 const TopBar = async () => {
   const res = await topBarQuery();
@@ -6,7 +7,10 @@ const TopBar = async () => {
 
   if (!content) return <p>their is no data to show</p>;
   return (
-    <div className="w-full bg-(--color-veryLightBlue) text-gray-800 text-xs flex items-center px-3 md:px-8 lg:px-44 z-1001 flex-wrap 2xl:px-80 py-2">
+    <Container
+      withYPadding={false}
+      className="w-full bg-(--color-veryLightBlue) text-gray-800 text-xs flex items-center  z-1001 flex-wrap py-2"
+    >
       <div className="flex items-center ml-auto pb-1 pt-1 flex-wrap justify-center">
         <div className="contact-item pt-1 pb-1 mr-4 flex items-center">
           <img
@@ -60,7 +64,7 @@ const TopBar = async () => {
           <img src={LinkedInIcon} alt="LinkedIn" className="social" />
         </a>
       </div> */}
-    </div>
+    </Container>
   );
 };
 
