@@ -1,17 +1,18 @@
 import outStoryQuesry from "@/lib/data/aboutUS/ourStory.js";
 import getImageUrl from "@/lib/utils/getImageUrl";
+import Container from "@/components/wraper/Container";
 
 const OurStoryPg = async () => {
   const res = await outStoryQuesry();
   const content = res.data.ourstory;
 
   return (
-    <div>
-      <div className=" flex flex-col lg:flex-row justify-center items-center lg:justify-between mx-3 md:mx-8 lg:mx-44 2xl:mx-80 my-6 md:my-16 lg:my-24">
+    <Container>
+      <section className=" flex flex-col lg:flex-row justify-center items-center lg:justify-between ">
         <img
           src={getImageUrl(content.imgOurStory?.url)}
           alt="Our Story"
-          className="hidden lg:block lg:w-auto lg:h-auto "
+          className="hidden lg:block lg:w-auto lg:h-auto border-transparent rounded"
         />
         <div className="flex flex-col gap-3 lg:gap-6 lg:ml-12">
           <h1 className="text-center lg:text-start font-semibold lg:text-4xl md:text-3xl text-2xl my-3 md:my-0">
@@ -24,8 +25,8 @@ const OurStoryPg = async () => {
             {content.descriptiontwoOurStory}
           </p>
         </div>
-      </div>
-    </div>
+      </section>
+    </Container>
   );
 };
 export default OurStoryPg;

@@ -1,7 +1,10 @@
+"use client";
+import { useState } from "react";
 import QuoteForm from "@/components/shared/forms/QuoteForm";
-import cardsApiCall from "./HeroComponents/apiCall";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
+import Model from "@/components/shared/forms/Model.jsx";
 
-const Hero = async ({
+const Hero = ({
   img,
   title,
   headingFirstText,
@@ -12,26 +15,26 @@ const Hero = async ({
   freeConsultationImg,
   freeConsultation,
   ukFlagImg,
+  cardsComponent,
 }) => {
-  const Cards = await cardsApiCall();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="w-full ">
-      <div className="relative h-[95vh] lg:h-[85vh] w-full flex flex-col md:flex-row md:items-start items-center pt-12 justify-center md:justify-between overflow-hidden ">
-        {/* Background Image */}
-        <img
-          src={img}
-          alt={"Background"}
-          className="absolute inset-0 w-full h-full object-cover brightness-50 -z-10"
-        />
-
+    <section className="relative w-full ">
+      {/* Background Image */}
+      <img
+        src={img}
+        alt={"Background"}
+        className="absolute inset-0 w-full h-full object-cover brightness-50 -z-10"
+      />
+      <div className=" h-auto  w-full flex flex-col md:flex-row md:items-start items-center pt-12 justify-center md:justify-between overflow-hidden ">
         {/* LEFT TEXT SECTION */}
-        <div className="w-full  md:w-3/4 lg:w-2/4 lg:px-6 pl-6 lg:pl-18 2xl:pl-80 text-white flex flex-col justify-center my-6 lg:my-12 mr-6 md:mr-8 ">
-          <p className="inline-block mb-4 bg-linear-to-r from-[#c0b2ff] to-white text-[#333] px-4 py-2 rounded-xl text-sm font-medium w-fit">
+        <div className="w-full  md:w-3/4 lg:w-2/4 lg:px-6 pl-3 md:pl-8 lg:pl-44 2xl:pl-80 text-white flex flex-col justify-center my-6 lg:my-12 mr-6 md:mr-8 ">
+          <p className=" mb-4 bg-linear-to-r from-[#c0b2ff] to-white text-[#333] px-4 py-2 rounded-xl text-sm font-medium w-fit hidden 2xl:inline-block">
             {title}
           </p>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-snug">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-snug ">
             {headingFirstText}{" "}
             <span className="text-(--color-veryLightBlue)">
               {headingMiddleText}
@@ -49,10 +52,9 @@ const Hero = async ({
 
           <p className="hidden md:block mb-8">{descriptionHeroHomePageTwo}</p>
 
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-linear-to-r from-indigo-600 to-indigo-400 text-white shadow-lg hover:opacity-90 transition w-max">
-            <img src={freeConsultationImg} alt="contact" className="w-4 h-4" />
-            {freeConsultation}
-          </button>
+          <div>
+            <QuoteButton onClick={() => setIsModalOpen(true)} />
+          </div>
         </div>
 
         {/* RIGHT FORM SECTION */}
@@ -63,8 +65,14 @@ const Hero = async ({
           <QuoteForm />
         </div>
       </div>
-
-      {Cards}
+      <div className="py-8">{cardsComponent}</div>
+      {/* MODAL OVERLAY */}
+      <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
+          Quick <span className="text-(--color-buttonBlue)">Quote</span>
+        </h2>
+        <QuoteForm onSuccess={() => setIsModalOpen(false)} />
+      </Model>
     </section>
   );
 };
