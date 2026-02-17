@@ -20,8 +20,11 @@ const Formy = () => {
       toast.success(
         <div>
           <p className="font-bold">Quote Request Received</p>
-          <p className="text-xs opacity-80">Thanks for reaching out! Your quote request has been successfully submitted. We’ll be in touch soon with the details.</p>
-        </div>
+          <p className="text-xs opacity-80">
+            Thanks for reaching out! Your quote request has been successfully
+            submitted. We’ll be in touch soon with the details.
+          </p>
+        </div>,
       );
       // toast.success(res.data.message);
       console.log(data);
@@ -34,7 +37,7 @@ const Formy = () => {
     }
   };
   return (
-    <div className="w-8/9 md:w-1/3 flex flex-col justify-center border border-gray-600 rounded-2xl  h-1/2 p-4 md:p-8 text-center lg:text-left shadow-lg shadow-black/10">
+    <div className="w-full md:max-w-2xl lg:max-w-none flex flex-col justify-center border border-gray-600 rounded-2xl p-4 md:p-8 text-center lg:text-left shadow-lg shadow-black/10">
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-1 text-blue-800">
         Message Us
       </h1>
@@ -118,8 +121,8 @@ const Formy = () => {
           disabled={isSubmitting}
           className={
             isSubmitting
-              ? "bg-(--color-buttonBlue) text-white px-10 py-4 rounded hover:bg-blue-700 cursor-not-allowed flex justify-self-center text-center w-auto transition duration-300"
-              : "bg-(--color-buttonBlue) text-white px-10 py-4 rounded hover:bg-blue-700 cursor-pointer flex justify-self-center text-center w-auto transition duration-300"
+              ? "bg-(--color-buttonBlue) text-white px-6 md:px-10 py-3 md:py-4 rounded hover:bg-blue-700 cursor-not-allowed w-full md:w-auto md:min-w-48 transition duration-300"
+              : "bg-(--color-buttonBlue) text-white px-6 md:px-10 py-3 md:py-4 rounded hover:bg-blue-700 cursor-pointer w-full md:w-auto md:min-w-48 transition duration-300"
           }
         >
           {isSubmitting ? "Sending" : "Send Message"}
