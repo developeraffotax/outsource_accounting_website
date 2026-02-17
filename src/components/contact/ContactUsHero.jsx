@@ -9,7 +9,7 @@ const ContactUsHero = async () => {
   const content = res.data.hero;
 
   return (
-    <Container>
+    <Container withYPadding={false}>
       <div className="flex flex-col items-center justify-center text-center">
         <img
           src={getImageUrl(content.img.url)}
@@ -23,7 +23,7 @@ const ContactUsHero = async () => {
           {content.description}
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row justify-between items-stretch gap-6 lg:gap-10">
+      <div className="flex flex-col lg:flex-row justify-between items-stretch gap-6 lg:gap-10 my-8">
         <div className="w-full lg:w-1/2">
           <CardContact />
         </div>
