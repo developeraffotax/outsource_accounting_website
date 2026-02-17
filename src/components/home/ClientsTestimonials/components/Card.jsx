@@ -10,7 +10,7 @@ const Card = ({ index, bgImg, personImg, name, title, description }) => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="absolute inset-x-0 scale-110 top-47 border-b-4 shadow-2xl border-b-blue-800 border-solid rotate-163"></div>
+      <div className="absolute inset-x-0 scale-110 top-37 md:top-47 border-b-4 shadow-2xl border-b-blue-800 border-solid rotate-163"></div>
       <div className="px-6 pb-6 relative flex flex-col items-center">
         <div className="-mt-24 mb-4">
           <img
