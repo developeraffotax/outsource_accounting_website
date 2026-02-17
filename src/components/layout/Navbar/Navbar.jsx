@@ -11,7 +11,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const onClick = () => {
-    console.log("clicked");
     setMenuOpen(!menuOpen);
   };
 
@@ -19,7 +18,7 @@ const Navbar = () => {
     <>
       <Container
         withYPadding={false}
-        className="w-full z-[999] shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
+        className="w-full z-999 shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
       >
         <div className="flex items-center justify-between w-full py-3">
           <Link href="/" className="navbar-logo cursor-pointer">
@@ -59,75 +58,75 @@ const Navbar = () => {
       </Container>
       <Container
         withYPadding={false}
-        className="md:hidden w-full bg-white/98 border-b border-gray-100 shadow-sm sticky top-0 z-50"
+        className="md:hidden w-full bg-white shadow-sm sticky top-0 z-999"
       >
         <nav>
-          <div className="relative w-full px-4 p-8 flex justify-between items-center">
-            {/* Logo - Absolute Left */}
+          <div className="relative w-full px-4 py-3 flex justify-between items-center">
             <Link href="/" className="navbar-logo cursor-pointer">
               <img src={CompanyLogo.src} alt="Company Logo" />
             </Link>
 
             <div
-              className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+              className="h-10 w-10 rounded-md border border-gray-200 flex items-center justify-center cursor-pointer"
               onClick={onClick}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
               <img
                 src={menuOpen ? closeMenu.src : HamburgerMenu.src}
                 alt={menuOpen ? "Close Menu" : "Menu"}
-                className="w-6 h-auto block"
+                className="w-5 h-5 block"
               />
             </div>
 
             {menuOpen && (
-              <ul className="flex flex-col items-center bg-[#ecf6fe] absolute top-full left-0 w-full h-screen py-4 shadow-md z-999">
-                <li className="w-full">
+              <ul className="absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-md z-50 py-3 px-4 flex flex-col gap-1">
+                <li>
                   <Link
                     href="/"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
+                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
                   >
                     Home
                   </Link>
                 </li>
 
-                <li className="w-full">
+                <li>
                   <Link
                     href="/services"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
+                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
                   >
                     Services
                   </Link>
                 </li>
-                <li className="w-full">
+                <li>
                   <Link
                     href="/aboutus"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
+                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
                   >
                     About Us
                   </Link>
                 </li>
-                <li className="w-full">
+                <li>
                   <Link
                     href="/blogs"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
+                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
                   >
                     Blogs
                   </Link>
                 </li>
-                <li className="w-full">
+                <li>
                   <Link
                     href="/faqs"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-center py-2 px-4 border-b border-(--color-buttonBlue) text-base text-gray-800 hover:text-gray-600 no-underline"
+                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
                   >
                     FAQs
                   </Link>
                 </li>
-                <li className="mt-auto mb-8">
+                <li className="pt-2">
                   <ContactUsButton />
                 </li>
               </ul>
