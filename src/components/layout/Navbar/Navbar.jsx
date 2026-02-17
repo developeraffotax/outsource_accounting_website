@@ -64,13 +64,9 @@ const Navbar = () => {
         <nav>
           <div className="relative w-full px-4 p-8 flex justify-between items-center">
             {/* Logo - Absolute Left */}
-            <div className="absolute left-2 top-1/2 -translate-y-1/2">
-              <img
-                src="/images/NavbarTopBar/CompanyLogo.png"
-                alt="Company Logo"
-                className="w-20 h-auto"
-              />
-            </div>
+            <Link href="/" className="navbar-logo cursor-pointer">
+              <img src={CompanyLogo.src} alt="Company Logo" />
+            </Link>
 
             <div
               className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
