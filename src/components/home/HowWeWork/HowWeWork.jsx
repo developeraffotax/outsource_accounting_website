@@ -31,7 +31,7 @@ const HowWeWork = ({
           <img
             src={oneIcon}
             alt="Service Icon"
-            className="w-2/3 aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
+            className="w-1/3 md:w-2/3 aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
           />
 
           <h2 className="font-semibold mb-3 text-lg ">Choose Your Service</h2>
@@ -49,7 +49,7 @@ const HowWeWork = ({
           <img
             src={twoIcon}
             alt="Info Icon"
-            className="w-2/3 aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
+            className="w-1/3 md:w-2/3  aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
           />
           <h2 className="font-semibold mb-3 text-lg ">{titletwo}</h2>
           <p className="text-gray-600">{descriptiontwo}</p>
@@ -66,7 +66,7 @@ const HowWeWork = ({
           <img
             src={threeIcon}
             alt="Submission Icon"
-            className="w-2/3 aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
+            className="w-1/3 md:w-2/3  aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-8 mb-6 object-contain self-center"
           />
           <h2 className="font-semibold mb-3 text-lg ">{threeTitle}</h2>
           <p className="text-gray-600">{threeDescription}</p>
