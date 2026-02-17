@@ -1,10 +1,14 @@
 import getImageUrl from "@/lib/utils/getImageUrl";
+import Container from "@/components/wraper/Container";
 
 const AnnualAcounts = ({ data }) => {
   const imgUrl = getImageUrl(data.img?.url);
 
   return (
-    <div className="flex flex-col items-center mx-3 md:mx-8 lg:mx-44 2xl:mx-80 my-6 md:my-12">
+    <Container
+      withYPadding={false}
+      className="flex flex-col items-center my-6 md:my-12"
+    >
       <div className="flex flex-col lg:flex-row justify-center md:justify-evenly items-center gap-6 lg:gap-12 mt-8">
         <div className="relative flex justify-center md:justify-start">
           <img
@@ -19,7 +23,7 @@ const AnnualAcounts = ({ data }) => {
           <p className="font-light">{data.descriptionTwo}</p>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 export default AnnualAcounts;

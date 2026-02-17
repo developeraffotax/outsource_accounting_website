@@ -16,15 +16,17 @@ const Outsource = ({
 
   return (
     <Container className="flex justify-center lg:justify-evenly items-center flex-col lg:flex-row ">
-      <div className="flex flex-col h-auto justify-center lg:items-start w-120 ">
-        <h1 className="text-3xl font-semibold text-center pb-4">{heading}</h1>
+      <div className="flex flex-col h-auto justify-center lg:items-start w-full lg:w-120">
+        <h1 className="text-3xl font-semibold text-center lg:text-left pb-4">
+          {heading}
+        </h1>
         <p className="my-2 font-light">{description}</p>
         {bulletPointsComponent}
         <div>
           <QuoteButton onClick={() => setIsModalOpen(true)} />
         </div>
       </div>
-      <div className="relative flex mt-6 w-80 h-70 md:w-140 md:h-120 items-center justify-center lg:justify-end overflow-hidden">
+      <div className="relative flex mt-6 w-full max-w-80 h-70 md:max-w-140 md:h-120 items-center justify-center lg:justify-end overflow-hidden">
         <img
           src={img}
           alt="whyOutSourceUperImg"

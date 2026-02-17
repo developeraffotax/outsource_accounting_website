@@ -1,12 +1,16 @@
 import ourValueQuery from "@/lib/data/aboutUS/ourValueQuery";
 import getImageUrl from "@/lib/utils/getImageUrl";
+import Container from "@/components/wraper/Container";
 
 const OurValues = async () => {
   const res = await ourValueQuery();
   const content = res.data.ourValue || [];
 
   return (
-    <div className="flex flex-col justify-between items-center mx-3 md:mx-8 lg:mx-44 2xl:mx-80 my-6 md:my-12 lg:my-18">
+    <Container
+      withYPadding={false}
+      className="flex flex-col justify-between items-center my-6 md:my-12 lg:my-18"
+    >
       <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl my-12 lg:mb-12 text-center">
         Mission Statement & Vision Statement
       </h1>
@@ -30,7 +34,7 @@ const OurValues = async () => {
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 };
 export default OurValues;
