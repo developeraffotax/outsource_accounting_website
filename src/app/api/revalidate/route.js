@@ -11,6 +11,7 @@ const modelToTags = {
   "our-story": ["about-us"],
   "mission-statement": ["about-us"],
   "our-value": ["about-us"],
+  "home-page": ["home-page"],
   homepage: ["home-page"],
   hero: ["home-page"],
   testimonial: ["home-page"],
