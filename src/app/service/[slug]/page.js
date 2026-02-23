@@ -13,6 +13,35 @@ import {
   getAllServices,
 } from "@/lib/data/services/serviceQuery";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const response = await getServiceBySlug(slug);
+  const service = response.data[0];
+
+  if (!service) {
+    return { title: "Service Not Found" };
+  }
+
+  const title = service.name || service.title || slug.replace(/-/g, " ");
+  const description =
+    service.description ||
+    service.shortDescription ||
+    `Professional ${title} services for UK businesses from Outsource Accounting.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/service/${slug}`,
+    },
+    openGraph: {
+      title: `${title} | Outsource Accounting`,
+      description,
+      url: `/service/${slug}`,
+    },
+  };
+}
+
 export async function generateStaticParams() {
   const response = await getAllServices();
   return response.data.map((service) => ({
@@ -29,8 +58,61 @@ export default async function ServicePage({ params }) {
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://outsourceaccountings.co.uk";
+  const title = service.name || service.title || slug.replace(/-/g, " ");
+  const description =
+    service.description ||
+    service.shortDescription ||
+    `Professional ${title} services for UK businesses from Outsource Accounting.`;
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: title,
+        description,
+        url: `${siteUrl}/service/${slug}`,
+        provider: {
+          "@type": "AccountingService",
+          name: "Outsource Accounting",
+          url: siteUrl,
+        },
+        areaServed: "GB",
+        serviceType: title,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: `${siteUrl}/services`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: title,
+            item: `${siteUrl}/service/${slug}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <Hero data={service} />
       <Services data={service.ServiceProcess} />
       <What data={service.WhatData} />
