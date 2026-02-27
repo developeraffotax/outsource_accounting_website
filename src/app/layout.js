@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar/Navbar.jsx";
 import Footer from "@/components/layout/Footer/Footer.jsx";
 import APICall from "@/components/shared/buttons/APICall.jsx";
 
+//local
 const inter = localFont({
   src: "../assets/fonts/Inter-VariableFont.ttf",
   display: "swap",
@@ -946,7 +947,10 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <TopBar />
-        <Navbar buyNowSlot={<APICall />} mobileBuyNowSlot={<APICall mobile />} />
+        <Navbar
+          buyNowSlot={<APICall />}
+          mobileBuyNowSlot={<APICall mobile />}
+        />
         {children}
         <Footer />
 
