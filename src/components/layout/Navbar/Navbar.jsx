@@ -7,7 +7,7 @@ import CompanyLogo from "../../../assets/images/NavbarTopBar/CompanyLogo.svg";
 import Link from "next/link";
 import Container from "@/components/wraper/Container.jsx";
 
-const Navbar = () => {
+const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const onClick = () => {
@@ -53,7 +53,10 @@ const Navbar = () => {
             </ul>
           }
 
-          <ContactUsButton />
+          <div className="flex flex-row gap-2">
+            <ContactUsButton />
+            {buyNowSlot}
+          </div>
         </div>
       </Container>
       <Container
@@ -79,7 +82,7 @@ const Navbar = () => {
             </div>
 
             {menuOpen && (
-              <ul className="absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-md z-50 py-3 px-4 flex flex-col gap-1">
+              <ul className="absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-md z-50 py-3 px-4 flex flex-col gap-1 border rounded-b-2xl">
                 <li>
                   <Link
                     href="/"
@@ -126,7 +129,8 @@ const Navbar = () => {
                     FAQs
                   </Link>
                 </li>
-                <li className="pt-2">
+                <li className="pt-2">{mobileBuyNowSlot}</li>
+                <li className="pt-1">
                   <ContactUsButton />
                 </li>
               </ul>

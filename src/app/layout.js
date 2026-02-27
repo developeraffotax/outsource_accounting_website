@@ -1,10 +1,12 @@
 import localFont from "next/font/local";
+import Script from "next/script";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import TopBar from "@/components/layout/TopBar/TopBar.jsx";
 import Navbar from "@/components/layout/Navbar/Navbar.jsx";
 import Footer from "@/components/layout/Footer/Footer.jsx";
+import APICall from "@/components/shared/buttons/APICall.jsx";
 
 const inter = localFont({
   src: "../assets/fonts/Inter-VariableFont.ttf",
@@ -834,6 +836,9 @@ export const metadata = {
     "tax planning UK",
     "year end accounts",
   ],
+  verification: {
+    google: "LXLD34lW_HVnOLdPsBFJ6yvGHQ0P62DJO3AWJg-xJIo",
+  },
   authors: [{ name: "Outsource Accounting" }],
   creator: "Outsource Accounting",
   publisher: "Outsource Accounting",
@@ -928,8 +933,20 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JVX03L2MCN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JVX03L2MCN');
+          `}
+        </Script>
         <TopBar />
-        <Navbar />
+        <Navbar buyNowSlot={<APICall />} mobileBuyNowSlot={<APICall mobile />} />
         {children}
         <Footer />
 

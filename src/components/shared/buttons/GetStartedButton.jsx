@@ -4,7 +4,7 @@ const GetStartedButton = () => {
   return (
     <Link
       href="/contactUs"
-      className="bg-(--color-buttonBlue) px-8 py-2 my-2 text-white font-normal border-2 rounded-sm border-transparent inline-flex"
+      className="bg-(--color-buttonBlue) cursor-pointer px-8 py-2 my-2 text-white font-normal border-2 rounded-sm border-transparent inline-flex"
     >
       Get Started Now
     </Link>
