@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"c:/Users/Affotax Developer/Desktop/Projects/OutsourceNew2026/src/app/Favicon.svg\" \"c:/Users/Affotax Developer/Desktop/Projects/OutsourceNew2026/public/favicon-light.svg\")",
+      "Bash(cp \"c:/Users/Affotax Developer/Desktop/Projects/OutsourceNew2026/src/app/Favicon-1.svg\" \"c:/Users/Affotax Developer/Desktop/Projects/OutsourceNew2026/public/favicon-dark.svg\")"
+    ]
+  }
+}
