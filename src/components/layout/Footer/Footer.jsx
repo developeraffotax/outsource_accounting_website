@@ -57,11 +57,17 @@ const Footer = () => {
                   />
                 </li>
                 <li>
-                  <img
-                    src={FacebookIcon.src}
-                    alt="FacebookIcon"
-                    className="h-6 w-6 cursor-pointer"
-                  />
+                  <a
+                    href="https://www.facebook.com/people/Outsource-Accounting/61561941800158/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={FacebookIcon.src}
+                      alt="Facebook"
+                      className="h-6 w-6 cursor-pointer"
+                    />
+                  </a>
                 </li>
               </ul>
             </div>

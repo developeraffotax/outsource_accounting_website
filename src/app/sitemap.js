@@ -18,7 +18,7 @@ export default async function sitemap() {
       changeFrequency: "weekly",
     },
     {
-      url: `${siteUrl}/aboutus`,
+      url: `${siteUrl}/aboutus`,  
       lastModified: new Date(),
       priority: 0.7,
       changeFrequency: "monthly",
