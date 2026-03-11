@@ -92,9 +92,9 @@ const Footer = () => {
           <span className="block text-sm text-body items-start">
             © 2024{" "}
             <a href="#" className="hover:underline">
-              Outsource Accounting
-            </a>
-            Outsource Accounting. All rights reserved.
+              Outsource Accounting,
+            </a>{" "}
+            All rights reserved.
           </span>
           <span className="flex text-sm text-body items-start md:items-end gap-3">
             <p>Terms and Conditions</p>
