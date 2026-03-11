@@ -4,7 +4,7 @@ import Container from "@/components/wraper/Container";
 const TopBar = async () => {
   const res = await topBarQuery();
   const content = res.data.topBar;
-
+  const sanitizedNumber = content.euNumber.replace(/\D/g, "");
   if (!content) return <p>their is no data to show</p>;
   return (
     <Container
@@ -41,7 +41,12 @@ const TopBar = async () => {
             alt="whatsapp"
             className="icon p-1"
           />
-          <a className="value text-nowrap" href="https://wa.me/447723143223">
+          <a
+            className="value text-nowrap  font-medium transition-colors"
+            href={`https://wa.me/${sanitizedNumber}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             {content.euNumber}
           </a>
         </div>

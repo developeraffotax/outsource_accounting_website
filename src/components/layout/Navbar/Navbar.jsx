@@ -16,6 +16,7 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
 
   return (
     <>
+      {/* Desktop  */}
       <Container
         withYPadding={false}
         className="w-full z-999 shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
@@ -59,6 +60,7 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
           </div>
         </div>
       </Container>
+      {/* Mobile  */}
       <Container
         withYPadding={false}
         className="md:hidden w-full bg-white shadow-sm sticky top-0 z-999"

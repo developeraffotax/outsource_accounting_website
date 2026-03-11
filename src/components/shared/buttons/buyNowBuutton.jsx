@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import sortDown from "@/assets/images/sortDown.svg";
+import { handleCheckout } from "./handleCheckout.js";
 
 const BuyNowButton = ({ services = [], mobile = false }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,15 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobile]);
+
+  const onServiceClick = async (service) => {
+    try {
+      await handleCheckout({ service });
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    }
+  };
 
   // Mobile: accordion inline inside the nav menu
   if (mobile) {
@@ -44,13 +54,14 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
                 <div
                   key={service.id}
                   className="flex cursor-pointer items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm hover:bg-gray-100"
-                  onClick={() => {
-                    console.log("Selected service:", service);
-                    setIsOpen(false);
-                  }}
+                  onClick={() => onServiceClick(service)}
                 >
-                  <p className="whitespace-nowrap font-medium">{service.name}</p>
-                  <p className="whitespace-nowrap font-semibold">£{service.price}</p>
+                  <p className="whitespace-nowrap font-medium">
+                    {service.name}
+                  </p>
+                  <p className="whitespace-nowrap font-semibold">
+                    £{service.price}
+                  </p>
                 </div>
               ))
             )}
@@ -84,13 +95,12 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
               <div
                 key={service.id}
                 className="flex cursor-pointer items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm hover:bg-gray-100"
-                onClick={() => {
-                  console.log("Selected service:", service);
-                  setIsOpen(false);
-                }}
+                onClick={() => onServiceClick(service)}
               >
                 <p className="whitespace-nowrap font-medium">{service.name}</p>
-                <p className="whitespace-nowrap font-semibold">£{service.price}</p>
+                <p className="whitespace-nowrap font-semibold">
+                  £{service.price}
+                </p>
               </div>
             ))
           )}
