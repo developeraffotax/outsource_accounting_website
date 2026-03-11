@@ -25,10 +25,10 @@ export async function POST(req) {
         },
       ],
       success_url:
-        process.env.SUCCESS_URL +
+        process.env.SITE_URL +
         "/paymentConfirmed?session_id={CHECKOUT_SESSION_ID}",
       cancel_url:
-        process.env.CANCEL_URL +
+        process.env.SITE_URL +
         `/paymentCencled?serviceName=${encodeURIComponent(service.name)}`,
     });
 
