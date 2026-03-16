@@ -7,7 +7,7 @@ import TopBar from "@/components/layout/TopBar/TopBar.jsx";
 import Navbar from "@/components/layout/Navbar/Navbar.jsx";
 import Footer from "@/components/layout/Footer/Footer.jsx";
 import APICall from "@/components/shared/buttons/APICall.jsx";
-
+// checking 403
 const inter = localFont({
   src: "../assets/fonts/Inter-VariableFont.ttf",
   display: "swap",
