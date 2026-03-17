@@ -13,6 +13,7 @@ const modelToTags = {
   "our-value": ["about-us"],
   "home-page": ["home-page"],
   homepage: ["home-page"],
+  "buy-service": ["buy-service"],
   hero: ["home-page"],
   testimonial: ["home-page"],
   "how-we-work": ["home-page"],
