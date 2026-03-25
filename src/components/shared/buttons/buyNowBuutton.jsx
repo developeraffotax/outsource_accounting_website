@@ -6,6 +6,8 @@ import { handleCheckout } from "./handleCheckout.js";
 
 const BuyNowButton = ({ services = [], mobile = false }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedServiceId, setSelectedServiceId] = useState(null);
   const dropDownRef = useRef(null);
 
   // close dropdown when clicking outside (desktop only)
@@ -21,11 +23,18 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
   }, [mobile]);
 
   const onServiceClick = async (service) => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+    setSelectedServiceId(service.id);
+
     try {
       await handleCheckout({ service });
       setIsOpen(false);
     } catch (error) {
       console.error("Checkout failed:", error);
+      setIsLoading(false);
+      setSelectedServiceId(null);
     }
   };
 
@@ -34,10 +43,10 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     return (
       <div className="w-full">
         <div
-          className="flex w-full cursor-pointer items-center justify-between rounded-sm bg-(--color-buttonBlue) px-4 py-2 font-semibold text-white"
-          onClick={() => setIsOpen(!isOpen)}
+          className={`flex w-full items-center justify-between rounded-sm bg-(--color-buttonBlue) px-4 py-2 font-semibold text-white ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer"}`}
+          onClick={() => !isLoading && setIsOpen(!isOpen)}
         >
-          <span>Buy Now</span>
+          <span>{isLoading ? "Redirecting..." : "Buy Now"}</span>
           <img
             src={sortDown.src}
             alt="dropdown icon"
@@ -53,15 +62,20 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
               services.map((service) => (
                 <div
                   key={service.id}
-                  className="flex cursor-pointer items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm hover:bg-gray-100"
+                  className={`flex items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm ${isLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer hover:bg-gray-100"}`}
                   onClick={() => onServiceClick(service)}
                 >
                   <p className="whitespace-nowrap font-medium">
                     {service.name}
                   </p>
-                  <p className="whitespace-nowrap font-semibold">
-                    £{service.price}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    {isLoading && selectedServiceId === service.id && (
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
+                    )}
+                    <p className="whitespace-nowrap font-semibold">
+                      £{service.price}
+                    </p>
+                  </div>
                 </div>
               ))
             )}
@@ -75,10 +89,10 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
   return (
     <div ref={dropDownRef} className="relative inline-block">
       <div
-        className="navbar-btn hidden cursor-pointer items-center gap-2 rounded-sm border-2 border-transparent bg-(--color-buttonBlue) px-8 py-2 font-semibold text-white transition-opacity hover:opacity-90 md:flex"
-        onClick={() => setIsOpen(!isOpen)}
+        className={`navbar-btn hidden items-center gap-2 rounded-sm border-2 border-transparent bg-(--color-buttonBlue) px-8 py-2 font-semibold text-white transition-opacity md:flex ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer hover:opacity-90"}`}
+        onClick={() => !isLoading && setIsOpen(!isOpen)}
       >
-        <span>Buy Now</span>
+        <span>{isLoading ? "Redirecting..." : "Buy Now"}</span>
         <img
           src={sortDown.src}
           alt="dropdown icon"
@@ -94,13 +108,18 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
             services.map((service) => (
               <div
                 key={service.id}
-                className="flex cursor-pointer items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm hover:bg-gray-100"
+                className={`flex items-center justify-between gap-4 rounded-sm bg-gray-50 p-2 text-sm ${isLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer hover:bg-gray-100"}`}
                 onClick={() => onServiceClick(service)}
               >
                 <p className="whitespace-nowrap font-medium">{service.name}</p>
-                <p className="whitespace-nowrap font-semibold">
-                  £{service.price}
-                </p>
+                <div className="flex items-center gap-2">
+                  {isLoading && selectedServiceId === service.id && (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
+                  )}
+                  <p className="whitespace-nowrap font-semibold">
+                    £{service.price}
+                  </p>
+                </div>
               </div>
             ))
           )}
