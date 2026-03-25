@@ -57,11 +57,17 @@ const Footer = () => {
                   />
                 </li>
                 <li>
-                  <img
-                    src={FacebookIcon.src}
-                    alt="FacebookIcon"
-                    className="h-6 w-6 cursor-pointer"
-                  />
+                  <a
+                    href="https://www.facebook.com/people/Outsource-Accounting/61561941800158/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={FacebookIcon.src}
+                      alt="Facebook"
+                      className="h-6 w-6 cursor-pointer"
+                    />
+                  </a>
                 </li>
               </ul>
             </div>
@@ -86,9 +92,9 @@ const Footer = () => {
           <span className="block text-sm text-body items-start">
             © 2024{" "}
             <a href="#" className="hover:underline">
-              Outsource Accounting
-            </a>
-            Outsource Accounting. All rights reserved.
+              Outsource Accounting,
+            </a>{" "}
+            All rights reserved.
           </span>
           <span className="flex text-sm text-body items-start md:items-end gap-3">
             <p>Terms and Conditions</p>

@@ -2,6 +2,15 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  async redirects() {
+    return [
+      {
+        source: "/contact-us",
+        destination: "/contactUs",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
