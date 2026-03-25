@@ -11,12 +11,12 @@ export async function POST(req) {
   const signature = req.headers.get("stripe-signature");
 
   let event;
-
+  // try deploying
   try {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (err) {
     console.error("Webhook signature verification failed:", err.message);
@@ -24,14 +24,18 @@ export async function POST(req) {
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = await stripe.checkout.sessions.retrieve(event.data.object.id, {
-      expand: ["line_items", "payment_intent.latest_charge"],
-    });
+    const session = await stripe.checkout.sessions.retrieve(
+      event.data.object.id,
+      {
+        expand: ["line_items", "payment_intent.latest_charge"],
+      },
+    );
 
     const customerEmail = session.customer_details?.email;
     const amountTotal = session.amount_total;
     const currency = session.currency;
-    const receiptUrl = session.payment_intent?.latest_charge?.receipt_url || null;
+    const receiptUrl =
+      session.payment_intent?.latest_charge?.receipt_url || null;
 
     // Get the service name from the first line item (the service, not the fee)
     const serviceName = session.line_items?.data?.[0]?.description || "Service";
