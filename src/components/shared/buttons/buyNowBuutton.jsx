@@ -45,8 +45,6 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     try {
       await handleCheckout({ service });
       setIsOpen(false);
-      setIsLoading(false);
-      setSelectedServiceId(null);
     } catch (error) {
       console.error("Checkout failed:", error);
       setIsLoading(false);
