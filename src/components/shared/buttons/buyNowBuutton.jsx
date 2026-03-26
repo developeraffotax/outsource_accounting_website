@@ -22,6 +22,20 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobile]);
 
+  // Reset stale loading state when returning via browser back/forward cache.
+  useEffect(() => {
+    const resetCheckoutState = () => {
+      setIsLoading(false);
+      setSelectedServiceId(null);
+    };
+
+    window.addEventListener("pageshow", resetCheckoutState);
+
+    return () => {
+      window.removeEventListener("pageshow", resetCheckoutState);
+    };
+  }, []);
+
   const onServiceClick = async (service) => {
     if (isLoading) return;
 
@@ -31,6 +45,8 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     try {
       await handleCheckout({ service });
       setIsOpen(false);
+      setIsLoading(false);
+      setSelectedServiceId(null);
     } catch (error) {
       console.error("Checkout failed:", error);
       setIsLoading(false);
