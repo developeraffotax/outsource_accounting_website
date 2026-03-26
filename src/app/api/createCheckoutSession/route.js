@@ -1,25 +1,58 @@
 import Stripe from "stripe";
 import buyService from "@/lib/controllers/buyService.controller";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-const FEE_PERCENT = parseFloat(process.env.STRIPE_FEE_PERCENT);
-const FEE_FIXED_PENCE = Math.round(
-  parseFloat(process.env.STRIPE_FEE_FIXED_GBP) * 100,
-);
-
 export async function POST(req) {
   try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    if (!stripeSecretKey) {
+      throw Object.assign(new Error("Server is missing STRIPE_SECRET_KEY"), {
+        statusCode: 500,
+      });
+    }
+
+    const stripe = new Stripe(stripeSecretKey);
+
+    const feePercentRaw = process.env.STRIPE_FEE_PERCENT ?? "0";
+    const feeFixedGbpRaw = process.env.STRIPE_FEE_FIXED_GBP ?? "0";
+    const feePercent = parseFloat(feePercentRaw);
+    const feeFixedPence = Math.round(parseFloat(feeFixedGbpRaw) * 100);
+
+    if (!Number.isFinite(feePercent) || !Number.isFinite(feeFixedPence)) {
+      throw Object.assign(
+        new Error(
+          "Invalid STRIPE_FEE_PERCENT or STRIPE_FEE_FIXED_GBP configuration",
+        ),
+        { statusCode: 500 },
+      );
+    }
+
     const { serviceName } = await req.json();
+    if (!serviceName || typeof serviceName !== "string") {
+      throw Object.assign(new Error("serviceName is required"), {
+        statusCode: 400,
+      });
+    }
 
     const service = await buyService(serviceName);
 
     const serviceAmountPence = Math.round(Number(service.price) * 100);
+
+    if (!Number.isFinite(serviceAmountPence) || serviceAmountPence <= 0) {
+      throw Object.assign(new Error("Invalid service price"), {
+        statusCode: 500,
+      });
+    }
+
     const processingFeePence = Math.round(
-      serviceAmountPence * FEE_PERCENT + FEE_FIXED_PENCE,
+      serviceAmountPence * feePercent + feeFixedPence,
     );
 
-    const feeLabel = `${(FEE_PERCENT * 100).toFixed(1)}% + £${(FEE_FIXED_PENCE / 100).toFixed(2)}`;
+    const feeLabel = `${(feePercent * 100).toFixed(1)}% + £${(feeFixedPence / 100).toFixed(2)}`;
+
+    const baseUrl =
+      process.env.SITE_URL ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      new URL(req.url).origin;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -47,20 +80,20 @@ export async function POST(req) {
           quantity: 1,
         },
       ],
-      success_url:
-        process.env.SITE_URL +
-        "/paymentConfirmed?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url:
-        process.env.SITE_URL +
-        `/paymentCencled?serviceName=${encodeURIComponent(service.name)}`,
+      success_url: `${baseUrl}/paymentConfirmed?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/paymentCencled?serviceName=${encodeURIComponent(service.name)}`,
     });
 
     return Response.json({ url: session.url });
   } catch (error) {
     console.error("createCheckoutSession error:", error);
-    return Response.json(
-      { error: "Failed to create checkout session" },
-      { status: 500 },
-    );
+
+    const status = error?.statusCode || 500;
+    const message =
+      status >= 400 && status < 500
+        ? error.message
+        : "Failed to create checkout session";
+
+    return Response.json({ error: message }, { status });
   }
 }
