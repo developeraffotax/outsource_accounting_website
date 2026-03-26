@@ -1,8 +1,25 @@
 import topBarQuery from "@/lib/data/topBarQuery";
 
 const ContactUS = async () => {
-  const res = await topBarQuery();
-  const content = res.data.topBar;
+  const fallbackContent = {
+    email: "admin@outsourceaccountings.co.uk",
+    euNumber: "+44 7802 611110",
+  };
+
+  let content = fallbackContent;
+
+  try {
+    const res = await topBarQuery();
+    if (res?.data?.topBar) {
+      content = {
+        ...fallbackContent,
+        ...res.data.topBar,
+      };
+    }
+  } catch (error) {
+    console.error("Failed to load footer contact data:", error);
+  }
+
   return (
     <ul className="font-light mt-4 lg:mt-8">
       <li className="mb-2 flex flex-nowrap items-center content-center">

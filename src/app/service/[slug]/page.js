@@ -43,10 +43,15 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-  const response = await getAllServices();
-  return response.data.map((service) => ({
-    slug: service.slug,
-  }));
+  try {
+    const response = await getAllServices();
+    return response.data.map((service) => ({
+      slug: service.slug,
+    }));
+  } catch (error) {
+    console.error("Failed to generate service slugs at build time:", error);
+    return [];
+  }
 }
 
 export default async function ServicePage({ params }) {
@@ -58,7 +63,8 @@ export default async function ServicePage({ params }) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://outsourceaccountings.co.uk";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://outsourceaccountings.co.uk";
   const title = service.name || service.title || slug.replace(/-/g, " ");
   const description =
     service.description ||

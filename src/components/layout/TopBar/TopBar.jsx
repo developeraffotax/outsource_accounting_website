@@ -2,10 +2,27 @@ import topBarQuery from "@/lib/data/topBarQuery";
 import Container from "@/components/wraper/Container";
 
 const TopBar = async () => {
-  const res = await topBarQuery();
-  const content = res.data.topBar;
+  const fallbackContent = {
+    email: "admin@outsourceaccountings.co.uk",
+    number: "0208 144 6811",
+    euNumber: "+44 7802 611110",
+  };
+
+  let content = fallbackContent;
+
+  try {
+    const res = await topBarQuery();
+    if (res?.data?.topBar) {
+      content = {
+        ...fallbackContent,
+        ...res.data.topBar,
+      };
+    }
+  } catch (error) {
+    console.error("Failed to load top bar data:", error);
+  }
+
   const sanitizedNumber = content.euNumber.replace(/\D/g, "");
-  if (!content) return <p>their is no data to show</p>;
   return (
     <Container
       withYPadding={false}
