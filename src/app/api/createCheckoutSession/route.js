@@ -1,6 +1,10 @@
 import Stripe from "stripe";
 import buyService from "@/lib/controllers/buyService.controller";
 
+const STRIPE_FEE_PERCENT = 0.029;
+const STRIPE_FEE_FIXED_GBP = 0.2;
+const STRIPE_FEE_FIXED_PENCE = Math.round(STRIPE_FEE_FIXED_GBP * 100);
+
 export async function POST(req) {
   try {
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -12,19 +16,8 @@ export async function POST(req) {
 
     const stripe = new Stripe(stripeSecretKey);
 
-    const feePercentRaw = process.env.STRIPE_FEE_PERCENT ?? "0";
-    const feeFixedGbpRaw = process.env.STRIPE_FEE_FIXED_GBP ?? "0";
-    const feePercent = parseFloat(feePercentRaw);
-    const feeFixedPence = Math.round(parseFloat(feeFixedGbpRaw) * 100);
-
-    if (!Number.isFinite(feePercent) || !Number.isFinite(feeFixedPence)) {
-      throw Object.assign(
-        new Error(
-          "Invalid STRIPE_FEE_PERCENT or STRIPE_FEE_FIXED_GBP configuration",
-        ),
-        { statusCode: 500 },
-      );
-    }
+    const feePercent = STRIPE_FEE_PERCENT;
+    const feeFixedPence = STRIPE_FEE_FIXED_PENCE;
 
     const { serviceName } = await req.json();
     if (!serviceName || typeof serviceName !== "string") {
