@@ -13,6 +13,18 @@ import {
   getAllServices,
 } from "@/lib/data/services/serviceQuery";
 
+const resolveServiceDescription = (service, title) => {
+  const descriptionValue = Array.isArray(service?.description)
+    ? service.description.filter(Boolean).join(" ")
+    : service?.description;
+
+  return (
+    descriptionValue ||
+    service?.shortDescription ||
+    `Professional ${title} services for UK businesses from Outsource Accounting.`
+  );
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const response = await getServiceBySlug(slug);
@@ -23,10 +35,7 @@ export async function generateMetadata({ params }) {
   }
 
   const title = service.name || service.title || slug.replace(/-/g, " ");
-  const description =
-    service.description ||
-    service.shortDescription ||
-    `Professional ${title} services for UK businesses from Outsource Accounting.`;
+  const description = resolveServiceDescription(service, title);
 
   return {
     title,
@@ -66,10 +75,7 @@ export default async function ServicePage({ params }) {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://outsourceaccountings.co.uk";
   const title = service.name || service.title || slug.replace(/-/g, " ");
-  const description =
-    service.description ||
-    service.shortDescription ||
-    `Professional ${title} services for UK businesses from Outsource Accounting.`;
+  const description = resolveServiceDescription(service, title);
 
   const serviceSchema = {
     "@context": "https://schema.org",

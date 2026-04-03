@@ -1,69 +1,29 @@
-import fetchData from "../mainEndPoint";
+import fetchServicesContent from "./servicesContent";
+
 export async function getServiceBySlug(slug) {
-  return fetchData("services", {
-    filters: {
-      slug: {
-        $eq: slug,
-      },
-    },
-    populate: {
-      image: true,
-      bgImage: true,
-      WhatYouGet: {
-        populate: {
-          card: {
-            populate: {
-              img: true,
-            },
-          },
-        },
-      },
-      WhyChooseUs: {
-        populate: {
-          img: true,
-          Card: {
-            populate: {
-              img: true,
-            },
-          },
-        },
-      },
-      ServiceProcess: {
-        populate: {
-          stepCard: {
-            populate: {
-              imgSrc: true,
-            },
-          },
-        },
-      },
-      WhatData: {
-        populate: {
-          img: true,
-        },
-      },
-      WhoData: {
-        populate: {
-          img: true,
-        },
-      },
-      GetStarted: true,
-      statics: {
-        populate: {
-          imgOne: true,
-          data: {
-            populate: {
-              img: true,
-            },
-          },
-        },
-      },
-    },
-  });
+  const normalizedSlug =
+    typeof slug === "string" ? slug.trim().toLowerCase() : "";
+
+  if (!normalizedSlug) {
+    return { data: [] };
+  }
+
+  const services = await fetchServicesContent();
+  const service = services.find(
+    (item) => item.slug.toLowerCase() === normalizedSlug,
+  );
+
+  return {
+    data: service ? [service] : [],
+  };
 }
 
 export async function getAllServices() {
-  return fetchData("services", {
-    fields: ["slug"],
-  });
+  const services = await fetchServicesContent();
+
+  return {
+    data: services
+      .filter((service) => service.slug)
+      .map((service) => ({ slug: service.slug })),
+  };
 }

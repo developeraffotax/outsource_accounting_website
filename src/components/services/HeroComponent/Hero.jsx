@@ -8,6 +8,12 @@ const Hero = ({ data }) => {
     ? getImageUrl(data.bgImage?.url)
     : data.bgImage;
   const imageUrl = data.image?.url ? getImageUrl(data.image?.url) : data.image;
+  const descriptionParagraphs = Array.isArray(data.description)
+    ? data.description
+    : [data.description, data.descriptiontwo].filter(
+        (paragraph) =>
+          typeof paragraph === "string" && paragraph.trim().length > 0,
+      );
 
   return (
     <Container withYPadding={false} className="my-4 md:my-8 lg:my-12">
@@ -35,7 +41,7 @@ const Hero = ({ data }) => {
               )}
             </div>
             <div className="space-y-3 max-w-xl lg:max-w-2xl">
-              {data.description?.map((paragraph, index) => (
+              {descriptionParagraphs.map((paragraph, index) => (
                 <p
                   key={index}
                   className="text-gray-800 text-sm md:text-base leading-relaxed"
