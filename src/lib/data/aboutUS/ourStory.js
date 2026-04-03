@@ -1,16 +1,18 @@
-import fetchData from "../mainEndPoint";
+import fetchAboutUsContent from "./aboutContent";
+
 export default async function outStoryQuesry() {
-  return fetchData(
-    "about-us",
-    {
-      populate: {
-        ourstory: {
-          populate: { imgOurStory: true },
+  const content = await fetchAboutUsContent();
+
+  return {
+    data: {
+      ourstory: {
+        imgOurStory: {
+          url: content.OurStory.imgOurStory,
         },
+        headingOurStory: content.OurStory.headingOurStory,
+        descriptionOurStory: content.OurStory.descriptionOurStory,
+        descriptiontwoOurStory: content.OurStory.descriptiontwoOurStory,
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

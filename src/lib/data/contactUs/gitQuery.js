@@ -1,19 +1,16 @@
-import fetchData from "../mainEndPoint";
+import fetchContactUsContent from "./contactContent";
 
-export default function gitQuery() {
-  return fetchData(
-    "contact-us",
-    {
-      populate: {
-        getInTouch: {
-          populate: {
-            img: true,
-          },
+export default async function gitQuery() {
+  const content = await fetchContactUsContent();
+
+  return {
+    data: {
+      getInTouch: content.getInTouch.map((item) => ({
+        ...item,
+        img: {
+          url: item.img,
         },
-      },
+      })),
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

@@ -1,17 +1,15 @@
-import fetchData from "./mainEndPoint";
+import fetchHomeContent from "./homepage/homeContent";
 
-export default function topBarQuery() {
-  return fetchData(
-    "home-page",
-    {
-      populate: {
-        topBar: {
-          populate: "*",
-        },
+export default async function topBarQuery() {
+  const content = await fetchHomeContent();
+
+  return {
+    data: {
+      topBar: {
+        email: content.email,
+        number: content.number,
+        euNumber: content.eNumber,
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

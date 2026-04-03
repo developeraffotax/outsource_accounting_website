@@ -1,19 +1,17 @@
-import fetchData from "../mainEndPoint";
+import fetchContactUsContent from "./contactContent";
 
-export default function heroQuery() {
-  return fetchData(
-    "contact-us",
-    {
-      populate: {
-        hero: {
-          populate: {
-            img: true,
-          },
+export default async function heroQuery() {
+  const content = await fetchContactUsContent();
+
+  return {
+    data: {
+      hero: {
+        heading: content.heading,
+        description: content.description,
+        img: {
+          url: content.img,
         },
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

@@ -1,16 +1,11 @@
 import buyService from "../data/buyService/buyService";
 
 export const buyDataExtractor = async (serviceName) => {
-  const res = await buyService();
+  const services = await buyService();
+  const normalizedServiceName =
+    typeof serviceName === "string" ? serviceName.trim() : "";
 
-  const services =
-    res?.data?.nameNprize?.map((item) => ({
-      id: item.id,
-      name: item.Name,
-      price: item.Prize,
-    })) || [];
-
-  const service = services.find((s) => s.name === serviceName);
+  const service = services.find((s) => s.name === normalizedServiceName);
 
   if (!service) {
     throw new Error("Service not found");

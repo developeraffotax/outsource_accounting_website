@@ -1,19 +1,10 @@
-import fetchData from "../mainEndPoint";
+import fetchFaqContent from "./faqContent";
 
 export default async function contactUsQuery() {
-  return fetchData(
-    "faq",
-    {
-      populate: {
-        bookACall: {
-          populate: {
-            img: true,
-          },
-        },
-      },
+  const content = await fetchFaqContent();
+  return {
+    data: {
+      bookACall: content.bookACall,
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

@@ -1,19 +1,16 @@
-import fetchData from "../mainEndPoint";
+import fetchHomeContent from "./homeContent";
 
 export default async function joinUsCat() {
-  return fetchData(
-    "home-page",
-    {
-      populate: {
-        joinUs: {
-          populate: {
-            bgImg: true,
-          },
+  const content = await fetchHomeContent();
+
+  return {
+    data: {
+      joinUs: {
+        heading: content.joinUsHeading,
+        bgImg: {
+          url: content.joinUsBgImage,
         },
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

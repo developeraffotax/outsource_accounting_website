@@ -1,17 +1,10 @@
-import fetchData from "../mainEndPoint";
+import fetchFaqContent from "./faqContent";
 
 export default async function faqHeroQuery() {
-  return fetchData(
-    "faq",
-    {
-      populate: {
-        hero: {
-          populate: "*",
-        },
-      },
+  const content = await fetchFaqContent();
+  return {
+    data: {
+      hero: content.hero,
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

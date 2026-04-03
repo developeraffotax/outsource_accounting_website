@@ -1,17 +1,18 @@
-import fetchData from "../mainEndPoint";
+import fetchAboutUsContent from "./aboutContent";
 
 export default async function ourValueQuery() {
-  return fetchData(
-    "about-us",
-    {
-      populate: {
-        ourValue: {
-          populate: { imgValue: true },
+  const content = await fetchAboutUsContent();
+
+  return {
+    data: {
+      ourValue: content.OurValue.map((card) => ({
+        id: card.id,
+        imgValue: {
+          url: card.imgValue,
         },
-      },
+        headingValue: card.headingValue,
+        descriptionValue: card.descriptionValue,
+      })),
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

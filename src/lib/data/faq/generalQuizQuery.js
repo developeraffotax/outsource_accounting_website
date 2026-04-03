@@ -1,17 +1,10 @@
-import fetchData from "../mainEndPoint";
+import fetchFaqContent from "./faqContent";
 
 export default async function generalQuizQuery() {
-  return fetchData(
-    "faq",
-    {
-      populate: {
-        generalQuiz: {
-          populate: "*",
-        },
-      },
+  const content = await fetchFaqContent();
+  return {
+    data: {
+      generalQuiz: content.generalQuiz,
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

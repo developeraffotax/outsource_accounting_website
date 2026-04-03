@@ -1,17 +1,17 @@
-import fetchData from "../mainEndPoint";
+import fetchAboutUsContent from "./aboutContent";
 
 export default async function heroQuery() {
-  return fetchData(
-    "about-us",
-    {
-      populate: {
-        aboutUs: {
-          populate: { ImgHero: true },
+  const content = await fetchAboutUsContent();
+
+  return {
+    data: {
+      aboutUs: {
+        heading: content.heading,
+        subHeading: content.subHeading,
+        ImgHero: {
+          url: content.img,
         },
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }

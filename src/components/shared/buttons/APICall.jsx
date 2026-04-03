@@ -3,15 +3,7 @@ import buyService from "@/lib/data/buyService/buyService";
 import BuyNowButton from "./buyNowBuutton";
 
 const APICall = async ({ mobile = false }) => {
-  const res = await buyService();
-
-  // map Strapi response → frontend format
-  const services =
-    res?.data?.nameNprize?.map((item) => ({
-      id: item.id,
-      name: item.Name,
-      price: item.Prize,
-    })) || [];
+  const services = await buyService();
 
   return <BuyNowButton services={services} mobile={mobile} />;
 };

@@ -1,22 +1,24 @@
-import fetchData from "../mainEndPoint";
+import fetchHomeContent from "./homeContent";
+
 export default async function serviceData() {
-  return fetchData(
-    "home-page",
-    {
-      populate: {
-        service: {
-          populate: {
-            serviceCard: {
-              populate: {
-                imgServiceCard: true,
-              },
-            },
+  const content = await fetchHomeContent();
+
+  return {
+    data: {
+      service: {
+        heading: content.headingServiceSection,
+        description: content.descriptionServiceSection,
+        serviceCard: content.serviceCards.map((card) => ({
+          id: card.id,
+          imgServiceCard: {
+            url: card.imgServiceCard,
           },
-        },
+          titleServiceCard: card.titleServiceCard,
+          descriptionServiceCard: card.descriptionServiceCard,
+          buttontxtServiceCard: card.buttontxtServiceCard,
+          pglink: card.pglink,
+        })),
       },
     },
-    {
-      encodeValuesOnly: true,
-    }
-  );
+  };
 }
