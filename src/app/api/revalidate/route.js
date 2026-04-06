@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 const modelToTags = {
@@ -22,6 +22,27 @@ const modelToTags = {
   "top-bar": ["home-page"],
 };
 
+const modelToPaths = {
+  article: ["/blogs"],
+  service: ["/", "/services", "/service/[slug]", "/sitemap.xml"],
+  faq: ["/faqs"],
+  "general-quiz": ["/faqs"],
+  "contact-us": ["/contactUs"],
+  "about-us": ["/aboutus"],
+  "our-story": ["/aboutus"],
+  "mission-statement": ["/aboutus"],
+  "our-value": ["/aboutus"],
+  "home-page": ["/"],
+  homepage: ["/"],
+  "buy-service": ["/"],
+  hero: ["/"],
+  testimonial: ["/"],
+  "how-we-work": ["/"],
+  "join-us": ["/"],
+  "why-outsource": ["/"],
+  "top-bar": ["/"],
+};
+
 export async function POST(request) {
   const { searchParams } = new URL(request.url);
   if (searchParams.get("secret") !== process.env.REVALIDATION_TOKEN) {
@@ -29,8 +50,34 @@ export async function POST(request) {
   }
 
   const body = await request.json();
-  const tags = modelToTags[body.model] || [];
-  tags.forEach((tag) => revalidateTag(tag));
+  const model =
+    typeof body?.model === "string" ? body.model.trim().toLowerCase() : "";
 
-  return NextResponse.json({ revalidated: true, model: body.model, tags });
+  if (!model) {
+    return NextResponse.json(
+      { message: "Missing model in request body" },
+      { status: 400 },
+    );
+  }
+
+  const tags = modelToTags[model] || [];
+  const paths = modelToPaths[model] || [];
+
+  tags.forEach((tag) => revalidateTag(tag, "max"));
+
+  paths.forEach((path) => {
+    if (path.includes("[")) {
+      revalidatePath(path, "page");
+      return;
+    }
+
+    revalidatePath(path);
+  });
+
+  // Buy service data is used in root layout (buy now button in navbar).
+  if (model === "buy-service") {
+    revalidatePath("/", "layout");
+  }
+
+  return NextResponse.json({ revalidated: true, model, tags, paths });
 }
