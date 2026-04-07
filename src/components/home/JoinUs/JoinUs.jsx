@@ -9,7 +9,10 @@ const JoinUs = ({ bgImg }) => {
         alt="Join us background"
         className="absolute inset-0 z-0 h-full w-full object-cover"
       />
-      <div aria-hidden="true" className="absolute inset-0 z-10 bg-white/25" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-10 bg-blue-600/30"
+      />
       <Container
         withYPadding={false}
         className="overlay-text absolute inset-0 z-20 flex flex-col justify-center items-center"
