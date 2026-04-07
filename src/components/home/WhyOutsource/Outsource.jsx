@@ -30,12 +30,12 @@ const Outsource = ({
         <img
           src={img}
           alt="whyOutSourceUperImg"
-          className="absolute inline-block h-50 w-50 md:h-80 md:w-80 rounded  ring-white z-50 left-0 lg:left-6"
+          className="absolute inline-block h-50 w-50 md:h-80 md:w-80 rounded-2xl  ring-white z-50 left-0 lg:left-6"
         />
         <img
           src={imgTwo}
           alt="whyOutSourceAccounting"
-          className="absolute inline-block h-60 w-60 md:h-90 md:w-90 rounded ring-white right-1"
+          className="absolute inline-block h-60 w-60 md:h-90 md:w-90 rounded-2xl ring-white right-1"
         />
       </div>
       {/* MODAL OVERLAY */}
