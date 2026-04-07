@@ -7,7 +7,7 @@ const JoinUs = ({ bgImg }) => {
       <img
         src={bgImg}
         alt="Join us background"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
+        className="absolute inset-0 z-0 h-full w-full object-cover opacity-50"
       />
       <div
         aria-hidden="true"
