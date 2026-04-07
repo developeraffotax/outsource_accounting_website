@@ -2,15 +2,17 @@ import React from "react";
 
 const Card = ({ index, bgImg, personImg, name, title, description }) => {
   return (
-    <div className="relative min-w-64 md:min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-center shadow-sm hover:shadow-md transition-shadow">
-      <div className="h-auto w-full">
+    <div className="relative min-w-64 md:min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-start shadow-sm hover:shadow-md transition-shadow">
+      <div className="relative w-full h-48 [clip-path:polygon(0%_0%,100%_0%,100%_60%,0%_100%)]">
         <img
           src={bgImg}
           alt="Background"
           className="w-full h-full object-cover"
         />
+        {/* The White Overlay */}
+        <div className="absolute inset-0 bg-white/25 pointer-events-none" />
       </div>
-      <div className="absolute inset-x-0 scale-110 top-37 md:top-47 border-b-4 shadow-2xl border-b-blue-800 border-solid rotate-163"></div>
+      <div className="absolute inset-x-0 scale-110 top-40 md:top-40 border-b-4 shadow-2xl border-b-blue-800 border-solid rotate-167"></div>
       <div className="px-6 pb-6 relative flex flex-col items-center">
         <div className="-mt-24 mb-4">
           <img

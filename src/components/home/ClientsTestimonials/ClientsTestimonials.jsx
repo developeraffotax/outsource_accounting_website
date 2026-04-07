@@ -48,10 +48,10 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
 
       <div
         ref={sliderRef}
-        className="flex gap-6 justify-center overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-8 px-2"
+        className="flex gap-6 justify-start overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-8 px-2 scroll-px-2"
       >
         {testimonialCards.map((card, index) => (
-          <div key={card.id || index} className="flex">
+          <div key={card.id || index} className="flex shrink-0">
             <Card
               bgImg={card.bgImg}
               personImg={card.personImg}

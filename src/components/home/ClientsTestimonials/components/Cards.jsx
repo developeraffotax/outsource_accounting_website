@@ -11,7 +11,7 @@ const Cards = forwardRef((props, ref) => {
     try {
       const res = await testimonialData();
       setTestimonialCardContent(
-        res.data?.clientsTestimonial?.testimonialCard || []
+        res.data?.clientsTestimonial?.testimonialCard || [],
       );
     } catch (error) {
       throw error;
@@ -38,11 +38,11 @@ const Cards = forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-8 px-2"
+      className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-8 px-2 scroll-px-2"
     >
       {testimonialCardContent.map((card, index) => {
         return (
-          <div key={card.id || index} className="flex">
+          <div key={card.id || index} className="flex shrink-0">
             <Card
               key={card.id || index}
               bgImg={getImageUrl(card.testimonialBgImg?.url)}
