@@ -14,7 +14,7 @@ const FASolutions = async () => {
       <img
         src={BookACall.src}
         alt="Book a call background"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover "
       />
 
       <div className="relative z-10 flex flex-col md:flex-row gap-6 p-6 md:p-12 lg:p-16 w-full lg:w-4/5 xl:w-3/4 mx-auto">
@@ -23,12 +23,12 @@ const FASolutions = async () => {
             <img
               src={contactperson.src}
               alt="contact"
-              className="absolute h-12 w-12 md:h-16 md:w-16"
+              className="absolute h-12 w-12 md:h-16 md:w-16 border border-transparent rounded-full"
             />
             <img
               src={phone.src}
               alt="phone"
-              className="absolute right-1 max-w-6 max-h-6 md:max-w-8 md:max-h-8"
+              className="absolute right-1 max-w-6 max-h-6 md:max-w-8 md:max-h-8 border border-transparent rounded-full"
             />
           </div>
           <div className="flex flex-col">
@@ -42,12 +42,12 @@ const FASolutions = async () => {
             <img
               src={emailtyper.src}
               alt="emailtyper"
-              className="absolute h-12 w-12 md:h-16 md:w-16"
+              className="absolute h-12 w-12 md:h-16 md:w-16 border border-transparent rounded-full"
             />
             <img
               src={email.src}
               alt="email"
-              className="absolute right-1 max-w-6 max-h-6 md:max-w-8 md:max-h-8"
+              className="absolute right-1 max-w-6 max-h-6 md:max-w-8 md:max-h-8 "
             />
           </div>
           <div className="flex flex-col">

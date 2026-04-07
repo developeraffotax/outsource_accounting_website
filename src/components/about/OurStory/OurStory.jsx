@@ -12,7 +12,7 @@ const OurStoryPg = async () => {
         <img
           src={getImageUrl(content.imgOurStory?.url)}
           alt="Our Story"
-          className="hidden lg:block lg:w-auto lg:h-auto border-transparent rounded"
+          className="hidden lg:block lg:w-auto lg:h-auto border-transparent rounded-2xl"
         />
         <div className="flex flex-col gap-3 lg:gap-6 lg:ml-12">
           <h1 className="text-center lg:text-start font-semibold lg:text-4xl md:text-3xl text-2xl my-3 md:my-0">

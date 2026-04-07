@@ -19,7 +19,11 @@ const AboutHero = async () => {
             {content.subHeading}
           </h2>
         </div>
-        <img src={getImageUrl(content.ImgHero?.url)} alt="AboutUsImg" />
+        <img
+          src={getImageUrl(content.ImgHero?.url)}
+          alt="AboutUsImg"
+          className="border border-transparent border-rounded-2xl"
+        />
       </section>
     </Container>
   );

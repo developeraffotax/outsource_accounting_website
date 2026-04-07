@@ -20,7 +20,7 @@ const Outsource = ({ data }) => {
             <img
               src={imgUrl}
               alt="whyOutSourceUperImg"
-              className="absolute inline-block rounded  ring-white left-0 lg:left-6"
+              className="absolute inline-block border border-transparent rounded-2xl  ring-white left-0 lg:left-6"
             />
           </div>
           <div className="flex flex-col h-auto justify-center lg:items-start w-120 ">

@@ -60,7 +60,7 @@ const Hero = ({ data }) => {
             <img
               src={imageUrl}
               alt={data.title}
-              className="w-full h-auto max-w-md lg:max-w-lg xl:max-w-xl object-contain drop-shadow-2xl hidden lg:inline-block"
+              className="w-full h-auto max-w-md lg:max-w-lg xl:max-w-xl object-contain drop-shadow-2xl hidden lg:inline-block border border-transparent rounded-2xl"
             />
           </div>
         </div>
