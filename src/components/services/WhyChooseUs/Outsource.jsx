@@ -9,38 +9,49 @@ import Container from "@/components/wraper/Container";
 
 const Outsource = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
   const imgUrl = getImageUrl(data.img?.url);
 
   return (
     <>
-      <Container withYPadding={false} className="my-6 md:my-12 lg:my-12">
-        <div className="flex justify-center lg:justify-evenly items-center flex-wrap">
-          <div className="relative flex mt-6 w-80 h-70 md:w-140 md:h-120 items-center justify-center lg:justify-end overflow-hidden">
-            <img
-              src={imgUrl}
-              alt="whyOutSourceUperImg"
-              className="absolute inline-block border border-transparent rounded-2xl  ring-white left-0 lg:left-6"
-            />
+      <Container withYPadding={true} className="py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* Image Column */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={imgUrl}
+                alt="Outsource Illustration"
+                className="w-full h-auto aspect-video lg:aspect-4/3 object-cover"
+              />
+            </div>
           </div>
-          <div className="flex flex-col h-auto justify-center lg:items-start w-120 ">
-            <h1 className="text-3xl font-semibold text-center md:mb-4">
+
+          {/* Content Column */}
+          <div className="flex flex-col space-y-6 text-center lg:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
               {data.heading}
             </h1>
-            <BulletPoints data={data.Card} />
-            <div className="flex justify-center md:start-0">
+
+            <div className="text-left">
+              <BulletPoints data={data.Card} />
+            </div>
+
+            <div className="flex justify-center lg:justify-start">
               <QuoteButton onClick={() => setIsModalOpen(true)} />
             </div>
           </div>
         </div>
       </Container>
+
+      {/* Modal Section */}
       <Model onClose={() => setIsModalOpen(false)} isOpen={isModalOpen}>
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-          Quick <span className="text-(--color-buttonBlue)">Quote</span>
+          Quick <span className="text-[var(--color-buttonBlue)]">Quote</span>
         </h2>
         <QuoteForm onSuccess={() => setIsModalOpen(false)} />
       </Model>
     </>
   );
 };
+
 export default Outsource;

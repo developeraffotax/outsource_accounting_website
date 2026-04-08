@@ -14,7 +14,7 @@ const ContactUsHero = async () => {
         <img
           src={getImageUrl(content.img.url)}
           alt="heroLineIcon"
-          className="my-4 md:my-6 max-w-full h-auto border border-transparent rounded"
+          className="my-4 md:my-6 w-20 h-20 md:w-24 md:h-24 object-cover border border-transparent rounded"
         />
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light m-3">
           {content.heading}

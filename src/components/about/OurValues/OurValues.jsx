@@ -27,7 +27,7 @@ const OurValues = async () => {
               <img
                 src={getImageUrl(card.imgValue?.url)}
                 alt="one"
-                className="w-46 md:w-48 lg:w-66 h-auto object-contain"
+                className="w-46 md:w-48 lg:w-66 aspect-3/5 object-cover"
               />
               <p className="text-center mt-2">{card.descriptionValue}</p>
             </div>

@@ -18,7 +18,7 @@ const Card = ({ index, bgImg, personImg, name, title, description }) => {
           <img
             src={personImg}
             alt={name}
-            className="w-32 h-32 rounded border-white "
+            className="w-32 h-32 rounded border-white"
           />
         </div>
         <h2 className=" text-xl text-gray-900 text-center">{name}</h2>

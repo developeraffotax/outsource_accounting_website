@@ -11,7 +11,7 @@ const JoinUs = ({ bgImg }) => {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-10 bg-blue-600/30"
+        className="absolute inset-0 z-10 bg-blue-600/40"
       />
       <Container
         withYPadding={false}

@@ -7,21 +7,26 @@ const OurStoryPg = async () => {
   const content = res.data.ourstory;
 
   return (
-    <Container>
-      <section className=" flex flex-col lg:flex-row justify-center items-center lg:justify-between ">
-        <img
-          src={getImageUrl(content.imgOurStory?.url)}
-          alt="Our Story"
-          className="hidden lg:block lg:w-auto lg:h-auto border-transparent rounded-2xl"
-        />
-        <div className="flex flex-col gap-3 lg:gap-6 lg:ml-12">
-          <h1 className="text-center lg:text-start font-semibold lg:text-4xl md:text-3xl text-2xl my-3 md:my-0">
+    <Container withYPadding={false} className="py-8 md:py-12">
+      <section className="grid grid-cols-1-reverse lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="flex justify-center lg:justify-start">
+          <div className="relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
+            <img
+              src={getImageUrl(content.imgOurStory?.url)}
+              alt="Our Story"
+              className="w-full h-auto aspect-video lg:aspect-4/3 object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             {content.headingOurStory}
           </h1>
-          <p className="font-light text-center md:text-start">
+          <p className="font-light text-gray-700">
             {content.descriptionOurStory}
           </p>
-          <p className="font-light mb-3 text-center md:text-start">
+          <p className="font-light text-gray-700">
             {content.descriptiontwoOurStory}
           </p>
         </div>

@@ -20,7 +20,11 @@ const BookACall = ({ heading, description, img }) => {
         </p>
       </div>
       <div>
-        <img src={img} alt="" className="p-2" />
+        <img
+          src={img}
+          alt=""
+          className="p-2 w-full max-w-xs sm:max-w-sm md:max-w-md aspect-19/15 object-cover rounded-2xl"
+        />
       </div>
       <Modeltwo isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ContectForm onSuccess={() => setIsModalOpen(false)} />

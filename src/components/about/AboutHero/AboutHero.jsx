@@ -22,7 +22,7 @@ const AboutHero = async () => {
         <img
           src={getImageUrl(content.ImgHero?.url)}
           alt="AboutUsImg"
-          className="border border-transparent border-rounded-2xl"
+          className="w-full max-w-8xl aspect-16/7 object-cover border border-transparent rounded-2xl"
         />
       </section>
     </Container>
