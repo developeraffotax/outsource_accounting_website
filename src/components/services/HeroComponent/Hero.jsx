@@ -14,21 +14,21 @@ const Hero = ({ data }) => {
 
   return (
     <Container withYPadding={false} className="px-0 py-8 md:py-12">
-      <section className="rounded-2xl bg-blue-50 border border-transparent shadow-sm py-6 md:py-8 lg:py-10 px-3 md:pl-8 md:pr-8 lg:pl-44 lg:pr-44 2xl:pl-80 2xl:pr-80">
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <section className="rounded-2xl border border-transparent bg-blue-50 px-3 py-6 shadow-sm md:px-8 md:py-8 ">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
               {data.title}{" "}
-              <span className="text-blue-800">{data.titleHighlight}</span>
+              <span className="text-blue-800">{data.titleHighlight} </span>
+              {data.subtitle && (
+                <span className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                  {" "}
+                  {data.subtitle}
+                </span>
+              )}
             </h1>
 
-            {data.subtitle && (
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                {data.subtitle}
-              </h2>
-            )}
-
-            <div className="flex flex-col gap-3">
+            <div className="mx-auto flex max-w-3xl flex-col gap-3 lg:mx-0">
               {descriptionParagraphs.map((paragraph, index) => (
                 <p
                   key={index}
@@ -49,7 +49,7 @@ const Hero = ({ data }) => {
               <img
                 src={imageUrl}
                 alt={data.title}
-                className="w-full h-auto aspect-video 2xl:aspect-4/3 object-cover"
+                className="h-auto w-full aspect-video object-cover lg:aspect-4/3"
               />
             </div>
           </div>
