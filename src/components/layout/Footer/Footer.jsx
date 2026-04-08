@@ -10,15 +10,18 @@ import Container from "@/components/wraper/Container";
 
 const Footer = () => {
   return (
-    <footer className=" bg-(--color-buttonBlue) text-amber-50 rounded-base shadow-xs border border-default">
-      <Container withYPadding={false} className="py-3 md:py-8">
-        <div className="flex flex-col md:flex-row items-start justify-between w-full ">
-          <div className="flex flex-col gap-6 h-auto">
+    <footer className="bg-(--color-buttonBlue) text-amber-50 rounded-base border border-default shadow-xs">
+      <Container
+        withYPadding={false}
+        className="py-5 md:py-8 md:px-8 lg:px-16 xl:px-24 2xl:px-32"
+      >
+        <div className="flex w-full flex-col items-start justify-between gap-8 md:flex-row md:gap-10 lg:gap-12">
+          <div className="flex h-auto max-w-xl flex-col gap-6 lg:pr-4">
             <div>
               <span className="text-heading self-center text-2xl font-semibold whitespace-nowrap">
                 Outsource Accounting
               </span>
-              <p className="wrap max-w-120 mt-8 font-light">
+              <p className="wrap max-w-120 mt-6 font-light leading-relaxed md:mt-8">
                 We at Outsource Accounting Ltd are a reliable UK-based
                 Accounting firm that specialises in providing affordable
                 accounting and tax filing services online for clients within the
@@ -72,31 +75,31 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:grid-rows-2 lg:grid-rows-none lg:w-1/2 mb-6 mt-4 md:mt-0 text-sm font-medium text-body sm:mb-0 gap-4 lg:gap-12 ">
-            <li className="me-4 md:me-6">
+          <ul className="mt-2 mb-4 grid w-full grid-cols-1 gap-x-8 gap-y-5 text-sm font-medium text-body sm:grid-cols-2 md:mt-0 md:mb-0 lg:w-[52%] lg:grid-cols-3 lg:gap-x-8">
+            <li className="min-w-0">
               Services
               <Services />
             </li>
-            <li className="me-4 md:me-6">
+            <li className="min-w-0">
               Company
               <Comapany />
             </li>
-            <li className="me-4 md:me-6">
+            <li className="min-w-0">
               Contact Us
               <ContactUS />
             </li>
           </ul>
         </div>
         <hr className="my-6 border-default sm:mx-auto lg:my-8" />
-        <div className="flex flex-col md:flex-row md:justify-between gap-3 md:gap-6">
-          <span className="block text-sm text-body items-start">
+        <div className="flex flex-col gap-3 text-sm text-body md:flex-row md:items-center md:justify-between md:gap-6">
+          <span className="block items-start">
             © 2024{" "}
             <a href="#" className="hover:underline">
               Outsource Accounting,
             </a>{" "}
             All rights reserved.
           </span>
-          <span className="flex text-sm text-body items-start md:items-end gap-3">
+          <span className="flex items-start gap-3 md:items-center">
             <p>Terms and Conditions</p>
             <p>Privacy Policy</p>
           </span>

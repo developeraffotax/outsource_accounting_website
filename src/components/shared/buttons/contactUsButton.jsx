@@ -4,7 +4,8 @@ const ContactUsButton = () => {
   return (
     <Link
       href="/contactUs"
-      className="navbar-btn bg-(--color-buttonBlue) cursor-pointer px-8 py-2 text-white font-semibold border-2 rounded-sm border-transparent hidden md:flex"
+      className="items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-(--color-buttonBlue) border border-transparent rounded-md shadow-sm transition-all duration-200 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  active:scale-95 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap hidden md:inline-flex
+  "
     >
       Contact Us
     </Link>

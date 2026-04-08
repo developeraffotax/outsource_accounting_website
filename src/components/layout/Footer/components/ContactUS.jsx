@@ -21,42 +21,40 @@ const ContactUS = async () => {
   }
 
   return (
-    <ul className="font-light mt-4 lg:mt-8">
-      <li className="mb-2 flex flex-nowrap items-center content-center">
-        {" "}
+    <ul className="mt-4 space-y-2 font-light lg:mt-8">
+      <li className="flex items-start gap-2 leading-relaxed">
         <img
-          className="max-h-3 max-w-3 mr-2"
+          className="mt-1 h-3 w-3 shrink-0"
           src="/images/Footer/CallIcon.png"
           alt="CallIcon"
-        />{" "}
-        0208 144 6811
+        />
+        <span className="whitespace-nowrap">0208 144 6811</span>
       </li>
-      <li className="mb-2 flex flex-nowrap items-center content-center">
-        {" "}
+      <li className="flex items-start gap-2 leading-relaxed">
         <img
           src="/images/Footer/WhatsAppIcon.png"
           alt="WhatsAppIcon"
-          className="max-h-3 max-w-3 mr-2"
-        />{" "}
-        <span className="flex-wrap"> {content.euNumber}</span>
+          className="mt-1 h-3 w-3 shrink-0"
+        />
+        <span className="whitespace-nowrap">{content.euNumber}</span>
       </li>
-      <li className="mb-2 flex  items-center content-center">
-        {" "}
+      <li className="flex items-start gap-2 leading-relaxed">
         <img
           src="/images/Footer/MailIcon.png"
           alt="MailIcon"
-          className="max-h-3 max-w-3 mr-2"
-        />{" "}
-        <span className="break-all"> {content.email}</span>
+          className="mt-1 h-3 w-3 shrink-0"
+        />
+        <span className="wrap-break-word">{content.email}</span>
       </li>
-      <li className="mb-2 flex items-center content-center max-w-48">
-        {" "}
+      <li className="flex items-start gap-2 leading-relaxed">
         <img
           src="/images/Footer/Location.png"
           alt="LocationIcon"
-          className="max-h-3 max-w-3 mr-2"
+          className="mt-1 h-3 w-3 shrink-0"
         />
-        61 Bridge Street, Kington, United Kingdom, HR5 3DJ
+        <span className="max-w-[20rem]">
+          61 Bridge Street, Kington, United Kingdom, HR5 3DJ
+        </span>
       </li>
     </ul>
   );

@@ -4,7 +4,7 @@ import getImageUrl from "@/lib/utils/getImageUrl.js";
 
 const Cards = ({ data }) => {
   return (
-    <div className="flex h-auto flex-wrap gap-3 flex-col md:flex-row justify-evenly my-6 lg:px-20 2xl:px-49">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 my-6 lg:px-20 2xl:px-49">
       {data?.map((card, index) => {
         const imgUrl = getImageUrl(card.img?.url);
         return (

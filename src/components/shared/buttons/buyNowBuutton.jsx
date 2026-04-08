@@ -57,7 +57,7 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
     return (
       <div className="w-full">
         <div
-          className={`flex w-full items-center justify-between rounded-sm bg-(--color-buttonBlue) px-4 py-2 font-semibold text-white ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer"}`}
+          className={`inline-flex w-full items-center justify-between rounded-md border border-transparent bg-(--color-buttonBlue) px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 ease-in-out ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer hover:bg-blue-700 active:scale-95"}`}
           onClick={() => !isLoading && setIsOpen(!isOpen)}
         >
           <span>{isLoading ? "Redirecting..." : "Buy Now"}</span>
@@ -103,7 +103,7 @@ const BuyNowButton = ({ services = [], mobile = false }) => {
   return (
     <div ref={dropDownRef} className="relative inline-block">
       <div
-        className={`navbar-btn hidden items-center gap-2 rounded-sm border-2 border-transparent bg-(--color-buttonBlue) px-8 py-2 font-semibold text-white transition-opacity md:flex ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer hover:opacity-90"}`}
+        className={`hidden md:inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-(--color-buttonBlue) border border-transparent rounded-md shadow-sm transition-all duration-200 ease-in-out whitespace-nowrap ${isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer hover:bg-blue-700 active:scale-95"}`}
         onClick={() => !isLoading && setIsOpen(!isOpen)}
       >
         <span>{isLoading ? "Redirecting..." : "Buy Now"}</span>

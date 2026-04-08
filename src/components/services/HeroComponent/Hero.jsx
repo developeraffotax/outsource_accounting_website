@@ -4,9 +4,6 @@ import getImageUrl from "@/lib/utils/getImageUrl";
 import Container from "@/components/wraper/Container";
 
 const Hero = ({ data }) => {
-  const bgImageUrl = data.bgImage?.url
-    ? getImageUrl(data.bgImage?.url)
-    : data.bgImage;
   const imageUrl = data.image?.url ? getImageUrl(data.image?.url) : data.image;
   const descriptionParagraphs = Array.isArray(data.description)
     ? data.description
@@ -16,55 +13,49 @@ const Hero = ({ data }) => {
       );
 
   return (
-    <Container withYPadding={false} className="my-4 md:my-8 lg:my-12">
-      <section className="relative rounded-2xl bg-blue-50 overflow-hidden border border-transparent shadow-sm">
-        {/* <div className="absolute inset-0 w-full h-full -z-10">
-          <img
-            src={bgImageUrl}
-            alt="Background"
-            className="w-full h-full object-cover"
-          />
-        </div> */}
+    <Container withYPadding={false} className="px-0 py-8 md:py-12">
+      <section className="rounded-2xl bg-blue-50 border border-transparent shadow-sm py-6 md:py-8 lg:py-10 px-3 md:pl-8 md:pr-8 lg:pl-44 lg:pr-44 2xl:pl-80 2xl:pr-80">
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              {data.title}{" "}
+              <span className="text-blue-800">{data.titleHighlight}</span>
+            </h1>
 
-        <div className="relative z-10 flex flex-col lg:flex-row items-start justify-center lg:justify-between p-3 md:p-10 lg:p-12 xl:p-14 gap-8 lg:gap-12">
-          <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left items-center lg:items-start space-y-4 lg:space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl  font-bold leading-tight text-black">
-                {data.title}{" "}
-                <span className="text-blue-800">{data.titleHighlight}</span>
-              </h1>
+            {data.subtitle && (
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                {data.subtitle}
+              </h2>
+            )}
 
-              {data.subtitle && (
-                <h2 className="text-3xl md:text-4xl  font-bold leading-tight text-black">
-                  {data.subtitle}
-                </h2>
-              )}
-            </div>
-            <div className="space-y-3 max-w-xl lg:max-w-2xl">
+            <div className="flex flex-col gap-3">
               {descriptionParagraphs.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-gray-800 text-sm md:text-base leading-relaxed"
+                  className="font-light text-gray-700 leading-relaxed"
                 >
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            <div className="pt-2">
+            <div className="flex justify-center lg:justify-start pt-1">
               <GetStartedButton />
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 flex justify-center items-center lg:pr-8">
-            <img
-              src={imageUrl}
-              alt={data.title}
-              className="w-full h-auto max-w-md lg:max-w-lg xl:max-w-xl object-contain drop-shadow-2xl hidden lg:inline-block border border-transparent rounded-2xl"
-            />
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={imageUrl}
+                alt={data.title}
+                className="w-full h-auto aspect-video 2xl:aspect-4/3 object-cover"
+              />
+            </div>
           </div>
         </div>
-        <div className="mx-4 lg:mx-16  mb-5  ">
+
+        <div className="mt-8 mb-2">
           <Cards />
         </div>
       </section>

@@ -21,8 +21,8 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
         withYPadding={false}
         className="w-full z-999 shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
       >
-        <div className="flex items-center justify-between w-full py-3">
-          <Link href="/" className="navbar-logo cursor-pointer">
+        <div className="flex items-center justify-between w-full py-3 ">
+          <Link href="/" className="navbar-logo cursor-pointer hidden lg:block">
             <img src={CompanyLogo.src} alt="Company Logo" />
           </Link>
 
@@ -41,7 +41,10 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
               </li>
 
               <li>
-                <Link href="/aboutus" className="p-1 inline-block">
+                <Link
+                  href="/aboutus"
+                  className="p-1 inline-block whitespace-nowrap"
+                >
                   About Us
                 </Link>
               </li>

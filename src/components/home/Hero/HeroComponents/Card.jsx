@@ -1,6 +1,6 @@
 const Card = ({ imgComponent, title, content }) => {
   return (
-    <div className="flex flex-col justify-start items-center  gap-2   min-w-30  lg:max-w-md border border-gray-300 p-4 rounded-lg shadow-md bg-white">
+    <div className="flex h-full w-full flex-col items-center justify-start gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-md">
       <div
         className="w-8 h-8 bg-blue-500"
         style={{
