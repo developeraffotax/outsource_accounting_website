@@ -44,14 +44,12 @@ const Hero = ({ data }) => {
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
-              <img
-                src={imageUrl}
-                alt={data.title}
-                className="h-auto w-full aspect-video object-cover lg:aspect-4/3"
-              />
-            </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img
+              src={imageUrl}
+              alt={data.title}
+              className="h-auto w-full aspect-video object-cover lg:aspect-4/3"
+            />
           </div>
         </div>
 

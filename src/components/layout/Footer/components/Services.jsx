@@ -11,7 +11,7 @@ const Services = () => {
         <Link href="/service/vat-returns"> VAT Return</Link>
       </li>
       <li className="mb-2">
-        <Link href="/service/Bookkeeping-Services"> Book Keeping</Link>
+        <Link href="/service/Bookkeeping-Services"> BookKeeping</Link>
       </li>
       <li className="mb-2">
         <Link href="/service/Payroll-services"> Payroll Services</Link>
