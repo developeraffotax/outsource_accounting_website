@@ -8,8 +8,8 @@ const OurStoryPg = async () => {
 
   return (
     <Container withYPadding={false} className="py-8 md:py-12">
-      <section className="grid grid-cols-1-reverse lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div className="flex justify-center lg:justify-start">
+      <section className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12 items-center">
+        <div className="flex justify-center lg:justify-start lg:w-1/2">
           <div className="relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
             <img
               src={getImageUrl(content.imgOurStory?.url)}
@@ -19,7 +19,7 @@ const OurStoryPg = async () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left">
+        <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left lg:w-1/2">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             {content.headingOurStory}
           </h1>

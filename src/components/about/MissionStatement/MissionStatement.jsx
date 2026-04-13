@@ -7,12 +7,12 @@ const MissionStatement = async () => {
 
   return (
     <div className="bg-blue-800 flex flex-col justify-between items-center py-8 text-white my-6 lg:my-12 ">
-      <div>
-        <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl my-6 lg:mb-12">
+      <div className="p-2">
+        <h1 className="font-semibold text-center md:text-start text-2xl md:text-3xl lg:text-4xl my-6 lg:mb-12">
           Mission Statement & Vision Statement
         </h1>
       </div>
-      <div className="w-auto h-auto flex flex-col lg:flex-row gap-8 justify-center items-center">
+      <div className="w-auto h-auto flex flex-col lg:flex-row gap-8 justify-center items-center p-2">
         {content.map((item, index) => (
           <div
             key={index}

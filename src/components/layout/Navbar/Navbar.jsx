@@ -116,15 +116,7 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
                     About Us
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="/blogs"
-                    onClick={() => setMenuOpen(false)}
-                    className="block p-2 text-base text-gray-800 hover:text-gray-600 no-underline"
-                  >
-                    Blogs
-                  </Link>
-                </li>
+
                 <li>
                   <Link
                     href="/faqs"
@@ -136,7 +128,10 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
                 </li>
                 <li className="pt-2">{mobileBuyNowSlot}</li>
                 <li className="pt-1">
-                  <ContactUsButton />
+                  <ContactUsButton
+                    className="w-full justify-center"
+                    onClick={() => setMenuOpen(false)}
+                  />
                 </li>
               </ul>
             )}

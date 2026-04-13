@@ -44,13 +44,11 @@ const Hero = ({ data }) => {
             </div>
           </div>
 
-          <div className="rounded-2xl overflow-hidden">
-            <img
-              src={imageUrl}
-              alt={data.title}
-              className="h-auto w-full aspect-video object-cover lg:aspect-4/3"
-            />
-          </div>
+          <img
+            src={imageUrl}
+            alt={data.title}
+            className="mx-auto block w-full max-w-xl aspect-video rounded-2xl object-cover shadow-lg lg:mx-0 lg:ml-auto lg:aspect-4/3"
+          />
         </div>
 
         <div className="mt-8 mb-2">

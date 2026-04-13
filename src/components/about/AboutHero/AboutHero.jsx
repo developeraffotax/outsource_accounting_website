@@ -15,7 +15,7 @@ const AboutHero = async () => {
           <h1 className="font-semibold text-3xl md:text-4xl">
             {content.heading}
           </h1>
-          <h2 className="my-3 md:my-6 font-serif text-2xl lg:text-3xl">
+          <h2 className="my-3 md:my-6 text-center md:text-start text-2xl lg:text-3xl">
             {content.subHeading}
           </h2>
         </div>
