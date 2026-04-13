@@ -1,9 +1,46 @@
 import Stripe from "stripe";
 import buyService from "@/lib/controllers/buyService.controller";
 
-const STRIPE_FEE_PERCENT = 0.029;
-const STRIPE_FEE_FIXED_GBP = 0.2;
-const STRIPE_FEE_FIXED_PENCE = Math.round(STRIPE_FEE_FIXED_GBP * 100);
+const UK_B2B_STRIPE_FEE_PERCENT = 0.029;
+const UK_B2B_STRIPE_FEE_FIXED_PENCE = 20;
+
+const resolveFeeConfig = () => {
+  const percentFromEnv = Number(process.env.STRIPE_FEE_PERCENT);
+  const fixedPenceFromEnv = Number(process.env.STRIPE_FEE_FIXED_PENCE);
+
+  const feePercent = Number.isFinite(percentFromEnv)
+    ? percentFromEnv
+    : UK_B2B_STRIPE_FEE_PERCENT;
+
+  const feeFixedPence = Number.isFinite(fixedPenceFromEnv)
+    ? Math.round(fixedPenceFromEnv)
+    : UK_B2B_STRIPE_FEE_FIXED_PENCE;
+
+  if (feePercent <= 0 || feePercent >= 1) {
+    throw Object.assign(new Error("Invalid STRIPE_FEE_PERCENT configuration"), {
+      statusCode: 500,
+    });
+  }
+
+  if (feeFixedPence < 0) {
+    throw Object.assign(
+      new Error("Invalid STRIPE_FEE_FIXED_PENCE configuration"),
+      {
+        statusCode: 500,
+      },
+    );
+  }
+
+  return { feePercent, feeFixedPence };
+};
+
+const calculateGrossChargePence = ({
+  netAmountPence,
+  feePercent,
+  feeFixedPence,
+}) => {
+  return Math.ceil((netAmountPence + feeFixedPence) / (1 - feePercent));
+};
 
 export async function POST(req) {
   try {
@@ -16,8 +53,7 @@ export async function POST(req) {
 
     const stripe = new Stripe(stripeSecretKey);
 
-    const feePercent = STRIPE_FEE_PERCENT;
-    const feeFixedPence = STRIPE_FEE_FIXED_PENCE;
+    const { feePercent, feeFixedPence } = resolveFeeConfig();
 
     const { serviceName } = await req.json();
     if (!serviceName || typeof serviceName !== "string") {
@@ -36,9 +72,19 @@ export async function POST(req) {
       });
     }
 
-    const processingFeePence = Math.round(
-      serviceAmountPence * feePercent + feeFixedPence,
-    );
+    const totalChargePence = calculateGrossChargePence({
+      netAmountPence: serviceAmountPence,
+      feePercent,
+      feeFixedPence,
+    });
+
+    const processingFeePence = totalChargePence - serviceAmountPence;
+
+    if (processingFeePence <= 0) {
+      throw Object.assign(new Error("Calculated processing fee is invalid"), {
+        statusCode: 500,
+      });
+    }
 
     const feeLabel = `${(feePercent * 100).toFixed(1)}% + £${(feeFixedPence / 100).toFixed(2)}`;
 
