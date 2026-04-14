@@ -91,6 +91,83 @@ const normalizeCardList = (value, imageKey) => {
     .filter(Boolean);
 };
 
+const normalizePricingFeatures = (value) => {
+  const source = Array.isArray(value) ? value : [];
+
+  return source
+    .map((entry) => {
+      const text = normalizeText(entry?.text);
+
+      if (!text) {
+        return null;
+      }
+
+      return {
+        text,
+        included: Boolean(entry?.included),
+      };
+    })
+    .filter(Boolean);
+};
+
+const normalizePricingPlans = (value) => {
+  const source = Array.isArray(value) ? value : [];
+
+  return source
+    .map((entry, index) => {
+      const name = normalizeText(entry?.name);
+
+      if (!name) {
+        return null;
+      }
+
+      const rawPrice = entry?.price;
+      const numericPrice = Number(rawPrice);
+
+      return {
+        id: normalizeText(entry?.id) || `plan-${index + 1}`,
+        name,
+        checkoutName:
+          normalizeText(entry?.checkoutName) || normalizeText(entry?.name),
+        price: Number.isFinite(numericPrice) ? numericPrice : 0,
+        currency: normalizeText(entry?.currency) || "£",
+        description: normalizeText(entry?.description),
+        billingCycle: normalizeText(entry?.billingCycle),
+        isPopular: Boolean(entry?.isPopular),
+        features: normalizePricingFeatures(entry?.features),
+      };
+    })
+    .filter(Boolean);
+};
+
+const normalizePricing = (value) => {
+  if (!isRecord(value) && !Array.isArray(value)) {
+    return null;
+  }
+
+  const rawConfig = isRecord(value?.config) ? value.config : value;
+  const rawPlans = Array.isArray(value?.plans)
+    ? value.plans
+    : Array.isArray(value)
+      ? value
+      : [];
+
+  const plans = normalizePricingPlans(rawPlans);
+
+  if (plans.length === 0) {
+    return null;
+  }
+
+  return {
+    config: {
+      eyebrow: normalizeText(rawConfig?.eyebrow),
+      title: normalizeText(rawConfig?.title),
+      description: normalizeText(rawConfig?.description),
+    },
+    plans,
+  };
+};
+
 const normalizeStepCards = (value) => {
   const source = Array.isArray(value) ? value : [];
 
@@ -131,6 +208,7 @@ const normalizeServiceItem = (entry, index) => {
     buttonText: normalizeText(entry?.buttonText),
     image: toLegacyImageObject(entry?.img || entry?.image),
     bgImage: toLegacyImageObject(entry?.bgimg || entry?.bgImage),
+    Pricing: normalizePricing(entry?.Pricing || entry?.pricing),
     WhatYouGet: {
       heading: normalizeText(entry?.WhatYouGet?.heading),
       card: normalizeCardList(entry?.WhatYouGet?.card, "img"),

@@ -5,6 +5,7 @@ import Outsource from "@/components/services/WhyChooseUs/Outsource";
 import FASolutions from "@/components/services/BookACall/FASolutions.jsx";
 import Services from "../../../components/services/Services/Services";
 import AnnualAccounts from "@/components/services/AnnualAcounts/AnnualAcounts";
+import Pricing from "@/components/services/Pricing/Pricing";
 import What from "@/components/services/what/what";
 import GetStarted from "@/components/services/GetStarted/GetStarted";
 import Statistics from "@/components/services/Statistics/Statistics";
@@ -126,9 +127,11 @@ export default async function ServicePage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <Hero data={service} />
+      <Pricing data={service.Pricing} />
       <Services data={service.ServiceProcess} />
       <What data={service.WhatData} />
       <AnnualAccounts data={service.WhoData} />
+
       <Get data={service.WhatYouGet} />
       <Outsource data={service.WhyChooseUs} />
       <Statistics data={service.statics} />

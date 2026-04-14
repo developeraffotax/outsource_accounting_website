@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import buyService from "@/lib/controllers/buyService.controller";
+import fetchServicesContent from "@/lib/data/services/servicesContent";
 
 const UK_B2B_STRIPE_FEE_PERCENT = 0.029;
 const UK_B2B_STRIPE_FEE_FIXED_PENCE = 20;
@@ -42,6 +43,47 @@ const calculateGrossChargePence = ({
   return Math.ceil((netAmountPence + feeFixedPence) / (1 - feePercent));
 };
 
+const normalizeName = (value) =>
+  typeof value === "string" ? value.trim().toLowerCase() : "";
+
+const getMongoPricingPlans = async () => {
+  const services = await fetchServicesContent();
+
+  return services.flatMap((service) => {
+    if (Array.isArray(service?.Pricing?.plans)) {
+      return service.Pricing.plans;
+    }
+
+    return [];
+  });
+};
+
+const resolveServiceForCheckout = async (serviceName) => {
+  const normalizedRequestedName = normalizeName(serviceName);
+  let pricingPlans = [];
+
+  try {
+    pricingPlans = await getMongoPricingPlans();
+  } catch (error) {
+    console.error("Failed to load pricing plans from services content:", error);
+  }
+
+  const pricingPlan = pricingPlans.find(
+    (plan) =>
+      normalizeName(plan?.name) === normalizedRequestedName ||
+      normalizeName(plan?.checkoutName) === normalizedRequestedName,
+  );
+
+  if (pricingPlan) {
+    return {
+      name: pricingPlan.checkoutName || pricingPlan.name,
+      price: String(pricingPlan.price),
+    };
+  }
+
+  return buyService(serviceName);
+};
+
 export async function POST(req) {
   try {
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -62,7 +104,7 @@ export async function POST(req) {
       });
     }
 
-    const service = await buyService(serviceName);
+    const service = await resolveServiceForCheckout(serviceName);
 
     const serviceAmountPence = Math.round(Number(service.price) * 100);
 
