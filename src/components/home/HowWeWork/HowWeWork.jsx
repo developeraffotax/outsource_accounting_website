@@ -1,15 +1,12 @@
 const HowWeWork = ({
   heading,
-  one,
   oneIcon,
   description,
   lineOne,
-  two,
   twoIcon,
   titletwo,
   descriptiontwo,
   lineTwo,
-  three,
   threeIcon,
   threeTitle,
   threeDescription,
@@ -20,14 +17,8 @@ const HowWeWork = ({
         {heading}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_.5fr_1fr_.5fr_1fr] gap-x-0 gap-y-2 mx-auto w-full lg:w-3xl font-light items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_.5fr_1fr_.5fr_1fr] gap-x-0 gap-y-2 mx-auto w-full xl:w-5/6 2xl:w-4/5 font-light items-start">
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          {/* <p
-            alt="Submission Icon"
-            className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
-          >
-            {one}
-          </p> */}
           <img
             src={oneIcon}
             alt="Service Icon"
@@ -37,15 +28,13 @@ const HowWeWork = ({
           <h2 className="font-semibold mb-3 text-lg ">Choose Your Service</h2>
           <p className="text-gray-600">{description}</p>
         </div>
-        <img src={lineOne} alt="" className="my-8 hidden md:inline-block" />
+        <img
+          src={lineOne}
+          alt=""
+          className="hidden md:block self-start justify-self-center mt-20 -translate-y-1/2 relative z-20"
+        />
         {/* Card 2 */}
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          {/* <p
-            alt="Submission Icon"
-            className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
-          >
-            {two}
-          </p> */}
           <img
             src={twoIcon}
             alt="Info Icon"
@@ -54,15 +43,13 @@ const HowWeWork = ({
           <h2 className="font-semibold mb-3 text-lg ">{titletwo}</h2>
           <p className="text-gray-600">{descriptiontwo}</p>
         </div>
-        <img src={lineTwo} alt="" className="my-12 hidden md:inline-block" />
+        <img
+          src={lineTwo}
+          alt=""
+          className="hidden md:block self-start justify-self-center mt-20 -translate-y-1/2 relative z-20"
+        />
         {/* Card 3 */}
         <div className="relative flex flex-col text-center bg-white rounded-2xl h-full ">
-          {/* <p
-            alt="Submission Icon"
-            className="absolute w-8 h-8 border rounded-full border-gray-300 bg-gray-200 text-center items-center justify-center font-light  object-contain"
-          >
-            {three}
-          </p> */}
           <img
             src={threeIcon}
             alt="Submission Icon"
