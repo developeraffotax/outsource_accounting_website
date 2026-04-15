@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { randomUUID } from "crypto";
 import buyService from "@/lib/controllers/buyService.controller";
 import fetchServicesContent from "@/lib/data/services/servicesContent";
 
@@ -135,9 +136,19 @@ export async function POST(req) {
       process.env.NEXT_PUBLIC_SITE_URL ||
       new URL(req.url).origin;
 
+    const sessionMetadata = {
+      serviceName: service.name,
+      serviceAmountPence: String(serviceAmountPence),
+      processingFeePence: String(processingFeePence),
+      feePercent: String(feePercent),
+      feeFixedPence: String(feeFixedPence),
+    };
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
+      client_reference_id: randomUUID(),
+      metadata: sessionMetadata,
       line_items: [
         {
           price_data: {
