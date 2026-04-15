@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import QuoteFormHH from "@/components/shared/forms/QuoteFormHH";
 import QuoteForm from "@/components/shared/forms/QuoteForm";
 import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import Model from "@/components/shared/forms/Model.jsx";
@@ -69,7 +70,7 @@ const Hero = ({
               <h2 className="mb-6 text-left text-2xl font-bold text-gray-800 md:text-3xl">
                 Quick <span className="text-(--color-buttonBlue)">Quote</span>
               </h2>
-              <QuoteForm />
+              <QuoteFormHH />
             </div>
           </div>
         </div>
@@ -78,9 +79,6 @@ const Hero = ({
       <div className="py-4 md:py-8">{cardsComponent}</div>
       {/* MODAL OVERLAY */}
       <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-          Quick <span className="text-(--color-buttonBlue)">Quote</span>
-        </h2>
         <QuoteForm onSuccess={() => setIsModalOpen(false)} />
       </Model>
     </section>

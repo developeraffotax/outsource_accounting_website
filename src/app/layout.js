@@ -11,6 +11,7 @@ import APICall from "@/components/shared/buttons/APICall.jsx";
 const inter = localFont({
   src: "../assets/fonts/Inter-VariableFont.ttf",
   display: "swap",
+  variable: "--font-inter",
 });
 
 const siteUrl =
@@ -130,7 +131,7 @@ const siteSchema = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
+      <body className={`${inter.variable} ${inter.className}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}

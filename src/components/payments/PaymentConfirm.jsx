@@ -72,7 +72,7 @@ const PaymentConfirm = ({ sessionId }) => {
           {/* Amount Row */}
           <tr className="border-b border-gray-400/30">
             <td className="py-4 font-semibold text-gray-700">Amount</td>
-            <td className="py-4 text-right font-mono font-bold text-gray-800">
+            <td className="py-4 text-right font-bold text-gray-800">
               {receiptDetails.amount_total / 100}{" "}
               {receiptDetails.currency?.toUpperCase()}
             </td>

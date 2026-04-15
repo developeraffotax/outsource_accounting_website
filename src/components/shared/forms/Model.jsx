@@ -40,7 +40,7 @@ const Model = ({ isOpen, onClose, children }) => {
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center p-4 transition-all duration-200 ${
+      className={`fixed inset-0 z-9999 flex items-center justify-center p-3 md:p-6 transition-all duration-200 ${
         isAnimating
           ? "bg-black/60 backdrop-blur-sm"
           : "bg-black/0 backdrop-blur-none"
@@ -48,7 +48,7 @@ const Model = ({ isOpen, onClose, children }) => {
       onClick={onClose}
     >
       <div
-        className={`relative w-full max-w-lg transform transition-all duration-200 ${
+        className={`relative w-full max-w-5xl transform transition-all duration-200 ${
           isAnimating
             ? "scale-100 opacity-100 animate-in fade-in zoom-in-95 slide-in-from-top-4"
             : "scale-95 opacity-0"
@@ -56,19 +56,19 @@ const Model = ({ isOpen, onClose, children }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
-        <div className="absolute right-4 top-4 z-10">
+        <div className="absolute right-3 top-3 z-20 sm:right-4 sm:top-4">
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl leading-none transition-colors"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-xl font-semibold text-slate-500 shadow-sm transition-colors hover:bg-white hover:text-slate-700"
             aria-label="Close modal"
           >
-            &times;
+            x
           </button>
         </div>
 
         {/* Content container */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-          <div className="px-8 pb-8 pt-16">{children}</div>
+        <div className="max-h-[92vh] overflow-y-auto rounded-[28px] shadow-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {children}
         </div>
       </div>
     </div>,

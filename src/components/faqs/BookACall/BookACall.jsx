@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import ContectForm from "@/components/shared/forms/contactForm/ContectForm";
-import Modeltwo from "@/components/shared/forms/Modeltwo";
+import Model from "@/components/shared/forms/Model";
+import QuoteForm from "@/components/shared/forms/QuoteForm";
 
 const BookACall = ({ heading, description, img }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,12 +12,14 @@ const BookACall = ({ heading, description, img }) => {
           {heading}
         </h1>
         <p className="max-w-140 text-center md:text-start ">{description}</p>
-        <p
-          onClick={() => setIsModalOpen(true)}
-          className="bg-(--color-buttonBlue) p-2 text-center text-white lg:p-6 w-56 rounded-lg cursor-pointer"
-        >
-          Book free 30 Min Now
-        </p>
+        <div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-(--color-buttonBlue) cursor-pointer px-8 py-2 text-white font-normal border-2 rounded-sm border-transparent inline-flex transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-105 hover:brightness-110 hover:shadow-lg hover:ring-3 hover:ring-(--color-buttonBlue)/20 active:scale-90 active:duration-50"
+          >
+            Contact us
+          </button>
+        </div>
       </div>
       <div>
         <img
@@ -26,9 +28,9 @@ const BookACall = ({ heading, description, img }) => {
           className="p-2 w-full max-w-xs sm:max-w-sm md:max-w-md aspect-19/15 object-cover rounded-2xl"
         />
       </div>
-      <Modeltwo isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ContectForm onSuccess={() => setIsModalOpen(false)} />
-      </Modeltwo>
+      <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <QuoteForm onSuccess={() => setIsModalOpen(false)} />
+      </Model>
     </div>
   );
 };

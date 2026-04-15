@@ -22,10 +22,7 @@ const Get = ({ data }) => {
         <QuoteButton onClick={() => setIsModalOpen(true)} />
       </div>
       <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-          Quick <span className="text-(--color-buttonBlue)">Quote</span>
-        </h2>
-        <QuoteForm onSuccess={() => isModalOpen(false)} />
+        <QuoteForm onSuccess={() => setIsModalOpen(false)} />
       </Model>
     </div>
   );

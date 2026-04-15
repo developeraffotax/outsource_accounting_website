@@ -45,9 +45,6 @@ const Outsource = ({ data }) => {
 
       {/* Modal Section */}
       <Model onClose={() => setIsModalOpen(false)} isOpen={isModalOpen}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-          Quick <span className="text-[var(--color-buttonBlue)]">Quote</span>
-        </h2>
         <QuoteForm onSuccess={() => setIsModalOpen(false)} />
       </Model>
     </>

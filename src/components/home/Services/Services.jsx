@@ -27,9 +27,6 @@ const Services = ({ heading, description, serviceCardsComponent }) => {
           <QuoteButton onClick={() => setisModelOpen(true)} />
         </div>
         <Model isOpen={isModelOpen} onClose={() => setisModelOpen(false)}>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-            Quick <span className="text-(--color-buttonBlue)">Quote</span>
-          </h2>
           <QuoteForm onSuccess={() => setisModelOpen(false)} />
         </Model>
       </section>

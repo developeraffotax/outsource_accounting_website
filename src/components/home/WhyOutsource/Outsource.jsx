@@ -40,9 +40,6 @@ const Outsource = ({
       </div>
       {/* MODAL OVERLAY */}
       <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left text-gray-800">
-          Quick <span className="text-(--color-buttonBlue)">Quote</span>
-        </h2>
         <QuoteForm onSuccess={() => setIsModalOpen(false)} />
       </Model>
     </Container>

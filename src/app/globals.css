@@ -193,5 +193,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), sans-serif;
+  }
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
   }
 }
