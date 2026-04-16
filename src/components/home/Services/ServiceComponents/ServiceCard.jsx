@@ -10,7 +10,7 @@ const ServiceCard = ({
   buttontxtServiceCard,
 }) => {
   return (
-    <div className="flex flex-col bg-white rounded-lg p-3 lg:p-6 h-full border border-[#333333] transition-transform w-full">
+    <div className="flex flex-col bg-white rounded-lg p-3 lg:p-6 h-full border border-gray-400 transition-transform w-full">
       {/* Top Section */}
       <div className="flex flex-row md:flex-col lg:flex-row items-center w-full">
         <img
@@ -18,14 +18,14 @@ const ServiceCard = ({
           alt="service cards"
           className="w-12 h-12 mr-4"
         />
-        <h3 className="text-[1.25rem] font-light mb-2 text-black">
+        <h3 className="text-2xl font-semibold mb-2 text-black">
           {titleServiceCard}
         </h3>
       </div>
 
       {/* Middle Section */}
       <div className="mt-4">
-        <p className="text-[1rem] font-light text-start text-black">
+        <p className=" font text-start text-gray-600">
           {descriptionServiceCard}
         </p>
       </div>
@@ -33,7 +33,7 @@ const ServiceCard = ({
       {/* Bottom Link */}
       <Link
         href={pglink}
-        className="mt-auto pt-4 text-[1rem] font-medium text-black no-underline text-start"
+        className="mt-auto pt-4  font-medium text-black no-underline text-start"
       >
         {buttontxtServiceCard}
       </Link>

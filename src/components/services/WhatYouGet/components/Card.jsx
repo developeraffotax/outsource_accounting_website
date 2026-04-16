@@ -2,7 +2,7 @@ const Card = ({ img, title, description }) => {
   return (
     <div className="border border-transparent w-full p-3 md:p-6 lg:p-8 ">
       <img src={img} alt="" className="mb-2 w-16 aspect-square object-cover" />
-      <h1 className="text-wrap mb-2">{title}</h1>
+      <h1 className="text-wrap mb-2 font-semibold">{title}</h1>
       <p className="text-wrap mb-2">{description}</p>
     </div>
   );
