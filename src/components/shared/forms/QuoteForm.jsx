@@ -52,21 +52,21 @@ const QuoteForm = ({ onSuccess }) => {
       className="relative overflow-hidden rounded-[28px] border border-(--color-linearBar) bg-white shadow-[0_28px_80px_rgba(23,33,58,0.22)]"
     >
       <div className="grid md:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative overflow-hidden bg-(--color-veryLightBlue) px-6 py-8 sm:px-8 md:px-10 md:py-10">
+        <div className="relative overflow-hidden bg-(--color-veryLightBlue) px-4 py-8 sm:px-8 md:px-10 md:py-10">
           <p className="text-3xl font-semibold leading-[1.12] text-slate-800 sm:text-4xl">
             Get your custom{" "}
             <span className="text-(--color-buttonBlue)">quote</span>
           </p>
-          <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">
+          <p className="mt-2 md:mt-4 max-w-md text-sm leading-7 text-slate-600">
             Tell us about your business and we will share a tailored outsourcing
             plan with clear pricing and next steps.
           </p>
-          <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">
+          <p className="mt-2 md:mt-4 max-w-md text-sm leading-7 text-slate-600">
             Once submitted, our team will reach out quickly with a personalized
             response.
           </p>
 
-          <div className="mt-10 max-w-sm">
+          <div className="mt-4 md:mt-10 max-w-sm">
             <h3 className="text-[26px] leading-tight text-slate-800">
               Want to talk with us?
             </h3>
@@ -76,12 +76,12 @@ const QuoteForm = ({ onSuccess }) => {
             </p>
           </div>
 
-          <div className="pointer-events-none absolute -bottom-16 -left-14 h-36 w-36 rounded-full bg-(--color-linearBar) blur-sm" />
-          <div className="pointer-events-none absolute -bottom-10 left-16 h-24 w-10 rounded-[999px] bg-(--color-buttonBlue)" />
-          <div className="pointer-events-none absolute -bottom-8 left-28 h-20 w-8 rotate-12 rounded-[999px] bg-(--color-ImgOverlay)" />
+          <div className="pointer-events-none absolute -bottom-16 -left-14 h-28 w-28 md:h-36 md:w-36 rounded-full bg-(--color-linearBar) blur-sm" />
+          <div className="pointer-events-none absolute -bottom-10 left-16 h-20 w-8 md:h-24 md:w-10 rounded-[999px] bg-(--color-buttonBlue)" />
+          <div className="pointer-events-none absolute -bottom-8 left-28 h-16 w-6 md:h-20 md:w-8 rotate-12 rounded-[999px] bg-(--color-ImgOverlay)" />
         </div>
 
-        <div className="bg-white px-6 py-8 sm:px-8 md:px-9 md:py-10">
+        <div className="bg-white px-4 py-6 sm:px-8 md:px-9 md:py-10">
           <p className="text-[12px] font-semibold uppercase tracking-[0.09em] text-(--color-buttonBlue)">
             Fill the form to receive a tailored quote. It is free.
           </p>

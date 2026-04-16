@@ -27,7 +27,12 @@ const Hero = ({
       <img
         src={img}
         alt={"Background"}
-        className="absolute inset-0 h-full w-full object-cover brightness-50 -z-10"
+        className="absolute inset-0 h-full w-full object-cover -z-10 "
+      />
+      <div className="absolute inset-0 -z-10 bg-black/40 mix-blend-multiply" />
+      <div
+        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(0,0,0,0.50)_0%,rgba(91,95,107,0.3)_60%,rgba(0,0,0,0.25)_75%,rgba(0,0,0,0)_100%)]"
+        aria-hidden="true"
       />
 
       <Container
