@@ -18,16 +18,12 @@ const ServiceCard = ({
           alt="service cards"
           className="w-12 h-12 mr-4"
         />
-        <h3 className="text-2xl font-semibold mb-2 text-black">
-          {titleServiceCard}
-        </h3>
+        <h3 className="font-semibold mb-2 text-black">{titleServiceCard}</h3>
       </div>
 
       {/* Middle Section */}
       <div className="mt-4">
-        <p className=" font text-start text-gray-600">
-          {descriptionServiceCard}
-        </p>
+        <p className="text-start text-gray-600">{descriptionServiceCard}</p>
       </div>
 
       {/* Bottom Link */}
