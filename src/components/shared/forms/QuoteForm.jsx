@@ -123,14 +123,11 @@ const QuoteForm = ({ onSuccess }) => {
               </label>
               <select
                 id="quote-turnover"
-                className={`${fieldClassName} cursor-pointer`}
+                className={`${fieldClassName} cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>')] bg-no-repeat bg-[right_0.5rem_center] bg-[length:1rem_1rem] pr-8`}
                 {...register("companyTurnover", {
                   required: "Please select a turnover",
                 })}
               >
-                <option value="" disabled>
-                  Company Turnover
-                </option>
                 <option value="under_50k">Under £50,000</option>
                 <option value="50k_150k">£50,000 - £150,000</option>
                 <option value="150k_500k">£150,000 - £500,000</option>
