@@ -14,9 +14,7 @@ const Hero = ({
   headingEndText,
   descriptionHeroHomepage,
   descriptionHeroHomePageTwo,
-  freeConsultationImg,
-  freeConsultation,
-  ukFlagImg,
+
   cardsComponent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +53,7 @@ const Hero = ({
               {/* <img
                 src={ukFlagImg}
                 alt="uk flag"
-                className="inline-block w-8 h-8 ml-2"
+                className="inline-block w-auto h-6 ml-2"
               /> */}
             </h1>
 
