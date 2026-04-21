@@ -1,12 +1,10 @@
-import Stripe from "stripe";
 import connectMongoDB from "@/lib/config/mongodb";
 import Order from "@/lib/models/Order";
 import {
   sendCustomerPaymentEmail,
   sendAdminPaymentEmail,
 } from "@/lib/services/paymentEmail.services";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import { createStripeClient } from "@/lib/stripe/client";
 
 const EVENT_STATUS_MAP = {
   "checkout.session.completed": "completed",
@@ -441,13 +439,13 @@ const upsertOrderByPaymentIntent = async ({ paymentIntent, event, status }) => {
   return { isDuplicate: false };
 };
 
-const retrieveCheckoutSession = async (sessionId) => {
+const retrieveCheckoutSession = async ({ stripe, sessionId }) => {
   return stripe.checkout.sessions.retrieve(sessionId, {
     expand: CHECKOUT_SESSION_EXPAND,
   });
 };
 
-const findCheckoutSessionByPaymentIntent = async (paymentIntentId) => {
+const findCheckoutSessionByPaymentIntent = async ({ stripe, paymentIntentId }) => {
   const sessions = await stripe.checkout.sessions.list({
     payment_intent: paymentIntentId,
     limit: 1,
@@ -482,7 +480,7 @@ const sendCompletedPaymentEmails = async (session) => {
   });
 };
 
-const handleCheckoutSessionEvent = async (event, status) => {
+const handleCheckoutSessionEvent = async ({ stripe, event, status }) => {
   const sessionId = event?.data?.object?.id;
 
   if (!sessionId) {
@@ -496,7 +494,7 @@ const handleCheckoutSessionEvent = async (event, status) => {
     status,
   });
 
-  const session = await retrieveCheckoutSession(sessionId);
+  const session = await retrieveCheckoutSession({ stripe, sessionId });
   const upsertResult = await upsertOrderBySession({ session, event, status });
 
   const shouldSendCompletedEmails =
@@ -533,7 +531,7 @@ const handleCheckoutSessionEvent = async (event, status) => {
   });
 };
 
-const handlePaymentIntentCanceled = async (event, status) => {
+const handlePaymentIntentCanceled = async ({ stripe, event, status }) => {
   const paymentIntent = event?.data?.object;
   const paymentIntentId = paymentIntent?.id;
 
@@ -548,8 +546,10 @@ const handlePaymentIntentCanceled = async (event, status) => {
     status,
   });
 
-  const relatedSession =
-    await findCheckoutSessionByPaymentIntent(paymentIntentId);
+  const relatedSession = await findCheckoutSessionByPaymentIntent({
+    stripe,
+    paymentIntentId,
+  });
 
   if (relatedSession) {
     logWebhook("Found related checkout session for canceled payment_intent", {
@@ -580,6 +580,16 @@ const handlePaymentIntentCanceled = async (event, status) => {
 };
 
 export async function POST(req) {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) {
+    return new Response(
+      JSON.stringify({ error: "Server is missing STRIPE_SECRET_KEY" }),
+      { status: 500 },
+    );
+  }
+
+  const stripe = createStripeClient(stripeSecretKey);
+
   const body = await req.text();
   const signature = req.headers.get("stripe-signature");
 
@@ -627,9 +637,9 @@ export async function POST(req) {
     });
 
     if (event.type.startsWith("checkout.session.")) {
-      await handleCheckoutSessionEvent(event, status);
+      await handleCheckoutSessionEvent({ stripe, event, status });
     } else if (event.type === "payment_intent.canceled") {
-      await handlePaymentIntentCanceled(event, status);
+      await handlePaymentIntentCanceled({ stripe, event, status });
     }
 
     logWebhook("Webhook event processed successfully", {

@@ -3,17 +3,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const PaymentConfirm = ({ sessionId }) => {
+const PaymentConfirm = ({ sessionId, receiptToken }) => {
   const [receiptDetails, setreceiptDetails] = useState(null);
   const [error, setError] = useState(null);
 
   if (!sessionId) return <p>Session Id is missing</p>;
+  if (!receiptToken) return <p>Receipt token is missing</p>;
 
   useEffect(() => {
     async function fetchSession() {
       try {
         const res = await fetch(
-          `/api/checkoutSession?session_id=${encodeURIComponent(sessionId)}`,
+          `/api/checkoutSession?session_id=${encodeURIComponent(sessionId)}&receipt_token=${encodeURIComponent(receiptToken)}`,
         );
 
         const contentType = res.headers.get("content-type") || "";
@@ -37,7 +38,7 @@ const PaymentConfirm = ({ sessionId }) => {
     if (sessionId) {
       fetchSession();
     }
-  }, [sessionId]);
+  }, [sessionId, receiptToken]);
 
   if (error) return <p>Error: {error}</p>;
 

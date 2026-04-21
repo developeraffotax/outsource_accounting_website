@@ -1,5 +1,14 @@
+const createRequestId = () => {
+  if (globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
+
 export const handleCheckout = async ({ service, serviceName }) => {
   const resolvedServiceName = service?.name || serviceName;
+  const idempotencyKey = `checkout:${resolvedServiceName}:${createRequestId()}`;
 
   if (!resolvedServiceName) {
     throw new Error("Service name is required for checkout");
@@ -9,6 +18,7 @@ export const handleCheckout = async ({ service, serviceName }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-idempotency-key": idempotencyKey,
     },
     body: JSON.stringify({
       serviceName: resolvedServiceName,

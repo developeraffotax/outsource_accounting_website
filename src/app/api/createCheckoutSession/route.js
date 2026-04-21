@@ -1,7 +1,8 @@
-import Stripe from "stripe";
 import { randomUUID } from "crypto";
+import { createHmac } from "crypto";
 import buyService from "@/lib/controllers/buyService.controller";
 import fetchServicesContent from "@/lib/data/services/servicesContent";
+import { createStripeClient } from "@/lib/stripe/client";
 
 const UK_B2B_STRIPE_FEE_PERCENT = 0.029;
 const UK_B2B_STRIPE_FEE_FIXED_PENCE = 20;
@@ -46,6 +47,13 @@ const calculateGrossChargePence = ({
 
 const normalizeName = (value) =>
   typeof value === "string" ? value.trim().toLowerCase() : "";
+
+const deriveDeterministicHex = ({ secret, seed, context, length = 32 }) => {
+  return createHmac("sha256", secret)
+    .update(`${seed}:${context}`)
+    .digest("hex")
+    .slice(0, length);
+};
 
 const getMongoPricingPlans = async () => {
   const services = await fetchServicesContent();
@@ -94,7 +102,7 @@ export async function POST(req) {
       });
     }
 
-    const stripe = new Stripe(stripeSecretKey);
+    const stripe = createStripeClient(stripeSecretKey);
 
     const { feePercent, feeFixedPence } = resolveFeeConfig();
 
@@ -136,18 +144,42 @@ export async function POST(req) {
       process.env.NEXT_PUBLIC_SITE_URL ||
       new URL(req.url).origin;
 
+    const receiptTokenSecret =
+      process.env.CHECKOUT_SESSION_TOKEN_SECRET || stripeSecretKey;
+
+    const idempotencyKey =
+      req.headers.get("x-idempotency-key") ||
+      `checkout:${normalizeName(service.name)}:${randomUUID()}`;
+
+    // Keep Stripe payload fields deterministic for the same idempotency key.
+    // This avoids receipt token drift across request retries.
+    const clientReferenceId = deriveDeterministicHex({
+      secret: receiptTokenSecret,
+      seed: idempotencyKey,
+      context: "client-reference-id",
+    });
+    const receiptNonce = deriveDeterministicHex({
+      secret: receiptTokenSecret,
+      seed: idempotencyKey,
+      context: "receipt-nonce",
+    });
+
+    const receiptToken = createHmac("sha256", receiptTokenSecret)
+      .update(`${clientReferenceId}.${receiptNonce}`)
+      .digest("hex");
+
     const sessionMetadata = {
       serviceName: service.name,
       serviceAmountPence: String(serviceAmountPence),
       processingFeePence: String(processingFeePence),
       feePercent: String(feePercent),
       feeFixedPence: String(feeFixedPence),
+      receiptNonce,
     };
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
       mode: "payment",
-      client_reference_id: randomUUID(),
+      client_reference_id: clientReferenceId,
       metadata: sessionMetadata,
       line_items: [
         {
@@ -172,9 +204,9 @@ export async function POST(req) {
           quantity: 1,
         },
       ],
-      success_url: `${baseUrl}/paymentConfirmed?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${baseUrl}/paymentConfirmed?session_id={CHECKOUT_SESSION_ID}&receipt_token=${receiptToken}`,
       cancel_url: `${baseUrl}/paymentCencled?serviceName=${encodeURIComponent(service.name)}`,
-    });
+    }, { idempotencyKey });
 
     return Response.json({ url: session.url });
   } catch (error) {
