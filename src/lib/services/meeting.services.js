@@ -1,16 +1,33 @@
 import { mailtransporter } from "../config/mail.config";
-import { parse } from "date-fns";
+import { isValid, parse, parseISO } from "date-fns";
+
+const parseMeetingDate = (dateInput) => {
+  if (typeof dateInput !== "string" || !dateInput.trim()) {
+    throw Object.assign(new Error("Invalid date"), { statusCode: 400 });
+  }
+
+  const trimmed = dateInput.trim();
+  const parsed =
+    /^\d{4}-\d{2}-\d{2}/.test(trimmed)
+      ? parseISO(trimmed)
+      : parse(trimmed, "PPP", new Date());
+
+  if (!isValid(parsed)) {
+    throw Object.assign(new Error("Invalid date format"), { statusCode: 400 });
+  }
+
+  return parsed;
+};
 
 const meetingService = async ({ date, time, Name, email }) => {
   try {
     const transporter = await mailtransporter();
 
-    console.log("Meeting Service Data:", { date, time, Name, email });
-    const parsedDate = parse(date, "PPP", new Date());
+    const parsedDate = parseMeetingDate(date);
 
     const hour = Number(time);
     if (Number.isNaN(hour) || hour < 0 || hour > 23) {
-      throw new Error("Invalid hour");
+      throw Object.assign(new Error("Invalid hour"), { statusCode: 400 });
     }
 
     parsedDate.setHours(hour, 0, 0, 0);

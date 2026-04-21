@@ -1,24 +1,7 @@
-import topBarQuery from "@/lib/data/topBarQuery";
+import { getContactInfo } from "@/lib/services/contactInfo.service";
 
 const ContactUS = async () => {
-  const fallbackContent = {
-    email: "admin@outsourceaccountings.co.uk",
-    euNumber: "+44 7802 611110",
-  };
-
-  let content = fallbackContent;
-
-  try {
-    const res = await topBarQuery();
-    if (res?.data?.topBar) {
-      content = {
-        ...fallbackContent,
-        ...res.data.topBar,
-      };
-    }
-  } catch (error) {
-    console.error("Failed to load footer contact data:", error);
-  }
+  const content = await getContactInfo();
 
   return (
     <ul className="mt-4 space-y-2 font-light lg:mt-8">
@@ -28,7 +11,9 @@ const ContactUS = async () => {
           src="/images/Footer/CallIcon.png"
           alt="CallIcon"
         />
-        <span className="whitespace-nowrap">0208 144 6811</span>
+        <a className="whitespace-nowrap" href={content.telHref || "#"}>
+          {content.number}
+        </a>
       </li>
       <li className="flex items-start gap-2 leading-relaxed">
         <img
@@ -36,7 +21,14 @@ const ContactUS = async () => {
           alt="WhatsAppIcon"
           className="mt-1 h-3 w-3 shrink-0"
         />
-        <span className="whitespace-nowrap">{content.euNumber}</span>
+        <a
+          className="whitespace-nowrap"
+          href={content.whatsappHref || "#"}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {content.euNumber}
+        </a>
       </li>
       <li className="flex items-start gap-2 leading-relaxed">
         <img
@@ -44,7 +36,9 @@ const ContactUS = async () => {
           alt="MailIcon"
           className="mt-1 h-3 w-3 shrink-0"
         />
-        <span className="wrap-break-word">{content.email}</span>
+        <a className="wrap-break-word" href={content.mailtoHref}>
+          {content.email}
+        </a>
       </li>
       <li className="flex items-start gap-2 leading-relaxed">
         <img

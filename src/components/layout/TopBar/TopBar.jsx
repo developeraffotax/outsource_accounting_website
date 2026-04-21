@@ -1,28 +1,8 @@
-import topBarQuery from "@/lib/data/topBarQuery";
 import Container from "@/components/wraper/Container";
+import { getContactInfo } from "@/lib/services/contactInfo.service";
 
 const TopBar = async () => {
-  const fallbackContent = {
-    email: "admin@outsourceaccountings.co.uk",
-    number: "0208 144 6811",
-    euNumber: "+44 7802 611110",
-  };
-
-  let content = fallbackContent;
-
-  try {
-    const res = await topBarQuery();
-    if (res?.data?.topBar) {
-      content = {
-        ...fallbackContent,
-        ...res.data.topBar,
-      };
-    }
-  } catch (error) {
-    console.error("Failed to load top bar data:", error);
-  }
-
-  const sanitizedNumber = content.euNumber.replace(/\D/g, "");
+  const content = await getContactInfo();
   return (
     <Container
       withYPadding={false}
@@ -37,7 +17,7 @@ const TopBar = async () => {
           />
           <a
             className="value text-nowrap"
-            href="mailto:admin@outsourceaccountings.co.uk"
+            href={content.mailtoHref}
           >
             {content.email}
           </a>
@@ -48,7 +28,7 @@ const TopBar = async () => {
             alt="phone"
             className="icon p-1"
           />
-          <a className="value text-nowrap" href="tel:+442081446811">
+          <a className="value text-nowrap" href={content.telHref || "#"}>
             {content.number}
           </a>
         </div>
@@ -60,7 +40,7 @@ const TopBar = async () => {
           />
           <a
             className="value text-nowrap  font-medium transition-colors"
-            href={`https://wa.me/${sanitizedNumber}`}
+            href={content.whatsappHref || "#"}
             target="_blank"
             rel="noreferrer"
           >

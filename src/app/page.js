@@ -24,12 +24,21 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const Hero = await heroApiCall();
-  const WhyOutsource = await whyOutsourceApiCall();
-  const Services = await servicesApiCall();
-  const HowWeWork = await howWeWorkApiCall();
-  const JoinUs = await joinUsApiCall();
-  const ClientsTestimonials = await clientsTestimonialsApiCall();
+  const [
+    Hero,
+    WhyOutsource,
+    Services,
+    HowWeWork,
+    JoinUs,
+    ClientsTestimonials,
+  ] = await Promise.all([
+    heroApiCall(),
+    whyOutsourceApiCall(),
+    servicesApiCall(),
+    howWeWorkApiCall(),
+    joinUsApiCall(),
+    clientsTestimonialsApiCall(),
+  ]);
 
   return (
     <div className="">

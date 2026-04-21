@@ -34,12 +34,17 @@ const connectMongoDB = async () => {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose
-      .connect(MONGO_URI)
-      .then((mongooseInstance) => mongooseInstance);
+    cached.promise = mongoose.connect(MONGO_URI).then((mongooseInstance) => {
+      return mongooseInstance;
+    });
   }
-
-  cached.conn = await cached.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (error) {
+    cached.promise = null;
+    cached.conn = null;
+    throw error;
+  }
   return cached.conn;
 };
 
