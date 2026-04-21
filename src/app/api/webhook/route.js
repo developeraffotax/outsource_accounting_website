@@ -5,13 +5,10 @@ import {
   sendAdminPaymentEmail,
 } from "@/lib/services/paymentEmail.services";
 import { createStripeClient } from "@/lib/stripe/client";
-
-const EVENT_STATUS_MAP = {
-  "checkout.session.completed": "completed",
-  "checkout.session.async_payment_failed": "failed",
-  "checkout.session.expired": "cancelled",
-  "payment_intent.canceled": "cancelled",
-};
+import {
+  EVENT_STATUS_MAP,
+  verifyStripeWebhookEvent,
+} from "@/lib/services/stripeWebhookRuntime.service";
 
 const CHECKOUT_SESSION_EXPAND = [
   "line_items.data.price.product",
@@ -509,13 +506,26 @@ const handleCheckoutSessionEvent = async ({ stripe, event, status }) => {
       sessionId,
     });
 
-    await sendCompletedPaymentEmails(session);
+    try {
+      await sendCompletedPaymentEmails(session);
 
-    logWebhook("Completion emails sent", {
-      eventId: event.id,
-      eventType: event.type,
-      sessionId,
-    });
+      logWebhook("Completion emails sent", {
+        eventId: event.id,
+        eventType: event.type,
+        sessionId,
+      });
+    } catch (error) {
+      // Email delivery is non-critical for webhook success. Persisted order state
+      // should not be retried indefinitely due to downstream mail issues.
+      logWebhook("Completion email delivery failed", {
+        eventId: event.id,
+        eventType: event.type,
+        sessionId,
+        message: error?.message,
+        code: error?.code,
+      });
+    }
+
     return;
   }
 
@@ -600,11 +610,12 @@ export async function POST(req) {
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(
+    event = verifyStripeWebhookEvent({
+      stripe,
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET,
-    );
+      secret: process.env.STRIPE_WEBHOOK_SECRET,
+    });
   } catch (err) {
     console.error(`${WEBHOOK_LOG_PREFIX} Signature verification failed:`, {
       message: err.message,
@@ -652,13 +663,27 @@ export async function POST(req) {
       eventId: event?.id,
       eventType: event?.type,
       message: error?.message,
+      code: error?.code,
+      statusCode: error?.statusCode,
+      causeMessage: error?.cause?.message,
     });
     console.error(error);
 
+    const status = error?.statusCode || 500;
+    const message =
+      status >= 400 && status < 500
+        ? error?.message || "Webhook request failed"
+        : error?.code === "MAIL_DELIVERY_FAILED"
+          ? "Webhook email delivery failed"
+          : "Webhook processing failed";
+
     return new Response(
-      JSON.stringify({ error: "Webhook processing failed" }),
+      JSON.stringify({
+        error: message,
+        code: error?.code || "INTERNAL_ERROR",
+      }),
       {
-        status: 500,
+        status,
       },
     );
   }

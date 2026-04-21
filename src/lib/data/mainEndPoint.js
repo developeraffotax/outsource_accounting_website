@@ -5,9 +5,9 @@ const BaseURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api`;
 export default async function fetchData(endpoint, queryObj = {}) {
   const query = qs.stringify(queryObj, { encodeValuesOnly: true });
   const urlQuery = `${BaseURL}/${endpoint}${query ? `?${query}` : ""}`;
-  let res;
+
   try {
-    res = await fetch(urlQuery, {
+    const res = await fetch(urlQuery, {
       next: { tags: [endpoint] }, // tag must match revalidateTag(...)
     });
 
@@ -15,9 +15,10 @@ export default async function fetchData(endpoint, queryObj = {}) {
       const text = await res.text();
       throw new Error(`Failed to fetch ${endpoint}: ${res.status} ${text}`);
     }
+
+    return res.json();
   } catch (error) {
     console.error(`Failed to fetch >>>>>>>>>>>>>>>>>>>>>>>>`, error);
+    throw error;
   }
-
-  return res.json(); // <- this restores old axios-like shape
 }

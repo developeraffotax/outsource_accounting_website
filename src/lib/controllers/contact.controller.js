@@ -1,10 +1,8 @@
 import { sendAutoMail } from "@/lib/services/Email.services.js";
 
-const dataHandler = async (req, res) => {
-  const value = req.body;
-
+const validateContactPayload = (value) => {
   const { name, company, companyTurnover, email } = value;
-  const isValid =
+  return (
     typeof name === "string" &&
     name.trim() !== "" &&
     typeof company === "string" &&
@@ -12,19 +10,22 @@ const dataHandler = async (req, res) => {
     typeof companyTurnover === "string" &&
     companyTurnover.trim() !== "" &&
     typeof email === "string" &&
-    email.trim() !== "";
-
-  console.log("Is data valid?", isValid);
-
-  if (!isValid) {
-    console.log("Missing or invalid data. Mail NOT sent.");
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  console.log("✅ All data present. Sending mail...");
-  await sendAutoMail(value);
-
-  return res.status(200).json({ message: "Success" });
+    email.trim() !== ""
+  );
 };
 
-export { dataHandler };
+const processContactRequest = async (value) => {
+  if (!validateContactPayload(value)) {
+    return { status: 400, body: { error: "All fields are required" } };
+  }
+
+  await sendAutoMail(value);
+  return { status: 200, body: { message: "Success" } };
+};
+
+const dataHandler = async (req, res) => {
+  const result = await processContactRequest(req.body);
+  return res.status(result.status).json(result.body);
+};
+
+export { dataHandler, processContactRequest };

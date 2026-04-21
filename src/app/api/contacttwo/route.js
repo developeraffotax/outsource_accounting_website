@@ -1,23 +1,33 @@
 import { NextResponse } from "next/server";
-import { contacttwo } from "@/lib/controllers/contacttwo.controller";
+import { processContactTwoRequest } from "@/lib/controllers/contacttwo.controller";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-
-    const req = { body };
-    const res = {
-      status: (code) => ({
-        json: (data) => NextResponse.json(data, { status: code }),
-      }),
-    };
-
-    return await contacttwo(req, res);
+    const result = await processContactTwoRequest(body);
+    return NextResponse.json(result.body, { status: result.status });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Contact form error:", {
+      message: error?.message,
+      code: error?.code,
+      statusCode: error?.statusCode,
+      causeMessage: error?.cause?.message,
+    });
+
+    const status = error?.statusCode || 500;
+    const message =
+      status >= 400 && status < 500
+        ? error?.message || "Request failed"
+        : error?.code === "MAIL_DELIVERY_FAILED"
+          ? "Failed to deliver email"
+          : "Failed to send message";
+
     return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
+      {
+        error: message,
+        code: error?.code || "INTERNAL_ERROR",
+      },
+      { status },
     );
   }
 }

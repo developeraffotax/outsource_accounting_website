@@ -1,20 +1,8 @@
 import { sendAutoMailTwo } from "@/lib/services/emailTwo.services.js";
 
-const contacttwo = async (req, res) => {
-  const val = req.body;
-  // 🐛 DEBUG: Log received data
-  console.log("📥 Received data:", val);
-  console.log("📋 Data types:", {
-    fullname: typeof val.fullname,
-    companyName: typeof val.companyName,
-    email: typeof val.email,
-    serviceType: typeof val.serviceType,
-    message: typeof val.message,
-  });
-
+const validateContactTwoPayload = (val) => {
   const { fullname, companyName, email, serviceType, message } = val;
-
-  const isValid =
+  return (
     typeof val.fullname === "string" &&
     fullname.trim() !== "" &&
     typeof val.companyName === "string" &&
@@ -23,23 +11,23 @@ const contacttwo = async (req, res) => {
     email.trim() !== "" &&
     typeof val.serviceType === "string" &&
     serviceType.trim() !== "" &&
-    typeof val.message == "string" &&
-    message.trim() !== "";
-
-  if (!isValid) {
-    console.log("❌ Validation failed!");
-    return res.status(400).json({ error: "All Fields are required" });
-  }
-
-  try {
-    await sendAutoMailTwo(val);
-    return res.status(200).json({ message: "Success" });
-  } catch (error) {
-    console.error("Email service error:", error);
-    return res.status(500).json({ error: "Failed to send email" });
-  }
-
-  res.status(200).json({ message: "Mail sent" });
+    typeof val.message === "string" &&
+    message.trim() !== ""
+  );
 };
 
-export { contacttwo };
+const processContactTwoRequest = async (val) => {
+  if (!validateContactTwoPayload(val)) {
+    return { status: 400, body: { error: "All Fields are required" } };
+  }
+
+  await sendAutoMailTwo(val);
+  return { status: 200, body: { message: "Success" } };
+};
+
+const contacttwo = async (req, res) => {
+  const result = await processContactTwoRequest(req.body);
+  return res.status(result.status).json(result.body);
+};
+
+export { contacttwo, processContactTwoRequest };

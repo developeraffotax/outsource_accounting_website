@@ -1,15 +1,8 @@
 import { mailtransporter } from "@/lib/config/mail.config.js";
-import nodemailer from "nodemailer";
 
 const sendAutoMail = async (data) => {
   try {
-    //get configure transporter
     const transporter = await mailtransporter();
-
-    //extract data
-    // const data = req.body;
-
-    //configure email
 
     const mailSetup = {
       from: process.env.FROM_EMAIL,
@@ -51,14 +44,16 @@ const sendAutoMail = async (data) => {
     `,
     };
 
-    //send email
     const info = await transporter.sendMail(mailSetup);
 
     console.log("Message sent", info.messageId);
-
-    console.log("preview mail", nodemailer.getTestMessageUrl(info));
   } catch (err) {
     console.error("mail not sent", err);
+    throw Object.assign(new Error("Failed to send contact email"), {
+      statusCode: 502,
+      code: "MAIL_DELIVERY_FAILED",
+      cause: err,
+    });
   }
 };
 

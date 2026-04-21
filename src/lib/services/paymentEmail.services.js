@@ -69,6 +69,11 @@ export const sendCustomerPaymentEmail = async ({
     console.log(`Customer payment email sent to ${customerEmail}`);
   } catch (err) {
     console.error("Failed to send customer payment email:", err);
+    throw Object.assign(new Error("Failed to send customer payment email"), {
+      statusCode: 502,
+      code: "MAIL_DELIVERY_FAILED",
+      cause: err,
+    });
   }
 };
 
@@ -121,5 +126,10 @@ export const sendAdminPaymentEmail = async ({
     console.log(`Admin payment notification sent to ${process.env.MAIL_TO}`);
   } catch (err) {
     console.error("Failed to send admin payment email:", err);
+    throw Object.assign(new Error("Failed to send admin payment email"), {
+      statusCode: 502,
+      code: "MAIL_DELIVERY_FAILED",
+      cause: err,
+    });
   }
 };

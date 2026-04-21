@@ -1,25 +1,33 @@
 import { NextResponse } from "next/server";
-import { dataHandler } from "@/lib/controllers/contact.controller";
+import { processContactRequest } from "@/lib/controllers/contact.controller";
 
 export async function POST(request) {
   try {
-    // Parse the JSON body
     const body = await request.json();
-
-    // Create a mock req/res object for the controller
-    const req = { body };
-    const res = {
-      status: (code) => ({
-        json: (data) => NextResponse.json(data, { status: code }),
-      }),
-    };
-
-    return await dataHandler(req, res);
+    const result = await processContactRequest(body);
+    return NextResponse.json(result.body, { status: result.status });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Contact form error:", {
+      message: error?.message,
+      code: error?.code,
+      statusCode: error?.statusCode,
+      causeMessage: error?.cause?.message,
+    });
+
+    const status = error?.statusCode || 500;
+    const message =
+      status >= 400 && status < 500
+        ? error?.message || "Request failed"
+        : error?.code === "MAIL_DELIVERY_FAILED"
+          ? "Failed to deliver email"
+          : "Failed to send message";
+
     return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
+      {
+        error: message,
+        code: error?.code || "INTERNAL_ERROR",
+      },
+      { status },
     );
   }
 }
