@@ -24,7 +24,7 @@ const HowWeWork = ({
             alt="Service Icon"
             className="w-1/3 md:w-2/3 aspect-square max-w-50 border rounded-full border-gray-600 shadow-2xl p-12 mb-6 object-contain self-center"
           />
-
+            
           <h2 className="font-semibold mb-3 text-lg ">Choose Your Service</h2>
           <p className="text-gray-600">{description}</p>
         </div>
