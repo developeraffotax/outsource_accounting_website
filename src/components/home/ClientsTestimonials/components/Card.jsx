@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ index, bgImg, personImg, name, title, description }) => {
   return (
-    <div className="relative min-w-64 md:min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-start shadow-sm hover:shadow-md transition-shadow">
+    <div className="relative min-w-64 md:min-w-75 w-full max-w-87.5 border border-gray-200 rounded-2xl overflow-hidden shrink-0 bg-white snap-center shadow-sm hover:shadow-md transition-shadow">
       <div className="relative w-full h-48 [clip-path:polygon(0%_0%,100%_0%,100%_60%,0%_100%)]">
         <img
           src={bgImg}
