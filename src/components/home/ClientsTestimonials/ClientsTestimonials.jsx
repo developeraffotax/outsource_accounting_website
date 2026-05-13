@@ -29,7 +29,7 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
         <div className="hidden md:flex absolute right-0 gap-4">
           <button
             onClick={scrollLeft}
-            className="h-auto w-auto rounded-full hover:bg-gray-200 transition-colors bg-white"
+            className="h-auto w-auto rounded-full hover:bg-gray-200 cursor-pointer transition-colors bg-white"
           >
             <img
               src={arrow.src}
@@ -39,7 +39,7 @@ const ClientsTestimonials = ({ heading, testimonialCards }) => {
           </button>
           <button
             onClick={scrollRight}
-            className="h-auto w-auto rounded-full hover:bg-gray-200 transition-colors bg-white"
+            className="h-auto w-auto rounded-full hover:bg-gray-200 cursor-pointer transition-colors bg-white"
           >
             <img src={arrow.src} alt="Next" className="w-6 h-6" />
           </button>
