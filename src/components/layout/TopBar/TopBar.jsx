@@ -6,23 +6,20 @@ const TopBar = async () => {
   return (
     <Container
       withYPadding={false}
-      className="w-full bg-(--color-veryLightBlue) text-gray-800 text-xs flex items-center  z-1001 flex-wrap py-2"
+      className="w-full bg-gray-50 text-gray-800  text-xs flex items-center  z-1001 flex-wrap py-2"
     >
-      <div className="flex items-center ml-auto pb-1 pt-1 flex-wrap justify-center">
-        <div className="contact-item pt-1 pb-1 mr-4 flex items-center">
+      <div className="flex items-center ml-auto flex-wrap justify-center">
+        <div className="contact-item  mr-4 flex items-center">
           <img
             src="/images/NavbarTopBar/TopBar/MailIcon.png"
             alt="mail"
             className="icon p-1"
           />
-          <a
-            className="value text-nowrap"
-            href={content.mailtoHref}
-          >
+          <a className="value text-nowrap" href={content.mailtoHref}>
             {content.email}
           </a>
         </div>
-        <div className="contact-item pt-1 pb-1 mr-4 flex items-center ">
+        <div className="contact-item  mr-4 flex items-center ">
           <img
             src="/images/NavbarTopBar/TopBar/CallIcon.png"
             alt="phone"
@@ -32,14 +29,14 @@ const TopBar = async () => {
             {content.number}
           </a>
         </div>
-        <div className="contact-item pt-1 pb-1 flex items-center ">
+        <div className="contact-item  flex items-center ">
           <img
             src="/images/NavbarTopBar/TopBar/WhatsappIcon.png"
             alt="whatsapp"
             className="icon p-1"
           />
           <a
-            className="value text-nowrap  font-medium transition-colors"
+            className="value text-nowrap "
             href={content.whatsappHref || "#"}
             target="_blank"
             rel="noreferrer"

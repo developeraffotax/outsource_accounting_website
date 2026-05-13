@@ -19,9 +19,9 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
       {/* Desktop  */}
       <Container
         withYPadding={false}
-        className="w-full z-999 shadow py-2 bg-white items-center justify-between hidden md:flex sticky top-0"
+        className="w-full z-999 shadow py-3 bg-white items-center justify-between hidden md:flex sticky top-0"
       >
-        <div className="flex items-center justify-between w-full py-3 ">
+        <div className="flex items-center justify-between w-full">
           <Link href="/" className="navbar-logo cursor-pointer hidden lg:block">
             <img src={CompanyLogo.src} alt="Company Logo" />
           </Link>
@@ -66,10 +66,10 @@ const Navbar = ({ buyNowSlot, mobileBuyNowSlot }) => {
       {/* Mobile  */}
       <Container
         withYPadding={false}
-        className="md:hidden w-full bg-white shadow-sm sticky top-0 z-999"
+        className="md:hidden w-full py-3 bg-white shadow-sm sticky top-0 z-999"
       >
         <nav>
-          <div className="relative w-full px-4 py-3 flex justify-between items-center">
+          <div className="relative w-full px-4  flex justify-between items-center">
             <Link href="/" className="navbar-logo cursor-pointer">
               <img src={CompanyLogo.src} alt="Company Logo" />
             </Link>
