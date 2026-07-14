@@ -398,3 +398,405 @@ const QuoteForm = ({ onSuccess }) => {
 };
 
 export default QuoteForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+// import { useForm, Controller } from "react-hook-form";
+// import { toast } from "react-toastify";
+// import axios from "axios";
+// import { useState, useRef, useEffect, useCallback } from "react";
+// import { ChevronDown, Sparkles } from "lucide-react";
+
+// // --- Turnover Options ---
+// const turnoverOptions = [
+//   { value: "under_50k", label: "Under £50,000" },
+//   { value: "50k_150k", label: "£50,000 - £150,000" },
+//   { value: "150k_500k", label: "£150,000 - £500,000" },
+//   { value: "over_500k", label: "Over £500,000" },
+// ];
+
+// // --- Enhanced Custom Select ---
+// const CustomSelect = ({ control, name, error, rules }) => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+//   const containerRef = useRef(null);
+//   const listRef = useRef(null);
+//   const triggerRef = useRef(null);
+
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (
+//         containerRef.current &&
+//         !containerRef.current.contains(event.target)
+//       ) {
+//         setIsOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => document.removeEventListener("mousedown", handleClickOutside);
+//   }, []);
+
+//   const handleKeyDown = useCallback(
+//     (e, field) => {
+//       if (!isOpen) {
+//         if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+//           e.preventDefault();
+//           setIsOpen(true);
+//           setHighlightedIndex(0);
+//         }
+//         return;
+//       }
+
+//       switch (e.key) {
+//         case "ArrowDown":
+//           e.preventDefault();
+//           setHighlightedIndex((prev) =>
+//             prev < turnoverOptions.length - 1 ? prev + 1 : 0,
+//           );
+//           break;
+//         case "ArrowUp":
+//           e.preventDefault();
+//           setHighlightedIndex((prev) =>
+//             prev > 0 ? prev - 1 : turnoverOptions.length - 1,
+//           );
+//           break;
+//         case "Enter":
+//         case " ":
+//           e.preventDefault();
+//           if (highlightedIndex >= 0) {
+//             const option = turnoverOptions[highlightedIndex];
+//             field.onChange(option.value);
+//             setIsOpen(false);
+//           }
+//           break;
+//         case "Escape":
+//           e.preventDefault();
+//           setIsOpen(false);
+//           triggerRef.current?.focus();
+//           break;
+//         case "Tab":
+//           setIsOpen(false);
+//           break;
+//         default:
+//           const letter = e.key.toLowerCase();
+//           if (letter.length === 1) {
+//             const index = turnoverOptions.findIndex((opt) =>
+//               opt.label.toLowerCase().startsWith(letter),
+//             );
+//             if (index !== -1) {
+//               setHighlightedIndex(index);
+//               listRef.current?.children[index]?.scrollIntoView({
+//                 block: "nearest",
+//               });
+//             }
+//           }
+//       }
+//     },
+//     [isOpen, highlightedIndex],
+//   );
+
+//   useEffect(() => {
+//     if (isOpen && highlightedIndex >= 0 && listRef.current) {
+//       listRef.current.children[highlightedIndex]?.scrollIntoView({
+//         block: "nearest",
+//       });
+//     }
+//   }, [highlightedIndex, isOpen]);
+
+//   return (
+//     <div className="relative" ref={containerRef}>
+//       <label className="block text-sm font-medium text-gray-700 mb-2">
+//         Company Turnover
+//       </label>
+//       <Controller
+//         name={name}
+//         control={control}
+//         rules={rules}
+//         render={({ field }) => {
+//           const selectedOption = turnoverOptions.find(
+//             (opt) => opt.value === field.value,
+//           );
+
+//           return (
+//             <>
+//               <button
+//                 ref={triggerRef}
+//                 type="button"
+//                 onClick={() => setIsOpen(!isOpen)}
+//                 onKeyDown={(e) => handleKeyDown(e, field)}
+//                 className={`w-full px-4 py-3.5 bg-gray-50/50 border rounded-xl text-sm text-left flex items-center justify-between outline-none transition-all duration-200 ${
+//                   isOpen
+//                     ? "bg-white border-gray-900 ring-1 ring-gray-900 shadow-sm"
+//                     : "border-gray-200 hover:bg-gray-100/50 hover:border-gray-300"
+//                 } ${error ? "!border-red-500 !ring-1 !ring-red-500 bg-red-50/20" : ""}`}
+//                 aria-haspopup="listbox"
+//                 aria-expanded={isOpen}
+//               >
+//                 <span
+//                   className={selectedOption ? "text-gray-900 font-medium" : "text-gray-400"}
+//                 >
+//                   {selectedOption?.label || "Select turnover amount..."}
+//                 </span>
+//                 <ChevronDown
+//                   size={18}
+//                   className={`text-gray-400 transition-transform duration-300 ${
+//                     isOpen ? "rotate-180 text-gray-900" : ""
+//                   }`}
+//                 />
+//               </button>
+
+//               <div
+//                 className={`absolute z-30 mt-2 w-full max-h-60 overflow-auto rounded-xl border border-gray-200/50 bg-white/90 backdrop-blur-xl p-1.5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] transition-all duration-200 ease-out origin-top ${
+//                   isOpen
+//                     ? "opacity-100 translate-y-0 scale-100"
+//                     : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+//                 }`}
+//                 role="listbox"
+//               >
+//                 <div ref={listRef} className="space-y-0.5">
+//                   {turnoverOptions.map((option, index) => (
+//                     <div
+//                       key={option.value}
+//                       onClick={() => {
+//                         field.onChange(option.value);
+//                         setIsOpen(false);
+//                         triggerRef.current?.focus();
+//                       }}
+//                       onMouseEnter={() => setHighlightedIndex(index)}
+//                       className={`px-3 py-2.5 text-sm rounded-lg cursor-pointer transition-colors duration-150 flex items-center justify-between ${
+//                         field.value === option.value
+//                           ? "bg-gray-900 text-white font-medium"
+//                           : highlightedIndex === index
+//                             ? "bg-gray-100 text-gray-900"
+//                             : "text-gray-700 hover:bg-gray-50"
+//                       }`}
+//                       role="option"
+//                       aria-selected={field.value === option.value}
+//                     >
+//                       <span>{option.label}</span>
+//                       {field.value === option.value && (
+//                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+//                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+//                         </svg>
+//                       )}
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             </>
+//           );
+//         }}
+//       />
+//       {error && (
+//         <p className="mt-1.5 text-red-500 text-xs font-medium flex items-center gap-1 animate-in fade-in">
+//           <span className="w-1 h-1 rounded-full bg-red-500"></span>
+//           {error.message}
+//         </p>
+//       )}
+//     </div>
+//   );
+// };
+
+// // --- QuoteForm ---
+// const QuoteForm = ({ onSuccess }) => {
+//   const {
+//     handleSubmit,
+//     control,
+//     formState: { errors, isSubmitting },
+//     reset,
+//   } = useForm({
+//     defaultValues: {
+//       name: "",
+//       company: "",
+//       email: "",
+//       companyTurnover: "",
+//     },
+//   });
+
+//   const onSubmit = async (data) => {
+//     try {
+//       const res = await axios.post(`/api/contact`, data);
+//       toast.success(
+//         <div className="text-sm">
+//           <p className="font-semibold text-gray-900">Quote Request Received</p>
+//           <p className="text-xs text-gray-500 mt-0.5">
+//             Thanks for reaching out! We’ll be in touch soon with the details.
+//           </p>
+//         </div>,
+//       );
+//       reset();
+//     } catch (error) {
+//       toast.error("Failed to send message");
+//     }
+//   };
+
+//   return (
+//     <div className="w-full max-w-2xl mx-auto p-1">
+//       {/* 
+//         NEW BACKGROUND: 
+//         A gorgeous frosted glass container with a subtle gradient and soft shadow.
+//         Ensure your parent container has some background color or image to see the blur effect beautifully.
+//       */}
+//       <form 
+//         onSubmit={handleSubmit(onSubmit)} 
+//         className="relative bg-white/70 backdrop-blur-xl border border-white p-8 md:p-10 rounded-[2rem] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] space-y-6"
+//       >
+//         <div className="space-y-1 mb-8">
+//           <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Request a Quote</h2>
+//           <p className="text-sm text-gray-500">Fill in your details below and we'll get right back to you.</p>
+//         </div>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//           {/* Name field */}
+//           <div className="relative">
+//             <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+//             <Controller
+//               name="name"
+//               control={control}
+//               rules={{ required: "Name is required" }}
+//               render={({ field }) => (
+//                 <input
+//                   type="text"
+//                   placeholder="John Doe"
+//                   className={`w-full px-4 py-3.5 bg-gray-50/50 border rounded-xl text-sm placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 outline-none transition-all duration-200 ${
+//                     errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500 bg-red-50/20" : "border-gray-200 hover:border-gray-300"
+//                   }`}
+//                   {...field}
+//                 />
+//               )}
+//             />
+//             {errors.name && (
+//               <p className="mt-1.5 text-red-500 text-xs font-medium flex items-center gap-1 animate-in fade-in">
+//                 <span className="w-1 h-1 rounded-full bg-red-500"></span>
+//                 {errors.name.message}
+//               </p>
+//             )}
+//           </div>
+
+//           {/* Company field */}
+//           <div className="relative">
+//             <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
+//             <Controller
+//               name="company"
+//               control={control}
+//               rules={{ required: "Company is required" }}
+//               render={({ field }) => (
+//                 <input
+//                   type="text"
+//                   placeholder="Acme Corp"
+//                   className={`w-full px-4 py-3.5 bg-gray-50/50 border rounded-xl text-sm placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 outline-none transition-all duration-200 ${
+//                     errors.company ? "border-red-500 focus:border-red-500 focus:ring-red-500 bg-red-50/20" : "border-gray-200 hover:border-gray-300"
+//                   }`}
+//                   {...field}
+//                 />
+//               )}
+//             />
+//             {errors.company && (
+//               <p className="mt-1.5 text-red-500 text-xs font-medium flex items-center gap-1 animate-in fade-in">
+//                 <span className="w-1 h-1 rounded-full bg-red-500"></span>
+//                 {errors.company.message}
+//               </p>
+//             )}
+//           </div>
+//         </div>
+
+//         {/* Custom Turnover Dropdown */}
+//         <CustomSelect
+//           name="companyTurnover"
+//           control={control}
+//           error={errors.companyTurnover}
+//           rules={{ required: "Please select a turnover bracket" }}
+//         />
+
+//         {/* Email field */}
+//         <div className="relative !mb-10">
+//           <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+//           <Controller
+//             name="email"
+//             control={control}
+//             rules={{ required: "Email is required" }}
+//             render={({ field }) => (
+//               <input
+//                 type="email"
+//                 placeholder="john@acme.com"
+//                 className={`w-full px-4 py-3.5 bg-gray-50/50 border rounded-xl text-sm placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 outline-none transition-all duration-200 ${
+//                   errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500 bg-red-50/20" : "border-gray-200 hover:border-gray-300"
+//                 }`}
+//                 {...field}
+//               />
+//             )}
+//           />
+//           {errors.email && (
+//             <p className="mt-1.5 text-red-500 text-xs font-medium flex items-center gap-1 animate-in fade-in">
+//               <span className="w-1 h-1 rounded-full bg-red-500"></span>
+//               {errors.email.message}
+//             </p>
+//           )}
+//         </div>
+
+//         {/* 
+//           NEW BUTTON: 
+//           Midnight gradient, pill-shaped, premium lift effect on hover.
+//         */}
+//         <div className="pt-2">
+//           <button
+//             type="submit"
+//             disabled={isSubmitting}
+//             className={`w-full md:w-2/3 lg:w-1/2 mx-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-b from-gray-800 to-black text-white text-sm font-semibold tracking-wide shadow-[0_8px_20px_rgb(0,0,0,0.16)] hover:shadow-[0_15px_25px_rgb(0,0,0,0.2)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 ${
+//               isSubmitting ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
+//             }`}
+//           >
+//             {isSubmitting ? (
+//               <>
+//                 <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+//                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+//                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+//                 </svg>
+//                 <span>Processing...</span>
+//               </>
+//             ) : (
+//               <>
+//                 <Sparkles size={16} className="text-gray-300" />
+//                 <span>Submit Request</span>
+//               </>
+//             )}
+//           </button>
+//         </div>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default QuoteForm;

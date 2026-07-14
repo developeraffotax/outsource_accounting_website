@@ -76,6 +76,12 @@ const Hero = ({
               <QuoteFormHH />
             </div>
           </div>
+
+          {/* <div className="w-full lg:col-span-6 xl:col-span-5">
+             
+              <QuoteFormHH />
+            </div>
+          </div> */}
         </div>
       </Container>
 
