@@ -38,7 +38,7 @@ const QuoteForm = ({ onSuccess }) => {
       reset();
 
       if (onSuccess) {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         onSuccess();
       }
     } catch (error) {

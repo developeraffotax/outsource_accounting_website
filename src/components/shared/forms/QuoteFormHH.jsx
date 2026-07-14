@@ -8,8 +8,8 @@ import { ChevronDown } from "lucide-react";
 // --- Turnover Options ---
 const turnoverOptions = [
   { value: "under_50k", label: "Under £50,000" },
-  { value: "50k_150k", label: "£50,000 – £150,000" },
-  { value: "150k_500k", label: "£150,000 – £500,000" },
+  { value: "50k_150k", label: "£50,000 - £150,000" },
+  { value: "150k_500k", label: "£150,000 - £500,000" },
   { value: "over_500k", label: "Over £500,000" },
 ];
 
@@ -230,12 +230,18 @@ const CustomSelect = ({ control, name, error, rules }) => {
 // --- QuoteForm (unchanged except adding control) ---
 const QuoteForm = ({ onSuccess }) => {
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: "",
+      company: "",
+      email: "",
+      companyTurnover: "",
+    },
+  });
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -252,9 +258,9 @@ const QuoteForm = ({ onSuccess }) => {
       );
       reset();
 
-      if (onSuccess) {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      }
+      // if (onSuccess) {
+      //   await new Promise((resolve) => setTimeout(resolve, 2000));
+      // }
     } catch (error) {
       console.log("error occued hero ", error);
       toast.error("failed to send message");
@@ -263,13 +269,20 @@ const QuoteForm = ({ onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* Name field — unchanged */}
+      {/* Name field — now controlled */}
       <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Enter Full Name"
-          className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
-          {...register("name", { required: true })}
+        <Controller
+          name="name"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              type="text"
+              placeholder="Enter Full Name"
+              className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
+              {...field}
+            />
+          )}
         />
         {errors.name && (
           <div className="flex items-center gap-1.5 mt-1 px-2 py-1 bg-red-50 border-l-2 border-red-500 rounded-r-md">
@@ -291,13 +304,20 @@ const QuoteForm = ({ onSuccess }) => {
         )}
       </div>
 
-      {/* Company field — unchanged */}
+      {/* Company field — now controlled */}
       <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Enter Company Name"
-          className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
-          {...register("company", { required: true })}
+        <Controller
+          name="company"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              type="text"
+              placeholder="Enter Company Name"
+              className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
+              {...field}
+            />
+          )}
         />
         {errors.company && (
           <div className="mt-2 flex items-center gap-2 px-3 py-2 bg-red-50 border-l-4 border-red-500 rounded-r-md animate-in fade-in slide-in-from-top-1 duration-200">
@@ -327,13 +347,20 @@ const QuoteForm = ({ onSuccess }) => {
         rules={{ required: "Please select a turnover" }}
       />
 
-      {/* Email field — unchanged */}
+      {/* Email field — now controlled */}
       <div className="mb-6">
-        <input
-          type="email"
-          placeholder="Enter Email"
-          className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
-          {...register("email", { required: true })}
+        <Controller
+          name="email"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              type="email"
+              placeholder="Enter Email"
+              className="w-full p-4 bg-white border border-gray-300 rounded text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-300 outline-none"
+              {...field}
+            />
+          )}
         />
         {errors.email && (
           <div className="mt-2 flex items-center gap-2 px-3 py-2 bg-red-50 border-l-4 border-red-500 rounded-r-md animate-in fade-in slide-in-from-top-1">

@@ -131,11 +131,16 @@ const siteSchema = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${inter.className}`}>
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
+      </head>
+
+
+      <body className={`${inter.variable} ${inter.className}`} suppressHydrationWarning>
+       
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JVX03L2MCN"
           strategy="afterInteractive"
@@ -148,6 +153,9 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-JVX03L2MCN');
           `}
         </Script>
+
+
+        
         <TopBar />
         <Navbar
           buyNowSlot={<APICall />}
