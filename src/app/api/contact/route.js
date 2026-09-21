@@ -5,6 +5,7 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const result = await processContactRequest(body);
+    console.log("result ", result)
     return NextResponse.json(result.body, { status: result.status });
   } catch (error) {
     console.error("Contact form error:", {
@@ -21,6 +22,9 @@ export async function POST(request) {
         : error?.code === "MAIL_DELIVERY_FAILED"
           ? "Failed to deliver email"
           : "Failed to send message";
+
+
+          console.log("ERROR ", error)
 
     return NextResponse.json(
       {

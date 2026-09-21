@@ -1,7 +1,12 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 import axios from "axios";
+import parsePhoneNumberFromString, {
+  isValidPhoneNumber,
+} from "libphonenumber-js";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const fieldClassName =
   "mt-1 block w-full border-0 border-b border-slate-400/80 bg-transparent px-0 pb-2.5 pt-1 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:border-(--color-buttonBlue) focus:outline-none focus:ring-0";
@@ -9,22 +14,53 @@ const fieldClassName =
 const labelClassName =
   "block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const ErrorMessage = ({ message }) => (
   <p className="mt-1 text-[11px] font-semibold text-red-600">{message}</p>
 );
 
 const QuoteForm = ({ onSuccess }) => {
+  // Changing this key remounts the Turnstile widget, giving a fresh token.
+  const [turnstileKey, setTurnstileKey] = useState(0);
+
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    getValues,
+    trigger,
+    setValue,
+    formState: { errors, isSubmitting, isSubmitted },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: "",
+      company: "",
+      companyTurnover: "",
+      email: "",
+      phone: "",
+      hp_field: "", // honeypot
+      turnstileToken: "",
+    },
+  });
+
+  // Turnstile tokens are single-use, so clear the token and remount the
+  // widget after every submit attempt (success or failure).
+  const resetTurnstile = () => {
+    setValue("turnstileToken", "");
+    setTurnstileKey((k) => k + 1);
+  };
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const payload = {
+      ...data,
+      email: data.email.trim(),
+      phone: data.phone.trim(),
+    };
+
     try {
-      await axios.post(`/api/contact`, data);
+      await axios.post(`/api/contact`, payload);
       toast.success(
         <div>
           <p className="font-bold">Quote Request Received</p>
@@ -34,23 +70,50 @@ const QuoteForm = ({ onSuccess }) => {
           </p>
         </div>,
       );
-      // toast.success(res.data.message);
       reset();
+      resetTurnstile();
 
       if (onSuccess) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         onSuccess();
       }
     } catch (error) {
-      console.log("error occued hero ", error);
-      toast.error("failed to send message");
+      console.log("error occured hero ", error);
+      toast.error("Failed to send message");
+      resetTurnstile();
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
+      noValidate
       className="relative overflow-hidden rounded-[28px] border border-(--color-linearBar) bg-white shadow-[0_28px_80px_rgba(23,33,58,0.22)]"
     >
+      {/* Honeypot: hidden from users, bots will fill it */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          top: "auto",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+        }}
+      >
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="new-password"
+          data-lpignore="true"
+          data-1p-ignore="true"
+          data-bwignore="true"
+          data-form-type="other"
+          {...register("hp_field")}
+        />
+      </div>
+
       <div className="grid md:grid-cols-[1.05fr_0.95fr]">
         <div className="relative overflow-hidden bg-(--color-veryLightBlue) px-4 py-8 sm:px-8 md:px-10 md:py-10">
           <p className="text-3xl font-semibold leading-[1.12] text-slate-800 sm:text-4xl">
@@ -87,6 +150,7 @@ const QuoteForm = ({ onSuccess }) => {
           </p>
 
           <div className="mt-7 space-y-6">
+            {/* Name */}
             <div>
               <label htmlFor="quote-name" className={labelClassName}>
                 Full Name
@@ -96,11 +160,12 @@ const QuoteForm = ({ onSuccess }) => {
                 type="text"
                 placeholder="Enter Full Name"
                 className={fieldClassName}
-                {...register("name", { required: true })}
+                {...register("name", { required: "Name is required" })}
               />
-              {errors.name && <ErrorMessage message="Name is required" />}
+              {errors.name && <ErrorMessage message={errors.name.message} />}
             </div>
 
+            {/* Company */}
             <div>
               <label htmlFor="quote-company" className={labelClassName}>
                 Company Name
@@ -110,13 +175,16 @@ const QuoteForm = ({ onSuccess }) => {
                 type="text"
                 placeholder="Enter Company Name"
                 className={fieldClassName}
-                {...register("company", { required: true })}
+                {...register("company", {
+                  required: "Company name is required",
+                })}
               />
               {errors.company && (
-                <ErrorMessage message="Company name is required" />
+                <ErrorMessage message={errors.company.message} />
               )}
             </div>
 
+            {/* Turnover */}
             <div>
               <label htmlFor="quote-turnover" className={labelClassName}>
                 Company Turnover
@@ -128,6 +196,9 @@ const QuoteForm = ({ onSuccess }) => {
                   required: "Please select a turnover",
                 })}
               >
+                <option value="" disabled>
+                  Select Company Turnover
+                </option>
                 <option value="under_50k">Under £50,000</option>
                 <option value="50k_150k">£50,000 - £150,000</option>
                 <option value="150k_500k">£150,000 - £500,000</option>
@@ -138,6 +209,7 @@ const QuoteForm = ({ onSuccess }) => {
               )}
             </div>
 
+            {/* Email (required unless a phone number is given) */}
             <div>
               <label htmlFor="quote-email" className={labelClassName}>
                 Email Address
@@ -147,12 +219,80 @@ const QuoteForm = ({ onSuccess }) => {
                 type="email"
                 placeholder="Enter Email"
                 className={fieldClassName}
-                {...register("email", { required: true })}
+                {...register("email", {
+                  validate: (value) => {
+                    const email = value?.trim();
+                    const phone = getValues("phone")?.trim();
+
+                    if (!email && !phone) {
+                      return "Please provide either an email or a phone number";
+                    }
+                    if (email && !EMAIL_REGEX.test(email)) {
+                      return "Please enter a valid email address";
+                    }
+                    return true;
+                  },
+                })}
               />
-              {errors.email && (
-                <ErrorMessage
-                  message={errors.email.message || "Email is required"}
-                />
+              {errors.email && <ErrorMessage message={errors.email.message} />}
+            </div>
+
+            {/* Phone (optional if an email is given) */}
+            <div>
+              <label htmlFor="quote-phone" className={labelClassName}>
+                Phone Number
+              </label>
+              <input
+                id="quote-phone"
+                type="tel"
+                placeholder="Enter Phone Number"
+                className={fieldClassName}
+                {...register("phone", {
+                  validate: (value) => {
+                    const phone = value?.trim();
+                    if (!phone) return true; // "email or phone" rule is reported on the email field
+
+                    const parsed = parsePhoneNumberFromString(phone, "GB");
+                    if (parsed?.isValid()) return true;
+                    if (isValidPhoneNumber(phone)) return true;
+                    return "Please enter a valid phone number";
+                  },
+                  // Once the form has been submitted, keep the email error in
+                  // sync as the user fills in / clears the phone number.
+                  onChange: () => {
+                    if (isSubmitted) trigger("email");
+                  },
+                })}
+              />
+              {errors.phone && <ErrorMessage message={errors.phone.message} />}
+              <p className="mt-2 text-[11px] text-slate-500">
+                Provide an email, a phone number, or both.
+              </p>
+            </div>
+
+            {/* Cloudflare Turnstile */}
+            <div className="w-full">
+              <Controller
+                name="turnstileToken"
+                control={control}
+                rules={{ required: "Please complete the security check" }}
+                render={({ field }) => (
+                  <Turnstile
+                    key={turnstileKey}
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    onSuccess={(token) => field.onChange(token)}
+                    onError={() => field.onChange("")}
+                    onExpire={() => field.onChange("")}
+                    options={{
+                      theme: "light",
+                      size: "flexible",
+                      appearance: "interaction-only", // only visible when Cloudflare needs a click
+                    }}
+                  />
+                )}
+              />
+              {errors.turnstileToken && (
+                <ErrorMessage message={errors.turnstileToken.message} />
               )}
             </div>
           </div>
