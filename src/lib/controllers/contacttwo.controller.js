@@ -24,7 +24,6 @@ const validateContactTwoPayload = (val) => {
 
   return (
     hasFullname &&
-    hasCompanyName &&
     hasServiceType &&
     hasMessage &&
     hasContactMethod

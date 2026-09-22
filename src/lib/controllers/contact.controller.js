@@ -19,7 +19,7 @@ const validateContactPayload = (value) => {
   // At least one of email or phone must be present
   const hasContactMethod = hasEmail || hasPhone;
 
-  return hasName && hasCompany && hasTurnover && hasContactMethod;
+  return hasName && hasTurnover && hasContactMethod;
 };
 
 const processContactRequest = async (value) => {
