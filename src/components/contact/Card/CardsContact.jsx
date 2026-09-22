@@ -1,6 +1,6 @@
-const CardsContact = ({ img, title, description, details }) => {
+const CardsContact = ({ img, title, description, details, href }) => {
   return (
-    <div className="flex items-start gap-3 md:gap-4 border border-purple-200 rounded-2xl p-3 md:p-6 lg:p-8 my-2 md:my-4 w-full">
+    <div className="flex items-start gap-3 md:gap-4 border-b last:border-b-0 lg:border lg:last:border border-purple-200 lg:rounded-xl p-2 lg:p-4 px-6 my-1 lg:my-3 w-full">
       <div className="shrink-0">
         <img
           src={img}
@@ -12,12 +12,17 @@ const CardsContact = ({ img, title, description, details }) => {
         <h1 className="font-normal md:font-semibold wrap-break-word">
           {title}
         </h1>
-        <p className="font-light md:font-normal wrap-break-word">
+        <p className="font-light md:font-normal wrap-break-word text-xs">
           {description}
         </p>
-        <p className="font-normal lg:font-semibold wrap-break-word">
-          {details}
-        </p>
+        <a
+        href={`${href || "#"}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-normal lg:font-semibold wrap-break-word hover:text-blue-800"
+      >
+        {details}
+      </a>
       </div>
     </div>
   );

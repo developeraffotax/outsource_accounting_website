@@ -82,6 +82,7 @@ const normalizeGetInTouch = (value) => {
       const title = normalizeText(entry?.title);
       const description = normalizeText(entry?.description);
       const detail = normalizeText(entry?.detail);
+      const href = normalizeText(entry?.href);
       const rawImg =
         entry?.img?.url ||
         entry?.img?.path ||
@@ -90,7 +91,7 @@ const normalizeGetInTouch = (value) => {
         entry?.img ||
         "";
 
-      if (!title && !description && !detail && !rawImg) {
+      if (!title && !description && !detail && !rawImg && !href) {
         return null;
       }
 
@@ -99,6 +100,7 @@ const normalizeGetInTouch = (value) => {
         title,
         description,
         detail,
+        href,
         img: typeof rawImg === "string" ? toAbsoluteImageUrl(rawImg) : "",
       };
     })

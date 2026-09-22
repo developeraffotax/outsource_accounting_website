@@ -6,23 +6,30 @@ const CardContact = async () => {
   const res = await gitQuery();
   const content = res.data.getInTouch;
   return (
-    <div className="flex flex-col items-center lg:items-start mb-4 w-full">
-      <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-blue-800 text-center lg:text-left">
+    <div className="flex flex-col items-center lg:items-start  w-full">
+      <div className="w-full flex flex-col items-start gap-0 px-6 lg:px-0">
+
+        <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-blue-800 ">
         Get In Touch
       </h1>
-      <p className="text-center lg:text-left mb-3 md:mb-4 max-w-xl">
+      <p className="  text-xs lg:text-sm">
         Fill out the form and a member of our team will be in touch soon.
       </p>
+
+      
+      </div>
       {content.map((card, index) => {
         return (
-          <div key={card.id || index} className="w-full">
+          
             <CardsContact
               img={getImageUrl(card.img.url)}
               title={card.title}
               description={card.description}
               details={card.detail}
+              href={card.href}
+               key={card.id || index} 
             />
-          </div>
+           
         );
       })}
     </div>

@@ -72,12 +72,20 @@ const Formy = () => {
     }
   };
 
+  // Shared input styling for a compact enterprise look
+  const inputStyles =
+    "border border-slate-300 p-2 text-sm w-full rounded-md text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow bg-white";
+
   return (
-    <div className="w-full md:max-w-2xl lg:max-w-none flex flex-col justify-center border border-gray-600 rounded-2xl p-4 md:p-8 text-center lg:text-left shadow-lg shadow-black/10">
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-1 text-blue-800">
-        Message Us
-      </h1>
-      <p className="mb-2 text-gray-600">we get back to you in 24 hours</p>
+    <div className="w-full bg-slate-50 border border-slate-200 lg:rounded-xl p-6 shadow-sm">
+      <div className="mb-5">
+        <h2 className="text-xl md:text-2xl font-semibold text-slate-900 tracking-tight">
+          Message Us
+        </h2>
+        <p className="text-sm text-slate-500 mt-1">
+          we get back to you in 24 hours
+        </p>
+      </div>
 
       <form action="" onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Honeypot: hidden from users, bots will fill it */}
@@ -104,99 +112,112 @@ const Formy = () => {
           />
         </div>
 
-        {/* Full Name */}
-        <div className="mb-4">
-          <input
-            type="text"
-            {...register("fullname", { required: "Enter your name" })}
-            placeholder="Enter Your Full Name"
-            className="border border-gray-300  p-2 w-full rounded"
-          />
-          {errors.fullname && (
-            <p className="text-red-900 text-sm mt-1">
-              {errors.fullname.message}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Full Name */}
+          <div>
+            <input
+              type="text"
+              {...register("fullname", { required: "Enter your name" })}
+              placeholder="Enter Your Full Name"
+              className={inputStyles}
+            />
+            {errors.fullname && (
+              <p className="text-red-600 text-xs mt-1 font-medium">
+                {errors.fullname.message}
+              </p>
+            )}
+          </div>
+
+          {/* Company Name */}
+          <div>
+            <input
+              type="text"
+              {...register("companyName", {
+                // required: "Enter your company name",
+              })}
+              placeholder="Enter Company Name"
+              className={inputStyles}
+            />
+            {errors.companyName && (
+              <p className="text-red-600 text-xs mt-1 font-medium">
+                {errors.companyName.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+          {/* Email (required unless a phone number is given) */}
+          <div>
+            <input
+              type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
+              placeholder="Email"
+              className={inputStyles}
+            />
+            {errors.email && (
+              <p className="text-red-600 text-xs mt-1 font-medium">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          
+          <div>
+            <input
+              type="tel"
+              {...register("phone", {
+                validate: (value) => {
+                  if (!value || value.trim() === "") return true; // optional
+
+                  // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
+                  const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
+
+                  if (!/^\d+$/.test(cleaned)) {
+                    return "Phone number should only contain digits";
+                  }
+
+                  if (cleaned.length < 7 || cleaned.length > 15) {
+                    return "Phone number must be between 7 and 15 digits";
+                  }
+
+                  return true;
+                },
+              })}
+              placeholder="Phone Number"
+              className={inputStyles}
+            />
+            {errors.phone && (
+              <p className="text-red-600 text-xs mt-1 font-medium">
+                {errors.phone.message}
+              </p>
+            )}
+            
+          </div>
+
+         
+
+        </div>
+
+         <p className="text-slate-500 text-xs mt-1 mb-4">
+              Provide your email - a phone number is optional.
             </p>
-          )}
-        </div>
 
-        {/* Company Name */}
-        <div className="mb-4">
-          <input
-            type="text"
-            {...register("companyName", {
-              // required: "Enter your company name",
-            })}
-            placeholder="Enter Company Name"
-            className="border border-gray-300  p-2 w-full rounded"
-          />
-          {errors.companyName && (
-            <p className="text-red-900 text-sm mt-1">
-              {errors.companyName.message}
-            </p>
-          )}
-        </div>
-
-        {/* Email (required unless a phone number is given) */}
-        <div className="mb-4">
-          <input
-            type="email"
-            {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Please enter a valid email address",
-                      },
-                    })}
-            placeholder="Email"
-            className="border border-gray-300  p-2 w-full rounded"
-          />
-          {errors.email && (
-            <p className="text-red-900 text-sm mt-1">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Phone (optional if an email is given) */}
-        <div className="mb-4">
-          <input
-            type="tel"
-                           {...register("phone", {
-                  validate: (value) => {
-            if (!value || value.trim() === "") return true; // optional
-
-            // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
-            const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
-
-            if (!/^\d+$/.test(cleaned)) {
-              return "Phone number should only contain digits";
-            }
-
-            if (cleaned.length < 7 || cleaned.length > 15) {
-              return "Phone number must be between 7 and 15 digits";
-            }
-
-            return true;
-          },
- 
-                  
-                })}
-            placeholder="Phone Number"
-            className="border border-gray-300  p-2 w-full rounded"
-          />
-          {errors.phone && (
-            <p className="text-red-900 text-sm mt-1">{errors.phone.message}</p>
-          )}
-          <p className="text-gray-500 text-xs mt-1">
-            Provide your email - a phone number is optional.
-          </p>
-        </div>
 
         {/* Service Selection */}
         <div className="mb-4">
           <select
             {...register("serviceType", { required: "Select a service" })}
-            className="border border-gray-300  p-2 w-full rounded"
+            className={inputStyles}
+            defaultValue=""
           >
-            <option value="" disabled>
+            <option value="" disabled className="text-slate-400">
               Select Service
             </option>
             <option value="Accounts">Accounts</option>
@@ -208,7 +229,7 @@ const Formy = () => {
             <option value="Other">Other</option>
           </select>
           {errors.serviceType && (
-            <p className="text-red-900 text-sm mt-1">
+            <p className="text-red-600 text-xs mt-1 font-medium">
               {errors.serviceType.message}
             </p>
           )}
@@ -217,59 +238,66 @@ const Formy = () => {
         {/* Message */}
         <div className="mb-4">
           <textarea
-            rows="4"
-            {...register("message", { 
+            rows="3"
+            {...register("message", {
               // required: "Message is required"
-             })}
+            })}
             placeholder="Send Message"
-            className="border border-gray-300  p-2 w-full rounded"
+            className={`${inputStyles} resize-none`}
           />
           {errors.message && (
-            <p className="text-red-900 text-sm mt-1">
+            <p className="text-red-600 text-xs mt-1 font-medium">
               {errors.message.message}
             </p>
           )}
         </div>
 
         {/* Cloudflare Turnstile */}
-        <div className="mb-4 w-full">
-          <Controller
-            name="turnstileToken"
-            control={control}
-            rules={{ required: "Please complete the security check" }}
-            render={({ field }) => (
-              <Turnstile
-                key={turnstileKey}
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                onSuccess={(token) => field.onChange(token)}
-                onError={() => field.onChange("")}
-                onExpire={() => field.onChange("")}
-                options={{
-                  theme: "light",
-                  size: "flexible",
-                  appearance: "interaction-only", // only visible when Cloudflare needs a click
-                }}
-              />
+        <div className="mb-5 w-full flex justify-center md:justify-start">
+          <div className="w-full  flex flex-col">
+            <Controller
+              name="turnstileToken"
+              control={control}
+              rules={{ required: "Please complete the security check" }}
+              render={({ field }) => (
+                <Turnstile
+                  key={turnstileKey}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => field.onChange(token)}
+                  onError={() => field.onChange("")}
+                  onExpire={() => field.onChange("")}
+                  options={{
+                    theme: "light",
+                    size: "flexible",
+                    appearance: "interaction-only", // only visible when Cloudflare needs a click
+                  }}
+                />
+              )}
+            />
+            {errors.turnstileToken && (
+              <p className="text-red-600 text-xs mt-1 font-medium text-center md:text-left">
+                {errors.turnstileToken.message}
+              </p>
             )}
-          />
-          {errors.turnstileToken && (
-            <p className="text-red-900 text-sm mt-1">
-              {errors.turnstileToken.message}
-            </p>
-          )}
+          </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className={
-            isSubmitting
-              ? "bg-(--color-buttonBlue) text-white px-6 md:px-10 py-3 md:py-4 rounded hover:bg-blue-700 cursor-not-allowed w-full md:w-auto md:min-w-48 transition duration-300"
-              : "bg-(--color-buttonBlue) text-white px-6 md:px-10 py-3 md:py-4 rounded hover:bg-blue-700 cursor-pointer w-full md:w-auto md:min-w-48 transition duration-300"
-          }
-        >
-          {isSubmitting ? "Sending" : "Send Message"}
-        </button>
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`
+              w-full md:w-auto px-6 py-2.5 text-sm font-medium rounded-md text-white transition-all
+              ${
+                isSubmitting
+                  ? "bg-(--color-buttonBlue) opacity-70 cursor-not-allowed"
+                  : "bg-(--color-buttonBlue) hover:bg-blue-800 hover:shadow-md focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:outline-none cursor-pointer"
+              }
+            `}
+          >
+            {isSubmitting ? "Sending" : "Send Message"}
+          </button>
+        </div>
       </form>
     </div>
   );
