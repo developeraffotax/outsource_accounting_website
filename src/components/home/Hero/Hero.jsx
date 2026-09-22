@@ -5,6 +5,7 @@ import QuoteForm from "@/components/shared/forms/QuoteForm";
 import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import Model from "@/components/shared/forms/Model.jsx";
 import Container from "@/components/wraper/Container";
+import { useRouter } from "next/navigation";
 
 const Hero = ({
   img,
@@ -18,6 +19,17 @@ const Hero = ({
   cardsComponent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const router = useRouter();
+
+  const handleSuccess = () => {
+  // Set the flag that the thank-you page will check
+
+  sessionStorage.setItem("quote_form_submitted", "true");
+  router.push("/thank-you");
+};
+
+
 
   return (
     <section className="relative w-full overflow-hidden">
@@ -73,7 +85,7 @@ const Hero = ({
               <h2 className="mb-6 text-left text-2xl font-bold text-gray-800 md:text-3xl">
                 Quick <span className="text-(--color-buttonBlue)">Quote</span>
               </h2>
-              <QuoteFormHH />
+              <QuoteFormHH onSuccess={handleSuccess}/>
             </div>
           </div>
 
@@ -88,7 +100,10 @@ const Hero = ({
       <div className="py-4 md:py-8">{cardsComponent}</div>
       {/* MODAL OVERLAY */}
       <Model isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <QuoteForm onSuccess={() => setIsModalOpen(false)} />
+        <QuoteForm onSuccess={() => {
+          setIsModalOpen(false);
+          handleSuccess();
+        }} />
       </Model>
     </section>
   );

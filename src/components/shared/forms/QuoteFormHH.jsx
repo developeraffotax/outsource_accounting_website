@@ -273,6 +273,11 @@ const QuoteForm = ({ onSuccess }) => {
         </div>,
       );
       reset();
+
+      if (onSuccess) {
+        // await new Promise((resolve) => setTimeout(resolve, 1000));
+        onSuccess();
+      }
     } catch (error) {
       console.log("error occued hero ", error);
       toast.error("Failed to send message");

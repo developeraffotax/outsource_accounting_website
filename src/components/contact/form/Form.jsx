@@ -8,6 +8,7 @@ import parsePhoneNumberFromString, {
   isValidPhoneNumber,
 } from "libphonenumber-js";
 import { Turnstile } from "@marsidev/react-turnstile";
+import { useRouter } from "next/navigation";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -37,6 +38,8 @@ const Formy = () => {
     },
   });
 
+
+  const router = useRouter()
   // Turnstile tokens are single-use, so clear the token and remount the
   // widget after every submit attempt (success or failure).
   const resetTurnstile = () => {
@@ -44,16 +47,8 @@ const Formy = () => {
     setTurnstileKey((k) => k + 1);
   };
 
-  const onSubmit = async (data) => {
-    const payload = {
-      ...data,
-      email: data.email.trim(),
-      phone: data.phone.trim(),
-    };
-
-    try {
-      await axios.post(`/api/contacttwo`, payload);
-      toast.success(
+    const handleSuccess = () => {
+  toast.success(
         <div>
           <p className="font-bold">Quote Request Received</p>
           <p className="text-xs opacity-80">
@@ -64,6 +59,26 @@ const Formy = () => {
       );
       reset();
       resetTurnstile();
+
+  sessionStorage.setItem("quote_form_submitted", "true");
+  router.push("/thank-you");
+
+
+};
+
+
+  const onSubmit = async (data) => {
+    const payload = {
+      ...data,
+      email: data.email.trim(),
+      phone: data.phone.trim(),
+    };
+
+    try {
+      // await axios.post(`/api/contacttwo`, payload);
+      
+
+      handleSuccess()
 
     } catch (error) {
       console.log("error occurred when trying to submiting form", error);

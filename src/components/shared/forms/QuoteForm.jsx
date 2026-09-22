@@ -9,15 +9,15 @@ import parsePhoneNumberFromString, {
 import { Turnstile } from "@marsidev/react-turnstile";
 
 const fieldClassName =
-  "mt-1 block w-full border-0 border-b border-slate-400/80 bg-transparent px-0 pb-2.5 pt-1 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:border-(--color-buttonBlue) focus:outline-none focus:ring-0";
+  "mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50/50 px-3.5 py-3 text-base font-medium text-slate-800 placeholder:text-slate-400 focus:border-(--color-buttonBlue) focus:bg-white focus:outline-none focus:ring-2 focus:ring-(--color-buttonBlue)/20 md:text-sm transition-colors duration-200";
 
 const labelClassName =
-  "block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500";
+  "block text-xs font-semibold uppercase tracking-wider text-slate-700";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const ErrorMessage = ({ message }) => (
-  <p className="mt-1 text-[11px] font-semibold text-red-600">{message}</p>
+  <p className="mt-1.5 text-[12px] font-semibold text-red-600">{message}</p>
 );
 
 const QuoteForm = ({ onSuccess }) => {
@@ -74,7 +74,7 @@ const QuoteForm = ({ onSuccess }) => {
       resetTurnstile();
 
       if (onSuccess) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        // await new Promise((resolve) => setTimeout(resolve, 1000));
         onSuccess();
       }
     } catch (error) {
@@ -88,7 +88,7 @@ const QuoteForm = ({ onSuccess }) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="relative overflow-hidden rounded-[28px] border border-(--color-linearBar) bg-white shadow-[0_28px_80px_rgba(23,33,58,0.22)]"
+      className="relative overflow-hidden  lg:rounded-[28px] border border-(--color-linearBar) bg-white shadow-[0_28px_80px_rgba(23,33,58,0.22)]"
     >
       {/* Honeypot: hidden from users, bots will fill it */}
       <div
@@ -115,25 +115,25 @@ const QuoteForm = ({ onSuccess }) => {
       </div>
 
       <div className="grid md:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative overflow-hidden bg-(--color-veryLightBlue) px-4 py-8 sm:px-8 md:px-10 md:py-10">
-          <p className="text-3xl font-semibold leading-[1.12] text-slate-800 sm:text-4xl">
+        <div className="max-lg:hidden relative overflow-hidden bg-(--color-veryLightBlue) px-5 py-8 sm:px-8 md:px-10 md:py-10 ">
+          <p className="text-2xl font-semibold leading-[1.15] text-slate-800 sm:text-3xl md:text-4xl">
             Get your custom{" "}
             <span className="text-(--color-buttonBlue)">quote</span>
           </p>
-          <p className="mt-2 md:mt-4 max-w-md text-sm leading-7 text-slate-600">
+          <p className="mt-2 md:mt-4 max-w-md text-sm leading-6 sm:leading-7 text-slate-600">
             Tell us about your business and we will share a tailored outsourcing
             plan with clear pricing and next steps.
           </p>
-          <p className="mt-2 md:mt-4 max-w-md text-sm leading-7 text-slate-600">
+          <p className="mt-2 md:mt-4 max-w-md text-sm leading-6 sm:leading-7 text-slate-600">
             Once submitted, our team will reach out quickly with a personalized
             response.
           </p>
 
-          <div className="mt-4 md:mt-10 max-w-sm">
-            <h3 className="text-[26px] leading-tight text-slate-800">
+          <div className="mt-6 md:mt-10 max-w-sm">
+            <h3 className="text-xl sm:text-[26px] leading-tight text-slate-800">
               Want to talk with us?
             </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+            <p className="mt-2 sm:mt-3 text-sm leading-6 sm:leading-7 text-slate-600">
               If you are working on something interesting that needs accounting
               support, we would love to hear from you.
             </p>
@@ -144,17 +144,17 @@ const QuoteForm = ({ onSuccess }) => {
           <div className="pointer-events-none absolute -bottom-8 left-28 h-16 w-6 md:h-20 md:w-8 rotate-12 rounded-[999px] bg-(--color-ImgOverlay)" />
         </div>
 
-        <div className="bg-white px-4 py-6 sm:px-8 md:px-9 md:py-10">
+        <div className="bg-white px-5 py-6 sm:px-8 md:px-9 md:py-10">
           <p className="text-[12px] font-semibold uppercase tracking-[0.09em] text-(--color-buttonBlue)">
             Fill the form to receive a tailored quote. It is free.
           </p>
 
-          <div className="mt-7 space-y-6">
+          <div className="mt-6 space-y-5">
             {/* Name */}
             <div>
-              <label htmlFor="quote-name" className={labelClassName}>
+              {/* <label htmlFor="quote-name" className={labelClassName}>
                 Full Name
-              </label>
+              </label> */}
               <input
                 id="quote-name"
                 type="text"
@@ -167,9 +167,9 @@ const QuoteForm = ({ onSuccess }) => {
 
             {/* Company */}
             <div>
-              <label htmlFor="quote-company" className={labelClassName}>
+              {/* <label htmlFor="quote-company" className={labelClassName}>
                 Company Name
-              </label>
+              </label> */}
               <input
                 id="quote-company"
                 type="text"
@@ -186,12 +186,12 @@ const QuoteForm = ({ onSuccess }) => {
 
             {/* Turnover */}
             <div>
-              <label htmlFor="quote-turnover" className={labelClassName}>
+              {/* <label htmlFor="quote-turnover" className={labelClassName}>
                 Company Turnover
-              </label>
+              </label> */}
               <select
                 id="quote-turnover"
-                className={`${fieldClassName} cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>')] bg-no-repeat bg-[right_0.5rem_center] bg-[length:1rem_1rem] pr-8`}
+                className={`${fieldClassName} cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>')] bg-no-repeat bg-[right_0.875rem_center] bg-[length:1.125rem_1.125rem] pr-10`}
                 {...register("companyTurnover", {
                   required: "Please select a turnover",
                 })}
@@ -211,30 +211,30 @@ const QuoteForm = ({ onSuccess }) => {
 
             {/* Email (required unless a phone number is given) */}
             <div>
-              <label htmlFor="quote-email" className={labelClassName}>
+              {/* <label htmlFor="quote-email" className={labelClassName}>
                 Email Address
-              </label>
+              </label> */}
               <input
                 id="quote-email"
                 type="email"
                 placeholder="Enter Email"
                 className={fieldClassName}
                 {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Please enter a valid email address",
-                      },
-                    })}
+                  required: "Email is required",
+                  pattern: {
+                    value: EMAIL_REGEX,
+                    message: "Please enter a valid email address",
+                  },
+                })}
               />
               {errors.email && <ErrorMessage message={errors.email.message} />}
             </div>
 
             {/* Phone (optional if an email is given) */}
             <div>
-              <label htmlFor="quote-phone" className={labelClassName}>
+              {/* <label htmlFor="quote-phone" className={labelClassName}>
                 Phone Number
-              </label>
+              </label> */}
               <input
                 id="quote-phone"
                 type="tel"
@@ -242,33 +242,31 @@ const QuoteForm = ({ onSuccess }) => {
                 className={fieldClassName}
                 {...register("phone", {
                   validate: (value) => {
-            if (!value || value.trim() === "") return true; // optional
+                    if (!value || value.trim() === "") return true; // optional
 
-            // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
-            const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
+                    // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
+                    const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
 
-            if (!/^\d+$/.test(cleaned)) {
-              return "Phone number should only contain digits";
-            }
+                    if (!/^\d+$/.test(cleaned)) {
+                      return "Phone number should only contain digits";
+                    }
 
-            if (cleaned.length < 7 || cleaned.length > 15) {
-              return "Phone number must be between 7 and 15 digits";
-            }
+                    if (cleaned.length < 7 || cleaned.length > 15) {
+                      return "Phone number must be between 7 and 15 digits";
+                    }
 
-            return true;
-          },
- 
-                  
+                    return true;
+                  },
                 })}
               />
               {errors.phone && <ErrorMessage message={errors.phone.message} />}
-              <p className="mt-2 text-[11px] text-slate-500">
+              <p className="mt-1.5 text-[11px] text-slate-500">
                 Provide your email - a phone number is optional.
               </p>
             </div>
 
             {/* Cloudflare Turnstile */}
-            <div className="w-full">
+            <div className="w-full overflow-x-auto">
               <Controller
                 name="turnstileToken"
                 control={control}
@@ -297,10 +295,10 @@ const QuoteForm = ({ onSuccess }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`mt-8 block w-full rounded-none px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] transition-all duration-300 ${
+            className={`mt-7 block w-full rounded-lg px-5 py-3.5 text-sm font-bold uppercase tracking-[0.08em] shadow-sm transition-all duration-300 ${
               isSubmitting
                 ? "cursor-not-allowed bg-slate-300 text-slate-500"
-                : "cursor-pointer bg-(--color-buttonBlue) text-white hover:brightness-110"
+                : "cursor-pointer bg-(--color-buttonBlue) text-white hover:brightness-110 active:scale-[0.99]"
             }`}
           >
             {isSubmitting ? "Sending..." : "Get My Quote"}
@@ -314,4 +312,5 @@ const QuoteForm = ({ onSuccess }) => {
     </form>
   );
 };
+
 export default QuoteForm;
