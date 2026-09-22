@@ -359,7 +359,7 @@ const QuoteForm = ({ onSuccess }) => {
         <Controller
           name="company"
           control={control}
-          rules={{ required: true }}
+          rules={{   }}
           render={({ field }) => (
             <input
               type="text"
@@ -402,36 +402,26 @@ const QuoteForm = ({ onSuccess }) => {
       {/* Email */}
       <div className="mb-3">
         <Controller
-          name="email"
-          control={control}
-          rules={{
-            validate: (value) => {
-              const hasEmail = value && value.trim() !== "";
-              const hasPhone =
-                getValues("phone") && getValues("phone").trim() !== "";
-
-              if (!hasEmail && !hasPhone) {
-                return "Please provide either an email or a phone number";
-              }
-              return true;
-            },
-          }}
-          render={({ field }) => (
-            <input
-              type="email"
-              placeholder="Enter Email"
-              className={`${inputBase} ${
-                errors.email ? "border-red-400 ring-2 ring-red-400/15" : ""
-              }`}
-              {...field}
-              onChange={(e) => {
-                field.onChange(e);
-                // Re-validate phone so its error clears when email is filled
-                trigger("phone");
-              }}
-            />
-          )}
-        />
+            name="email"
+            control={control}
+            rules={{
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Please enter a valid email address",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                type="email"
+                placeholder="Enter Email"
+                className={`${inputBase} ${
+                  errors.email ? "border-red-400 ring-2 ring-red-400/15" : ""
+                }`}
+                {...field}
+              />
+            )}
+          />
         {errors.email && (
           <div className={errorBox}>
             <svg
@@ -456,45 +446,38 @@ const QuoteForm = ({ onSuccess }) => {
 
       {/* Phone */}
       <div className="mb-5">
-        <Controller
+       <Controller
           name="phone"
           control={control}
           rules={{
-            validate: (value) => {
-              const hasPhone = value && value.trim() !== "";
-              const hasEmail =
-                getValues("email") && getValues("email").trim() !== "";
+          validate: (value) => {
+            if (!value || value.trim() === "") return true; // optional
 
-              if (!hasPhone && !hasEmail) {
-                return "Please provide either an email or a phone number";
-              }
+            // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
+            const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
 
-              if (hasPhone) {
-                const phoneNumber = parsePhoneNumberFromString(value, "GB");
-                if (phoneNumber?.isValid()) return true;
-                if (isValidPhoneNumber(value)) return true;
-                return "Please enter a valid phone number";
-              }
+            if (!/^\d+$/.test(cleaned)) {
+              return "Phone number should only contain digits";
+            }
 
-              return true;
-            },
-          }}
-          render={({ field }) => (
-            <input
-              type="tel"
-              placeholder="Enter Phone Number"
-              className={`${inputBase} ${
-                errors.phone ? "border-red-400 ring-2 ring-red-400/15" : ""
-              }`}
-              {...field}
-              onChange={(e) => {
-                field.onChange(e);
-                // Re-validate email so its error clears when phone is filled
-                trigger("email");
-              }}
-            />
-          )}
-        />
+            if (cleaned.length < 7 || cleaned.length > 15) {
+              return "Phone number must be between 7 and 15 digits";
+            }
+
+            return true;
+          },
+        }}
+  render={({ field }) => (
+    <input
+      type="tel"
+      placeholder="Enter Phone Number (optional)"
+      className={`${inputBase} ${
+        errors.phone ? "border-red-400 ring-2 ring-red-400/15" : ""
+      }`}
+      {...field}
+    />
+  )}
+/>
         {errors.phone && (
           <div className={errorBox}>
             <svg

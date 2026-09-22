@@ -176,7 +176,7 @@ const QuoteForm = ({ onSuccess }) => {
                 placeholder="Enter Company Name"
                 className={fieldClassName}
                 {...register("company", {
-                  required: "Company name is required",
+                  // required: "Company name is required",
                 })}
               />
               {errors.company && (
@@ -220,19 +220,12 @@ const QuoteForm = ({ onSuccess }) => {
                 placeholder="Enter Email"
                 className={fieldClassName}
                 {...register("email", {
-                  validate: (value) => {
-                    const email = value?.trim();
-                    const phone = getValues("phone")?.trim();
-
-                    if (!email && !phone) {
-                      return "Please provide either an email or a phone number";
-                    }
-                    if (email && !EMAIL_REGEX.test(email)) {
-                      return "Please enter a valid email address";
-                    }
-                    return true;
-                  },
-                })}
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Please enter a valid email address",
+                      },
+                    })}
               />
               {errors.email && <ErrorMessage message={errors.email.message} />}
             </div>
@@ -249,24 +242,28 @@ const QuoteForm = ({ onSuccess }) => {
                 className={fieldClassName}
                 {...register("phone", {
                   validate: (value) => {
-                    const phone = value?.trim();
-                    if (!phone) return true; // "email or phone" rule is reported on the email field
+            if (!value || value.trim() === "") return true; // optional
 
-                    const parsed = parsePhoneNumberFromString(phone, "GB");
-                    if (parsed?.isValid()) return true;
-                    if (isValidPhoneNumber(phone)) return true;
-                    return "Please enter a valid phone number";
-                  },
-                  // Once the form has been submitted, keep the email error in
-                  // sync as the user fills in / clears the phone number.
-                  onChange: () => {
-                    if (isSubmitted) trigger("email");
-                  },
+            // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
+            const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
+
+            if (!/^\d+$/.test(cleaned)) {
+              return "Phone number should only contain digits";
+            }
+
+            if (cleaned.length < 7 || cleaned.length > 15) {
+              return "Phone number must be between 7 and 15 digits";
+            }
+
+            return true;
+          },
+ 
+                  
                 })}
               />
               {errors.phone && <ErrorMessage message={errors.phone.message} />}
               <p className="mt-2 text-[11px] text-slate-500">
-                Provide an email, a phone number, or both.
+                Provide your email - a phone number is optional.
               </p>
             </div>
 

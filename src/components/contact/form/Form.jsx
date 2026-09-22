@@ -124,7 +124,7 @@ const Formy = () => {
           <input
             type="text"
             {...register("companyName", {
-              required: "Enter your company name",
+              // required: "Enter your company name",
             })}
             placeholder="Enter Company Name"
             className="border border-gray-300  p-2 w-full rounded"
@@ -141,19 +141,12 @@ const Formy = () => {
           <input
             type="email"
             {...register("email", {
-              validate: (value) => {
-                const email = value?.trim();
-                const phone = getValues("phone")?.trim();
-
-                if (!email && !phone) {
-                  return "Please provide either an email or a phone number";
-                }
-                if (email && !EMAIL_REGEX.test(email)) {
-                  return "Enter a valid email";
-                }
-                return true;
-              },
-            })}
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Please enter a valid email address",
+                      },
+                    })}
             placeholder="Email"
             className="border border-gray-300  p-2 w-full rounded"
           />
@@ -166,22 +159,26 @@ const Formy = () => {
         <div className="mb-4">
           <input
             type="tel"
-            {...register("phone", {
-              validate: (value) => {
-                const phone = value?.trim();
-                if (!phone) return true;; // "email or phone" rule is reported on the email field
+                           {...register("phone", {
+                  validate: (value) => {
+            if (!value || value.trim() === "") return true; // optional
 
-                const parsed = parsePhoneNumberFromString(phone, "GB");
-                if (parsed?.isValid()) return true;
-                if (isValidPhoneNumber(phone)) return true;
-                return "Please enter a valid phone number";
-              },
-              // Once the form has been submitted, keep the email error in
-              // sync as the user fills in / clears the phone number.
-              onChange: () => {
-                if (isSubmitted) trigger("email");
-              },
-            })}
+            // Strip allowed formatting: spaces, dashes, dots, parentheses, leading +
+            const cleaned = value.trim().replace(/[\s\-.()+]/g, "");
+
+            if (!/^\d+$/.test(cleaned)) {
+              return "Phone number should only contain digits";
+            }
+
+            if (cleaned.length < 7 || cleaned.length > 15) {
+              return "Phone number must be between 7 and 15 digits";
+            }
+
+            return true;
+          },
+ 
+                  
+                })}
             placeholder="Phone Number"
             className="border border-gray-300  p-2 w-full rounded"
           />
@@ -189,7 +186,7 @@ const Formy = () => {
             <p className="text-red-900 text-sm mt-1">{errors.phone.message}</p>
           )}
           <p className="text-gray-500 text-xs mt-1">
-            Provide an email, a phone number, or both.
+            Provide your email - a phone number is optional.
           </p>
         </div>
 
@@ -202,8 +199,13 @@ const Formy = () => {
             <option value="" disabled>
               Select Service
             </option>
-            <option value="tax">Tax</option>
-            <option value="counseling">Counseling</option>
+            <option value="Accounts">Accounts</option>
+            <option value="Corporation Tax">Corporation Tax</option>
+            <option value="Self Assessment">Self Assessment</option>
+            <option value="Payroll">Payroll</option>
+            <option value="VAT">VAT</option>
+            <option value="Company Formation">Company Formation</option>
+            <option value="Other">Other</option>
           </select>
           {errors.serviceType && (
             <p className="text-red-900 text-sm mt-1">
@@ -216,7 +218,9 @@ const Formy = () => {
         <div className="mb-4">
           <textarea
             rows="4"
-            {...register("message", { required: "Message is required" })}
+            {...register("message", { 
+              // required: "Message is required"
+             })}
             placeholder="Send Message"
             className="border border-gray-300  p-2 w-full rounded"
           />
