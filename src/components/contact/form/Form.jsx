@@ -75,7 +75,7 @@ const Formy = () => {
     };
 
     try {
-      // await axios.post(`/api/contacttwo`, payload);
+      await axios.post(`/api/contacttwo`, payload);
       
 
       handleSuccess()
